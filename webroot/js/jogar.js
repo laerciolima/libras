@@ -1,13 +1,15 @@
 tempo = 20;
-var intervalo;
+var intervalo = null;
 
 
 
-$(document).ready(function() {
-    $("video").bind("ended", function() {
-        intervalo = setInterval(function() {
-            cronometro()
-        }, 1000);
+$(document).ready(function () {
+    $("video").bind("ended", function () {
+        if (intervalo == null) {
+            intervalo = setInterval(function () {
+                cronometro()
+            }, 1000);
+        }
     });
 
 });
@@ -26,7 +28,7 @@ function cronometro() {
         }
     } else {
         $("#tempo").html("0s");
-        
+
         clearInterval(intervalo);
 
     }

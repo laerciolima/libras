@@ -71,9 +71,7 @@ table.view tr td img { margin: 0px; padding: 0px; }
     border:1px solid #84bbf3;
     display:inline-block;
     color:#ffffff;
-    font-family:Impact;
-    font-size:24px;
-
+    font-size:46px;
     font-style:normal;
     height:50px;
     line-height:50px;
@@ -111,15 +109,15 @@ table.view tr td img { margin: 0px; padding: 0px; }
   margin-right: 0;
   margin-left: 0;
 }
-/* 
+/*
     Sometimes the sub menus get too large for the page and prevent the menu from scrolling, limiting functionality
-    A quick fix is to change .side-menu to 
+    A quick fix is to change .side-menu to
 
     -> position:absolute
-    
+
     and uncomment the code below.
-    You also need to uncomment 
-    
+    You also need to uncomment
+
     -> <div class="absolute-wrapper"> </div> in the html file
 
     you also need to tweek the animation. Just uncomment the code in that section
@@ -455,5 +453,3 @@ table.view tr td img { margin: 0px; padding: 0px; }
     margin: 0;
   }
 }
-
-

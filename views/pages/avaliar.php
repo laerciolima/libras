@@ -7,10 +7,10 @@
 <div class="row">
     <div class="player_video_avaliacao col-sm-6 ">
 
-        <div>
-            
+        <div class="embed-responsive embed-responsive-4by3">
+
             <video controls autoplay="" id="video" class="embed-responsive-item">
-                <source src="storage/videos/users/1/1020500010001.webm" type="video/webM">
+                <source src="storage/videos/users/1/madrugada.mp4" type="video/mp4">
                 <source src="movie.ogg" type="video/ogg">
                 Your browser does not support the video tag.
             </video>
@@ -18,13 +18,11 @@
 
     </div>
     <div class="player_video_avaliacao col-sm-6 ">
+        <h4 class="text-center">Escolha a opção correta:</h4>
+        <button type="button" class="btn btn-default btn-block">Tarde</button>
+        <button type="button" class="btn btn-default btn-block">Manhã</button>
+        <button type="button" class="btn btn-default btn-block">Madrugada</button>
+        <button type="button" class="btn btn-default btn-block">Noite</button>
 
-        <button type="button" class="btn btn-default btn-block">Button 1</button>
-        <button type="button" class="btn btn-default btn-block">Button 1</button>
-        <button type="button" class="btn btn-default btn-block">Button 1</button>
-        <button type="button" class="btn btn-default btn-block">Button 1</button>
-
-wcoc
-        
     </div>
 </div>

@@ -17,16 +17,13 @@
 
         <div class="container-fluid" style="padding-left: 0px">
             <div class="row">
-                <!-- uncomment code for absolute positioning tweek see top comment in css -->
-                <!-- <div class="absolute-wrapper"> </div> -->
-                <!-- Menu -->
+
                 <div class="side-menu">
 
                     <nav class="navbar navbar-default" role="navigation">
-                        <!-- Brand and toggle get grouped for better mobile display -->
                         <div class="navbar-header">
                             <div class="brand-wrapper">
-                                <!-- Hamburger -->
+
                                 <button type="button" class="navbar-toggle">
                                     <span class="sr-only">Toggle navigation</span>
                                     <span class="icon-bar"></span>
@@ -37,7 +34,7 @@
                                 <!-- Brand -->
                                 <div class="brand-name-wrapper">
                                     <a class="navbar-brand" href="#">
-                                        Brand
+                                        Libras
                                     </a>
                                 </div>
 
@@ -51,7 +48,7 @@
                                     <div class="panel-body">
                                         <form class="navbar-form" role="search">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Search">
+                                                <input type="text" class="form-control" placeholder="Encontrar amigos">
                                             </div>
                                             <button type="submit" class="btn btn-default "><span class="glyphicon glyphicon-ok"></span></button>
                                         </form>
@@ -60,6 +57,8 @@
                             </div>
 
                         </div>
+
+
 
                         <!-- Main Menu -->
                         <div class="side-menu-container">
@@ -75,7 +74,7 @@
 
                                 <div class="">
                                     <img src="webroot/img/user_profile.jpg" width="100" class="img-responsive img-circle center-block"/>
-                                    <span>Mariano  </span>
+                                    <span>&nbspMariano  </span>
                                     <span class="text-justify">LV 15</span>
                                 </div>
                                 <div class="progress">
@@ -89,7 +88,7 @@
 
 
 
-                                <li><a href="#"><span class="glyphicon glyphicon-home"></span> Meu Perfil</a></li>
+                                <li><a href="?controller=pages&action=home"><span class="glyphicon glyphicon-home"></span> Meu Perfil</a></li>
                                 <li class="active"><a href="?controller=pages&action=avaliar"><span class="glyphicon glyphicon-list-alt"></span> Avaliar</a></li>
                                 <li><a href="?controller=pages&action=amigos"><span class="glyphicon glyphicon-user"></span> Amigos</a></li>
                                 <li><a href="?controller=ranking&action=index"><span class="glyphicon glyphicon-stats"></span> Ranking</a></li>
@@ -141,7 +140,7 @@
 
                     <div class="side-body">
                         <?php require_once('routes.php'); ?>
-                        
+
 
                     </div>
                 </div>
