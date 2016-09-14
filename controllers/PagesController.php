@@ -18,5 +18,8 @@
     public function amigos(){
         require 'views/estudante/amigos.php';
     }
+    public function gravar(){
+        require 'views/pages/gravar.php';
+    }
   }
 ?>

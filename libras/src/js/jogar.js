@@ -3,7 +3,7 @@ var intervalo;
 
 $(document).ready(function() {
     $("video").bind("ended", function() {
-
+        
         $("#painel_alternativas").show("drop", {direction: "right"}, 1000)
         intervalo = setInterval(function() {
             cronometro()

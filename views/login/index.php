@@ -1,345 +1,170 @@
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<link rel="stylesheet" type="text/css" href="../../webroot/css/bootstrap.css">
+<script src="../../webroot/js/jquery.min.js" ></script>
+<script src="../../webroot/js/bootstrap.min.js" ></script>
 
 <!-- Where all the magic happens -->
 <!-- LOGIN FORM -->
 <center>
-    
-<div class="text-center" style="padding:100px 0">
-    <?php if(isset($_GET['login'])){ ?>
-    <div style="background-color: #d7eafd; color: #ff4242 ">
-            <h4>Login/senha inválidos!</h4>
+
+
+    <?php if (isset($_GET['login'])) {
+        session_start(); ?>
+        <div class="text-center" style="">
+            <div style="background-color: #d7eafd; color: #ff4242 ">
+                <h4><?php echo $_SESSION['erro'];?></h4>
+            </div>
         </div>
-	
-        
+
     <?php } ?>
-	<!-- Main Form -->
-            
-        <div class="logo">Unitrans</div>
-	<div class="login-form-1">
-            <form id="login-form" class="text-left" method="post" action="../../controllers/LoginController.php">
-			<div class="login-form-main-message"></div>
-			<div class="main-login-form">
-				<div class="login-group">
-					<div class="form-group">
-                                            <input type="text" class="form-control" id="lg_username" name="login" placeholder="nome de usuário">
-					</div>
-					<div class="form-group">
-						
-						<input type="password" class="form-control" id="lg_password" name="senha" placeholder="senha">
-					</div>
-                                    <input type="hidden" name="login-request" />
-				</div>
-				<button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
-			</div>
-		</form>
-	</div>
-        
-	<!-- end:Main Form -->
-</div>
+    <!-- Main Form -->
+
+
+    <!-- end:Main Form -->
+
 
 </center>
 
 
-<style>
-        /*------------------------------------------------------------------
-[Master Stylesheet]
+<div class="container">
 
-Project    	: Aether
-Version		: 1.0
-Last change	: 2015/03/27
--------------------------------------------------------------------*/
-/*------------------------------------------------------------------
-[Table of contents]
-
-1. General Structure
-2. Anchor Link
-3. Text Outside the Box
-4. Main Form
-5. Login Button
-6. Form Invalid
-7. Form - Main Message
-8. Custom Checkbox & Radio
-9. Misc
--------------------------------------------------------------------*/
-/*=== 1. General Structure ===*/
-
-@font-face {
-    font-family: myFirstFont;
-    src: url(../../webroot/font/varela.woff2);
-}
+    <form class="form-signin" method="post" action="../../controllers/LoginController.php">
+        <h2 class="form-signin-heading">Login</h2>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="text" name="login" class="form-control" placeholder="E-mail" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" name="senha" class="form-control" placeholder="Senha" required>
+        <input type="hidden" name="login-web" />
 
 
-*  {
-    margin:0;
-    padding:0;
-    font-family: myFirstFont;
-}
-html,
-body {
-  background: #236B8E;
-  padding: 10px;
-  font-family: myFirstFont;
-}
-/*=== 2. Anchor Link ===*/
-a {
-  color: #aaaaaa;
-  transition: all ease-in-out 200ms;
-}
-a:hover {
-  color: #333333;
-  text-decoration: none;
-}
-/*=== 3. Text Outside the Box ===*/
-.etc-login-form {
-  color: #919191;
-  padding: 10px 20px;
-}
-.etc-login-form p {
-  margin-bottom: 5px;
-}
-/*=== 4. Main Form ===*/
-.login-form-1 {
-  max-width: 300px;
-  border-radius: 5px;
-  display: inline-block;
-}
-.main-login-form {
-  position: relative;
-}
-.login-form-1 .form-control {
-  border: 0;
-  box-shadow: 0 0 0;
-  border-radius: 0;
-  background: transparent;
-  color: #555555;
-  padding: 7px 0;
-  font-weight: bold;
-  height:auto;
-}
-.login-form-1 .form-control::-webkit-input-placeholder {
-  color: #999999;
-}
-.login-form-1 .form-control:-moz-placeholder,
-.login-form-1 .form-control::-moz-placeholder,
-.login-form-1 .form-control:-ms-input-placeholder {
-  color: #999999;
-}
-.login-form-1 .form-group {
-  margin-bottom: 0;
-  border-bottom: 2px solid #236B8E;
-  padding-right: 20px;
-  position: relative;
-}
-.login-form-1 .form-group:last-child {
-  border-bottom: 0;
-}
-.login-group {
-  background: #ffffff;
-  color: #999999;
-  border-radius: 8px;
-  padding: 10px 20px;
-}
-.login-group-checkbox {
-  padding: 5px 0;
-}
-/*=== 5. Login Button ===*/
-.login-form-1 .login-button {
-  position: absolute;
-  right: -25px;
-  top: 50%;
-  background: #ffffff;
-  color: #999999;
-  padding: 11px 0;
-  width: 50px;
-  height: 50px;
-  margin-top: -25px;
-  border: 5px solid #236B8E;
-  border-radius: 50%;
-  transition: all ease-in-out 500ms;
-}
-.login-form-1 .login-button:hover {
-  color: #555555;
-  transform: rotate(450deg);
-}
-.login-form-1 .login-button.clicked {
-  color: #555555;
-}
-.login-form-1 .login-button.clicked:hover {
-  transform: none;
-}
-.login-form-1 .login-button.clicked.success {
-  color: #2ecc71;
-}
-.login-form-1 .login-button.clicked.error {
-  color: #e74c3c;
-}
-/*=== 6. Form Invalid ===*/
-label.form-invalid {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 5;
-  display: block;
-  margin-top: -25px;
-  padding: 7px 9px;
-  background: #777777;
-  color: #ffffff;
-  border-radius: 5px;
-  font-weight: bold;
-  font-size: 11px;
-}
-label.form-invalid:after {
-  top: 100%;
-  right: 10px;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  border-color: transparent;
-  border-top-color: #777777;
-  border-width: 6px;
-}
-/*=== 7. Form - Main Message ===*/
-.login-form-main-message {
-  background: #ffffff;
-  color: #999999;
-  border-left: 3px solid transparent;
-  border-radius: 3px;
-  margin-bottom: 8px;
-  font-weight: bold;
-  height: 0;
-  padding: 0 20px 0 17px;
-  opacity: 0;
-  transition: all ease-in-out 200ms;
-}
-.login-form-main-message.show {
-  height: auto;
-  opacity: 1;
-  padding: 10px 20px 10px 17px;
-}
-.login-form-main-message.success {
-  border-left-color: #2ecc71;
-}
-.login-form-main-message.error {
-  border-left-color: #e74c3c;
-}
-/*=== 8. Custom Checkbox & Radio ===*/
-/* Base for label styling */
-[type="checkbox"]:not(:checked),
-[type="checkbox"]:checked,
-[type="radio"]:not(:checked),
-[type="radio"]:checked {
-  position: absolute;
-  left: -9999px;
-}
-[type="checkbox"]:not(:checked) + label,
-[type="checkbox"]:checked + label,
-[type="radio"]:not(:checked) + label,
-[type="radio"]:checked + label {
-  position: relative;
-  padding-left: 25px;
-  padding-top: 1px;
-  cursor: pointer;
-}
-/* checkbox aspect */
-[type="checkbox"]:not(:checked) + label:before,
-[type="checkbox"]:checked + label:before,
-[type="radio"]:not(:checked) + label:before,
-[type="radio"]:checked + label:before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 2px;
-  width: 17px;
-  height: 17px;
-  border: 0px solid #aaa;
-  background: #f0f0f0;
-  border-radius: 3px;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
-}
-/* checked mark aspect */
-[type="checkbox"]:not(:checked) + label:after,
-[type="checkbox"]:checked + label:after,
-[type="radio"]:not(:checked) + label:after,
-[type="radio"]:checked + label:after {
-  position: absolute;
-  color: #555555;
-  transition: all .2s;
-}
-/* checked mark aspect changes */
-[type="checkbox"]:not(:checked) + label:after,
-[type="radio"]:not(:checked) + label:after {
-  opacity: 0;
-  transform: scale(0);
-}
-[type="checkbox"]:checked + label:after,
-[type="radio"]:checked + label:after {
-  opacity: 1;
-  transform: scale(1);
-}
-/* disabled checkbox */
-[type="checkbox"]:disabled:not(:checked) + label:before,
-[type="checkbox"]:disabled:checked + label:before,
-[type="radio"]:disabled:not(:checked) + label:before,
-[type="radio"]:disabled:checked + label:before {
-  box-shadow: none;
-  border-color: #8c8c8c;
-  background-color: #878787;
-}
-[type="checkbox"]:disabled:checked + label:after,
-[type="radio"]:disabled:checked + label:after {
-  color: #555555;
-}
-[type="checkbox"]:disabled + label,
-[type="radio"]:disabled + label {
-  color: #8c8c8c;
-}
-/* accessibility */
-[type="checkbox"]:checked:focus + label:before,
-[type="checkbox"]:not(:checked):focus + label:before,
-[type="checkbox"]:checked:focus + label:before,
-[type="checkbox"]:not(:checked):focus + label:before {
-  border: 1px dotted #f6f6f6;
-}
-/* hover style just for information */
-label:hover:before {
-  border: 1px solid #f6f6f6 !important;
-}
-/*=== Customization ===*/
-/* radio aspect */
-[type="checkbox"]:not(:checked) + label:before,
-[type="checkbox"]:checked + label:before {
-  border-radius: 3px;
-}
-[type="radio"]:not(:checked) + label:before,
-[type="radio"]:checked + label:before {
-  border-radius: 35px;
-}
-/* selected mark aspect */
-[type="checkbox"]:not(:checked) + label:after,
-[type="checkbox"]:checked + label:after {
-  content: '✔';
-  top: 0;
-  left: 2px;
-  font-size: 14px;
-}
-[type="radio"]:not(:checked) + label:after,
-[type="radio"]:checked + label:after {
-  content: '\2022';
-  top: 0;
-  left: 3px;
-  font-size: 30px;
-  line-height: 25px;
-}
-/*=== 9. Misc ===*/
-.logo {
-  padding: 15px 0;
-  font-size: 25px;
-  color: white;
-  font-weight: bold;
-}
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+        <br/>
+        <button type="button" class="btn btn-lg btn-success btn-block" data-toggle="modal" data-target="#myModal">Cadastrar</button>
+    </form>
 
-</style>
+</div> <!-- /container -->
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Criar conta</h4>
+            </div>
+            <div class="modal-body">
+
+                <form id="form-cadastrar" method="post" action="../../controllers/" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="nome">Nome:</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="nome" id="nome" placeholder="Digite o nome">
+                        </div>
+                    </div><div class="form-group">
+                        <label class="control-label col-sm-2" for="email">Email:</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="email" id="email" placeholder="Digite o email">
+                        </div>
+                    </div><div class="form-group">
+                        <label class="control-label col-sm-2" for="usuario">Usuário:</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Digite o usuario">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="senha">Senha:</label>
+                        <div class="col-sm-4">
+                            <input type="password" class="form-control" name="senha" id="senha" placeholder="Digite a senha">
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="password" class="form-control" name="senha_confirm" id="senha" placeholder="Confirme a senha">
+                        </div>
+                    </div>
+                    <input type="hidden" name="create-user"/>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" id="btn-cadastrar">Cadastrar</button>
+
+                    </div>
+            </div>
+
+        </div>
+    </div>
+    <style>
+
+        @font-face {
+            font-family: myFirstFont;
+            src: url(../../webroot/font/varela.woff2);
+        }
+        body {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #eee;
+        }
+
+        .form-signin {
+            max-width: 330px;
+            padding: 15px;
+            margin: 0 auto;
+        }
+        .form-signin .form-signin-heading,
+        .form-signin .checkbox {
+            margin-bottom: 10px;
+        }
+        .form-signin .checkbox {
+            font-weight: normal;
+        }
+        .form-signin .form-control {
+            position: relative;
+            height: auto;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .form-signin .form-control:focus {
+            z-index: 2;
+        }
+        .form-signin input[type="email"] {
+            margin-bottom: -1px;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        .form-signin input[type="password"] {
+            margin-bottom: 10px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+    </style>
+
+
+    <script>
+        $(document).ready(function () {
+
+
+            $("#btn-cadastrar").click(function (e) {
+                
+                var url = "../../controllers/LoginController.php"; // the script where you handle the form input.
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: $("#form-cadastrar").serialize(), // serializes the form's elements.
+                    success: function (data)
+                    {
+                        alert(data); 
+                        if(data.indexOf("email_cadastrado") != -1){
+                            alert("Email já cadastrado.")
+                        }else if(data.indexOf("usuario_cadastrado") != -1){
+                            alert("Este usuário já existe.")
+                        }
+                    }
+                });
+
+                e.preventDefault(); // avoid to execute the actual submit of the form.
+            });
+        });
+    </script>

@@ -25,6 +25,7 @@ if (!LoginController::isLogged()) {
     header("Location: views/login/index.php");
     //die();
 }
+$usuario_logado = $_SESSION['login_object'];
 
 if (isset($_GET['controller']) && isset($_GET['action'])) {
     $controller = $_GET['controller'];

@@ -2,6 +2,7 @@
 
 function call($controller, $action) {
     require_once('controllers/' . ucfirst($controller) . 'Controller.php');
+    require_once('models/' . ucfirst($controller) . 'DAO.php');
     if ($controller != "login")
         verificacoes();
     switch ($controller) {
@@ -30,10 +31,30 @@ function call($controller, $action) {
             $controller = new EstudanteController();
             break;
         case 'login':
-        case 'ranking':
             // we need the model to query the database later in the controller
-            require_once('models/RankingDAO.php');
-            $controller = new RankingController();
+            $controller = new LoginController();
+            break;
+        
+        case 'modulo':
+            // we need the model to query the database later in the controller
+            echo "aaaqui";
+            $controller = new ModuloController();
+            break;
+        case 'categoria':
+            // we need the model to query the database later in the controller
+            $controller = new CategoriaController();
+            break;
+        case 'gravacao':
+            // we need the model to query the database later in the controller
+            $controller = new GravacaoController();
+            break;
+        case 'movimento':
+            // we need the model to query the database later in the controller
+            $controller = new MovimentoController();
+            break;
+        case 'sinal':
+            // we need the model to query the database later in the controller
+            $controller = new SinalController();
             break;
         case 'login':
             // we need the model to query the database later in the controller
@@ -75,11 +96,13 @@ function verificacoes() {
 }
 
 // we're adding an entry for the new controller and its actions
-$controllers = array('pages' => ['home', 'error','avaliar', 'amigos'],
-    'usuario' => ['index', 'add', 'edit', 'view', 'home', 'delete'],
-    'universidade' => ['index', 'add', 'edit', 'view', 'delete'],
-    'estudante' => ['index', 'add', 'edit', 'view', 'delete'],
-    'ranking' => ['index'],
+$controllers = array('pages' => ['home', 'error','avaliar', 'amigos', 'gravar'],
+    'usuario' => ['index', 'add', 'edit', 'view', 'home', 'delete', 'ranking', 'amigos'],
+    'modulo' => ['index', 'add', 'edit', 'view','delete'],
+    'categoria' => ['index', 'add', 'edit', 'view','delete'],
+    'sinal' => ['index', 'add', 'edit', 'view','delete'],
+    'gravacao' => ['index', 'add', 'edit', 'view','delete'],
+    'movimento' => ['index', 'add', 'edit', 'view','delete'],
     'login' => ['login', 'logout'],
     'posts' => ['index', 'show' ]);
 

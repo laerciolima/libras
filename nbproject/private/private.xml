@@ -2,25 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/var/www/html/libras/webroot/js/scripts.js</file>
-            <file>file:/var/www/html/libras/views/estudante/amigos.php</file>
-            <file>file:/var/www/html/libras/views/estudante/index.php</file>
-            <file>file:/var/www/html/libras/controllers/EstudanteController.php</file>
-            <file>file:/var/www/html/libras/views/layout_1.php</file>
-            <file>file:/var/www/html/libras/models/EstudanteDAO.php</file>
-            <file>file:/var/www/html/libras/controllers/PagesController.php</file>
-            <file>file:/var/www/html/libras/index.php</file>
-            <file>file:/var/www/html/libras/views/estudante/add.php</file>
-            <file>file:/var/www/html/libras/webroot/js/jogar.js</file>
-            <file>file:/var/www/html/libras/views/layout.php</file>
-            <file>file:/var/www/html/libras/views/pages/avaliar.php</file>
-            <file>file:/var/www/html/libras/webroot/js/jquery.min.js</file>
-            <file>file:/var/www/html/libras/webroot/css/estilo.css</file>
-            <file>file:/var/www/html/libras/views/ranking/index.php</file>
-            <file>file:/var/www/html/libras/views/layout_2.php</file>
-            <file>file:/var/www/html/libras/controllers/RankingController.php</file>
-            <file>file:/var/www/html/libras/routes.php</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

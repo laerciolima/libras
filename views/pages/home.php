@@ -53,8 +53,9 @@
         <div class="panel panel-success">
             <div class="panel-heading">Objetos</div>
             <div class="panel-body">
-                fadfasdfasdfadfasdf
-
+                fasdfasdfasdf
+				asfasdfasdfasdfasdf
+				asdfasdfasd
             </div>
             <div class="panel-footer">
                 <div class="progress">
@@ -64,7 +65,7 @@
                     </div>
 
                 </div>
-
+<button type="button" class="btn btn-default btn-block"><span class="glyphicon glyphicon-play"></span> Jogar</button>
 
             </div>
         </div>

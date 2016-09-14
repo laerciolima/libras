@@ -1,5 +1,12 @@
 <h1 class="text-center">Amigos</h1>
-
+<div class="col-lg-6">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search for...">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Go!</button>
+      </span>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 --> 
         <table class="table col-xs-6">
 
             <tbody>

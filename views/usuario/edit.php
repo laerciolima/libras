@@ -1,23 +1,35 @@
 
-<h2>Editar Usuario</h2>
+<h2>Alterar perfil</h2>
 
 
+<br/>
 
-
-<form method="post" action="?controller=usuario&action=edit&id=<?php echo $_GET['id'];?> " class="form-horizontal" role="form">
-<div class="form-group">
-        <label class="control-label col-sm-2" for="login">Login:</label>
+<form method="post" action="?controller=usuario&action=edit" class="form-horizontal" role="form">
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="nome">Nome:</label>
         <div class="col-sm-4">
-            <input type="text" class="form-control" value="<?php echo $usuario->getLogin(); ?>" name="login" id="login" placeholder="Digite o login">
+            <input type="text" class="form-control" value="<?php echo $usuario->getNome(); ?>" name="nome" id="nome" placeholder="Digite o nome">
         </div>
     </div><div class="form-group">
-        <label class="control-label col-sm-2" for="senha">Senha:</label>
+        <label class="control-label col-sm-2" for="email">Email:</label>
         <div class="col-sm-4">
-            <input type="text" class="form-control" value="<?php echo $usuario->getSenha(); ?>" name="senha" id="senha" placeholder="Digite o senha">
+            <input type="text" disabled="true" class="form-control" value="<?php echo $usuario->getEmail(); ?>" name="email" id="email" placeholder="Digite o email">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="usuario">Usuário:</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" disabled="true" value="<?php echo $usuario->getusuario(); ?>" name="usuario" id="usuario" placeholder="Digite o usuario">
+        </div>
+    
+    </div><div class="form-group">
+        <label class="control-label col-sm-2" for="imagem">Foto de perfil:</label>
+        <div class="col-sm-4">
+            <input type="file" class="form-control" value="<?php echo $usuario->getImagem(); ?>" name="imagem" id="imagem" placeholder="Digite o imagem">
         </div>
     </div>  <div class="form-group"> 
-    <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default">Enviar</button>
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Enviar</button>
+        </div>
     </div>
-  </div>
 </form>
