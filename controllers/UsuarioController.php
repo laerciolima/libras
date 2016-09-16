@@ -12,7 +12,7 @@ class UsuarioController {
     public function home() {
         // we store all the posts in a variable
         include_once 'models/ModuloDAO.php';
-        
+
         $modulos = ModuloDAO::all();
 
         require_once('views/usuario/home.php');
@@ -32,7 +32,7 @@ class UsuarioController {
 
     public function view() {
         if (!isset($_GET['id']))
-            return call('page', 'error');
+        return call('page', 'error');
 
         // we use the given id to get the right post
         $usuario = UsuarioDAO::find($_GET['id']);
@@ -82,15 +82,99 @@ class UsuarioController {
             $usuario->setNome($_POST["nome"]);
             $usuario->setImagem("");
 
+
+
+
+
+            $foto = $_FILES["imagem"];
+            $error = [];
+
+            // Se a foto estiver sido selecionada
+            if (!empty($foto["name"])) {
+
+                // Largura máxima em pixels
+                $largura = 500;
+                // Altura máxima em pixels
+                $altura = 500;
+                // Tamanho máximo do arquivo em bytes
+                $tamanho = 100000;
+
+                // Verifica se o arquivo é uma imagem
+                if(!preg_match("/^image\/(pjpeg|jpeg|png|gif|bmp)$/", $foto["type"])){
+                    $error[1] = "Isso não é uma imagem.";
+
+                }
+
+                // Pega as dimensões da imagem
+                $dimensoes = getimagesize($foto["tmp_name"]);
+
+                // Verifica se a largura da imagem é maior que a largura permitida
+                if($dimensoes[0] > $largura) {
+                    $error[2] = "A largura da imagem não deve ultrapassar ".$largura." pixels";
+
+                }
+
+                // Verifica se a altura da imagem é maior que a altura permitida
+                if($dimensoes[1] > $altura) {
+                    $error[3] = "Altura da imagem não deve ultrapassar ".$altura." pixels";
+                }
+
+                // Verifica se o tamanho da imagem é maior que o tamanho permitido
+
+                if($foto["size"] > $tamanho) {
+                    $error[4] = "A imagem deve ter no máximo ".$tamanho." bytes";
+                }
+
+                // Se não houver nenhum erro
+
+                if (count($error) == 0) {
+                    // Pega extensão da imagem
+                    preg_match("/\.(gif|bmp|png|jpg|jpeg){1}$/i", $foto["name"], $ext);
+
+                    // Gera um nome único para a imagem
+                    $nome_imagem = md5(uniqid(time())) . "." . $ext[1];
+
+                    // Caminho de onde ficará a imagem
+                    $caminho_imagem = "storage/imagens/users/" . $nome_imagem;
+
+                    // Faz o upload da imagem para seu respectivo caminho
+                    move_uploaded_file($foto["tmp_name"], $caminho_imagem);
+
+                    $usuario->setImagem($nome_imagem);
+                }
+
+                // Se houver mensagens de erro, exibe-as
+                if (count($error) != 0) {
+                    $retorno_erro  = "";
+                    foreach ($error as $erro) {
+                        $retorno_erro .= $erro . "<br />";
+                    }
+                    $_SESSION['error'] = $retorno_erro;
+
+                    echo "<meta http-equiv=\"Refresh\" content=\"0; url=?controller=usuario&action=edit\">";
+                    die();
+                }
+            }
+
+
+
+
+
+
+
+
+
+
+
             if (!UsuarioDAO::edit($usuario)) {
                 $_SESSION['error'] = "Ocorreu um erro ao editar!";
             } else {
                 $_SESSION['success'] = "Usuario alterado com sucesso!";
                 $usuario_logado['nome'] = $usuario->getNome();
                 $usuario_logado['imagem'] = $usuario->getImagem();
-                
+
                 $_SESSION['login_object'] = $usuario_logado;
-                
+
                 echo "<meta http-equiv=\"Refresh\" content=\"0; url=?controller=usuario&action=edit\">";
                 die();
             }

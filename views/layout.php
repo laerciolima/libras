@@ -73,8 +73,8 @@
 
 
                                 <div class="">
-                                    <img src="webroot/img/user_profile.jpg" width="100" class="img-responsive img-circle center-block"/>
-                                    <span>&nbsp<?php echo $usuario_logado['nome']; ?>  </span>
+                                    <img src="storage/imagens/users/<?php echo $usuario_logado['imagem'];?>" width="100" class="img-responsive img-circle center-block"/>
+                                    <span>&nbsp<?php echo $usuario_logado['nome']?>  </span>
                                     <span class="text-right">LV <?php echo $usuario_logado['nivel']; ?></span>
                                 </div>
                                 <div class="progress">
