@@ -16,6 +16,18 @@
 
 
 <?php
+if(isset($_GET['validation'])){
+    if(UsuarioController::validarUsuario($_GET['validation'])){
+        echo "E-mail confirmado.";
+    }else{
+        echo "URL inválida.";
+    }
+
+    echo "<meta http-equiv=\"Refresh\" content=\"1; url=../views/login/index.php\">";
+
+    die();
+}
+
 if(!isset($_SESSION)){
     session_start();
 }

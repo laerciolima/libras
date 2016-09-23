@@ -49,6 +49,13 @@ class UsuarioController {
         $amigos = UsuarioDAO::amigos($usuario_logado['id']);
         require_once('views/usuario/amigos.php');
     }
+    
+    public static function validarUsuario($url) {
+        if(UsuarioDAO::validarUsuario($url)){
+            require_once('views/usuario/amigos.php');
+        }
+        
+    }
 
     public function add() {
         if (isset($_POST['email'])) {
@@ -80,7 +87,7 @@ class UsuarioController {
             $usuario = new Usuario();
             $usuario->setId($usuario_logado['id']);
             $usuario->setNome($_POST["nome"]);
-            $usuario->setImagem("");
+            $usuario->setImagem($usuario_logado['imagem']);
 
 
 
@@ -88,10 +95,12 @@ class UsuarioController {
 
             $foto = $_FILES["imagem"];
             $error = [];
-
+            $imagem_alterada = 0;
+            
+            
             // Se a foto estiver sido selecionada
             if (!empty($foto["name"])) {
-
+                $imagem_alterada = 1;
                 // Largura máxima em pixels
                 $largura = 500;
                 // Altura máxima em pixels
@@ -170,10 +179,16 @@ class UsuarioController {
                 $_SESSION['error'] = "Ocorreu um erro ao editar!";
             } else {
                 $_SESSION['success'] = "Usuario alterado com sucesso!";
+                
+                if($imagem_alterada)
+                    unlink("storage/imagens/users/".$usuario_logado['imagem']);
+                
+                
                 $usuario_logado['nome'] = $usuario->getNome();
                 $usuario_logado['imagem'] = $usuario->getImagem();
 
                 $_SESSION['login_object'] = $usuario_logado;
+                
 
                 echo "<meta http-equiv=\"Refresh\" content=\"0; url=?controller=usuario&action=edit\">";
                 die();

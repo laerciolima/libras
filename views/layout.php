@@ -88,7 +88,7 @@
 
 
 
-                                <li><a href="?controller=pages&action=home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                                <li><a href="?controller=usuario&action=home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
                                 <li class="panel panel-default" id="dropdown">
                                     <a data-toggle="collapse" href="#dropdown-lvl1">
                                         <span class="glyphicon glyphicon-user"></span> Meu perfil <span class="caret"></span>

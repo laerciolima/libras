@@ -55,8 +55,8 @@ class UsuarioDAO {
     public static function amigos($id) {
         $lista = [];
         echo $id;
-        $req = Db::getInstance()->prepare('SELECT * FROM usuario u  
-INNER join amizade a ON (a.fk_id_usuario1 = u.id OR a.fk_id_usuario2 = u.id) 
+        $req = Db::getInstance()->prepare('SELECT * FROM usuario u
+INNER join amizade a ON (a.fk_id_usuario1 = u.id OR a.fk_id_usuario2 = u.id)
 WHERE (a.fk_id_usuario1 = :id OR a.fk_id_usuario2 = :id)
 	AND id != :id');
 
@@ -117,7 +117,7 @@ WHERE (a.fk_id_usuario1 = :id OR a.fk_id_usuario2 = :id)
     public static function add(Usuario $usuario) {
         // we make sure $id is an integer
 
-        $req = Db::getInstance()->prepare("INSERT INTO usuario (nome,email,perfil,usuario,senha,nivel,pontuacao,imagem, url) VALUES (:nome,:email,:perfil,:usuario,:senha,:nivel,:pontuacao,:imagem,:url)");
+        $req = Db::getInstance()->prepare("INSERT INTO usuario (nome,email,perfil,usuario,senha,nivel,pontuacao,imagem, url) VALUES (:nome,:email,:perfil,:usuario,:senha,:nivel,:pontuacao,:imagem, :url)");
         $req->bindValue(":nome", $usuario->getNome());
         $req->bindValue(":email", $usuario->getEmail());
         $req->bindValue(":perfil", $usuario->getPerfil());
@@ -126,6 +126,7 @@ WHERE (a.fk_id_usuario1 = :id OR a.fk_id_usuario2 = :id)
         $req->bindValue(":nivel", $usuario->getNivel());
         $req->bindValue(":pontuacao", $usuario->getPontuacao());
         $req->bindValue(":imagem", $usuario->getImagem());
+        $req->bindValue(":url", $usuario->getUrl());
         return $req->execute();
     }
 
@@ -136,6 +137,16 @@ WHERE (a.fk_id_usuario1 = :id OR a.fk_id_usuario2 = :id)
         $req->bindValue(":id", $usuario->getId());
         $req->bindValue(":nome", $usuario->getNome());
         $req->bindValue(":imagem", $usuario->getImagem());
+
+
+        return $req->execute();
+    }
+
+    public static function validarUsuario($url) {
+        // we make sure $id is an integer
+
+        $req = Db::getInstance()->prepare("UPDATE usuario SET status=1 , url='' WHERE url=:url");
+        $req->bindValue(":url", $url);
 
 
         return $req->execute();

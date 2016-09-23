@@ -10,7 +10,7 @@ class Usuario{
     private $nivel;
     private $pontuacao;
     private $imagem;
-    private $url;
+    private $url
 
 function setId ($id){
 
