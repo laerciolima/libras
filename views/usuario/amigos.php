@@ -1,50 +1,39 @@
 <h1 class="text-center">Amigos</h1>
 <div class="col-lg-6">
+    <form action="?controller=usuario&action=buscarUsuario">
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="Search for...">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Go!</button>
-      </span>
+        
+        <input type="hidden" name="controller" value="usuario">
+        <input type="hidden" name="action" value="buscarUsuario">
+        <input type="text" name="busca" class="form-control" placeholder="Encontre amigos...">
+        <span class="input-group-btn">
+            <button class="btn btn-default" type="submit">Go!</button>
+        </span>
     </div><!-- /input-group -->
-  </div><!-- /.col-lg-6 --> 
-        <table class="table col-xs-6">
+    </form>
+</div><!-- /.col-lg-6 --> 
 
-            <tbody>
-                <tr >
-                    <td rowspan="2"><img src="webroot/img/user_profile.jpg" class="img-thumbnail" alt="Cinque Terre" width="150"></td>
-                    <td>Jessica Amaral Costa Silva</td>
-                    <td>jessicaam</td>
-                </tr>
-                <tr>
-                    <td>LV 13</td>
-                    <td><div class="progress">
-                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
-                                 aria-valuemin="0" aria-valuemax="100" style="width:65%">
-                                1250pts
-                            </div>
+<?php
+foreach ($usuarios as $usuario) {
+    ?>
+    <table class="table col-xs-12">
+        <tbody>
+            <tr>
+                <td style="width: 120px" rowspan="2" ><img src="storage/imagens/users/<?php echo $usuario->getImagem(); ?>" class="img-thumbnail img-responsive" alt="Cinque Terre" style="max-height: 100px; max-width: 100px"></td>
+                <td style="width: 150px"><a href="#"><?php echo $usuario->getNome(); ?></a></td>
+                <td><?php echo $usuario->getUsuario(); ?></td>
+            </tr>
+            <tr>
+                <td><?php echo $usuario->getNivel(); ?></td>
+                <td><div class="progress">
+                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
+                             aria-valuemin="0" aria-valuemax="100" style="width:65%">
+                            <?php echo $usuario->getPontuacao(); ?>pts
+                        </div>
 
-                        </div></td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table col-xs-6">
+                    </div></td>
+            </tr>
+        </tbody>
+    </table>
 
-            <tbody>
-                <tr >
-                    <td rowspan="2"><img src="webroot/img/user_profile.jpg" class="img-thumbnail" alt="Cinque Terre" width="150"></td>
-                    <td>Jessica Amaral Costa Silva</td>
-                    <td>jessicaam</td>
-                </tr>
-                <tr>
-                    <td>LV 13</td>
-                    <td><div class="progress">
-                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
-                                 aria-valuemin="0" aria-valuemax="100" style="width:65%">
-                                1250pts
-                            </div>
-
-                        </div></td>
-                </tr>
-            </tbody>
-        </table>
- 
+<?php } ?>

@@ -46,7 +46,7 @@ class UsuarioController {
 
     public function amigos() {
         $usuario_logado = $_SESSION['login_object'];
-        $amigos = UsuarioDAO::amigos($usuario_logado['id']);
+        $usuarios = UsuarioDAO::amigos($usuario_logado['id']);
         require_once('views/usuario/amigos.php');
     }
     
@@ -54,6 +54,22 @@ class UsuarioController {
         if(UsuarioDAO::validarUsuario($url)){
             require_once('views/usuario/amigos.php');
         }
+        
+    }
+    
+    public static function addAmigo($id){
+        $usuario_logado = $_SESSION['login_object'];
+        if(UsuarioDAO::addAmigo($usuario_logado['id'], $id)){
+            echo "true";
+        }
+        
+    }
+    
+    public static function buscarUsuario(){
+        $usuario_logado = $_SESSION['login_object'];
+        $usuarios = UsuarioDAO::buscarUsuario($_GET['busca'], $usuario_logado['id']);
+        require_once('views/usuario/amigos.php');
+        
         
     }
 

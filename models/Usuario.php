@@ -84,5 +84,13 @@ function setId ($id){
         $this->imagem = $imagem;
     }
 
+    public function getUrl() {
+        return $this->url;
+    }
+
+    public function setUrl($url) {
+        $this->url = $url;
+    }
+    
 }
 ?>

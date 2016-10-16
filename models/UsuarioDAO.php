@@ -79,6 +79,36 @@ WHERE (a.fk_id_usuario1 = :id OR a.fk_id_usuario2 = :id)
 
         return $lista;
     }
+    
+    public static function buscarUsuario($busca, $id) {
+        $lista = [];
+
+        
+        $req = Db::getInstance()->prepare('SELECT * FROM usuario WHERE (nome LIKE :busca OR usuario LIKE :busca OR email LIKE :busca) AND id <> :id');
+        // the query was prepared, now we replace :id with our actual $id value
+        $req->bindValue(":busca", "%".$busca."%");
+        $req->bindValue(":id", $id);
+        $req->execute();
+
+        // we create a list of Post objects from the database results
+        foreach ($req->fetchAll() as $linha) {
+            $usuario = new Usuario();
+
+            $usuario->setId($linha['id']);
+            $usuario->setNome($linha["nome"]);
+            $usuario->setEmail($linha["email"]);
+            $usuario->setPerfil($linha["perfil"]);
+            $usuario->setusuario($linha["usuario"]);
+            $usuario->setSenha($linha["senha"]);
+            $usuario->setNivel($linha["nivel"]);
+            $usuario->setPontuacao($linha["pontuacao"]);
+            $usuario->setImagem($linha["imagem"]);
+
+            $lista[] = $usuario;
+        }
+
+        return $lista;
+    }
 
     public static function find($id) {
         // we make sure $id is an integer
@@ -147,6 +177,17 @@ WHERE (a.fk_id_usuario1 = :id OR a.fk_id_usuario2 = :id)
 
         $req = Db::getInstance()->prepare("UPDATE usuario SET status=1 , url='' WHERE url=:url");
         $req->bindValue(":url", $url);
+
+
+        return $req->execute();
+    }
+    
+    public static function addAmigo($id_logado, $id_usuario) {
+        // we make sure $id is an integer
+
+        $req = Db::getInstance()->prepare("INSERT INTO amizade (fk_id_usuario1, fk_id_usuario2, data, pendente ) values (:id1, :id2, NOW(), 2)");
+        $req->bindValue(":id1", $id_logado);
+        $req->bindValue(":id2", $id_usuario);
 
 
         return $req->execute();
