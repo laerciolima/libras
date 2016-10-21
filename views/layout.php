@@ -46,12 +46,18 @@
                                 <!-- Search body -->
                                 <div id="search" class="panel-collapse collapse">
                                     <div class="panel-body">
-                                        <form class="navbar-form" role="search">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Encontrar amigos">
-                                            </div>
-                                            <button type="submit" class="btn btn-default "><span class="glyphicon glyphicon-ok"></span></button>
-                                        </form>
+                                        <form action="?controller=usuario&action=buscarUsuario">
+    <div class="input-group">
+        
+        <input type="hidden" name="controller" value="usuario">
+        <input type="hidden" name="action" value="buscarUsuario">
+        <input type="text" name="busca" class="form-control" placeholder="Encontre amigos...">
+        <span class="input-group-btn">
+            <button class="btn btn-default" type="submit">Go!</button>
+        </span>
+    </div><!-- /input-group -->
+    </form>
+                                        
                                     </div>
                                 </div>
                             </div>
