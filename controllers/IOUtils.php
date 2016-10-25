@@ -67,8 +67,8 @@ class IOUtils{
 
 
 
-	public function static unlink($file){
-		unlink($path);
+	public static function unlink($file){
+		unlink($file);
 	}
 }
 

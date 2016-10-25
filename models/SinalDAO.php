@@ -14,14 +14,17 @@ class SinalDAO {
             $sinal = new Sinal();
 
             $sinal->setId($linha['id']);
-            $sinal->setFk_id_categoria($linha["fk_id_categoria"]);
-            $sinal->setDificuldade($linha["dificuldade"]);
-            $sinal->setFoto($linha["foto"]);
             $sinal->setNome($linha["nome"]);
-            $sinal->setOrientacao($linha["orientacao"]);
             $sinal->setVideo($linha["video"]);
-            $sinal->setFk_id_expressao_facial($linha["fk_id_expressao_facial"]);
-            $sinal->setFk_id_ponto_de_articulacao($linha["fk_id_ponto_de_articulacao"]);
+            $sinal->setFoto($linha["foto"]);
+            $sinal->setOrientacao($linha["orientacao"]);
+            $sinal->setExpressaoFacial_idExpressaoFacial($linha["expressaofacial_idexpressaofacial"]);
+            $sinal->setPontoDeArticulacao_idPontoDeArticulacao($linha["pontodearticulacao_idpontodearticulacao"]);
+            $sinal->setSinalDefinePesoInicial($linha["sinaldefinepesoinicial"]);
+            $sinal->setModulo_id($linha["modulo_id"]);
+            $sinal->setUtilizacaoDasMaos($linha["utilizacaodasmaos"]);
+            $sinal->setMaoPrincipal_id($linha["maoprincipal_id"]);
+            $sinal->setMaoSecundaria_id($linha["maosecundaria_id"]);
 
             $lista[] = $sinal;
         }
@@ -56,31 +59,37 @@ class SinalDAO {
     public static function add(Sinal $sinal) {
         // we make sure $id is an integer
 
-        $req = Db::getInstance()->prepare("INSERT INTO sinal (fk_id_categoria,dificuldade,foto,nome,orientacao,video,fk_id_expressao_facial,fk_id_ponto_de_articulacao) VALUES (:fk_id_categoria,:dificuldade,:foto,:nome,:orientacao,:video,:fk_id_expressao_facial,:fk_id_ponto_de_articulacao)");
-        $req->bindValue(":fk_id_categoria", $sinal->getFk_id_categoria());
-        $req->bindValue(":dificuldade", $sinal->getDificuldade());
-        $req->bindValue(":foto", $sinal->getFoto());
+        $req = Db::getInstance()->prepare("INSERT INTO sinal (nome,video,foto,orientacao,expressaofacial_idexpressaofacial,pontodearticulacao_idpontodearticulacao,sinaldefinepesoinicial,modulo_id,utilizacaodasmaos,maoprincipal_id,maosecundaria_id) VALUES (:nome,:video,:foto,:orientacao,:expressaofacial_idexpressaofacial,:pontodearticulacao_idpontodearticulacao,:sinaldefinepesoinicial,:modulo_id,:utilizacaodasmaos,:maoprincipal_id,:maosecundaria_id)");
         $req->bindValue(":nome", $sinal->getNome());
-        $req->bindValue(":orientacao", $sinal->getOrientacao());
         $req->bindValue(":video", $sinal->getVideo());
-        $req->bindValue(":fk_id_expressao_facial", $sinal->getFk_id_expressao_facial());
-        $req->bindValue(":fk_id_ponto_de_articulacao", $sinal->getFk_id_ponto_de_articulacao());
+        $req->bindValue(":foto", $sinal->getFoto());
+        $req->bindValue(":orientacao", $sinal->getOrientacao());
+        $req->bindValue(":expressaofacial_idexpressaofacial", $sinal->getExpressaoFacial_idExpressaoFacial());
+        $req->bindValue(":pontodearticulacao_idpontodearticulacao", $sinal->getPontoDeArticulacao_idPontoDeArticulacao());
+        $req->bindValue(":sinaldefinepesoinicial", $sinal->getSinalDefinePesoInicial());
+        $req->bindValue(":modulo_id", $sinal->getModulo_id());
+        $req->bindValue(":utilizacaodasmaos", $sinal->getUtilizacaoDasMaos());
+        $req->bindValue(":maoprincipal_id", $sinal->getMaoPrincipal_id());
+        $req->bindValue(":maosecundaria_id", $sinal->getMaoSecundaria_id());
         return $req->execute();
     }
 
     public static function edit(Sinal $sinal) {
         // we make sure $id is an integer
 
-        $req = Db::getInstance()->prepare("UPDATE sinal SET fk_id_categoria=:fk_id_categoria,dificuldade=:dificuldade,foto=:foto,nome=:nome,orientacao=:orientacao,video=:video,fk_id_expressao_facial=:fk_id_expressao_facial,fk_id_ponto_de_articulacao=:fk_id_ponto_de_articulacao WHERE id=:id");
+        $req = Db::getInstance()->prepare("UPDATE sinal SET nome=:nome,video=:video,foto=:foto,orientacao=:orientacao,expressaofacial_idexpressaofacial=:expressaofacial_idexpressaofacial,pontodearticulacao_idpontodearticulacao=:pontodearticulacao_idpontodearticulacao,sinaldefinepesoinicial=:sinaldefinepesoinicial,modulo_id=:modulo_id,utilizacaodasmaos=:utilizacaodasmaos,maoprincipal_id=:maoprincipal_id,maosecundaria_id=:maosecundaria_id WHERE id=:id");
         $req->bindValue(":id", $sinal->getId());
-        $req->bindValue(":fk_id_categoria", $sinal->getFk_id_categoria());
-        $req->bindValue(":dificuldade", $sinal->getDificuldade());
-        $req->bindValue(":foto", $sinal->getFoto());
         $req->bindValue(":nome", $sinal->getNome());
-        $req->bindValue(":orientacao", $sinal->getOrientacao());
         $req->bindValue(":video", $sinal->getVideo());
-        $req->bindValue(":fk_id_expressao_facial", $sinal->getFk_id_expressao_facial());
-        $req->bindValue(":fk_id_ponto_de_articulacao", $sinal->getFk_id_ponto_de_articulacao());
+        $req->bindValue(":foto", $sinal->getFoto());
+        $req->bindValue(":orientacao", $sinal->getOrientacao());
+        $req->bindValue(":expressaofacial_idexpressaofacial", $sinal->getExpressaoFacial_idExpressaoFacial());
+        $req->bindValue(":pontodearticulacao_idpontodearticulacao", $sinal->getPontoDeArticulacao_idPontoDeArticulacao());
+        $req->bindValue(":sinaldefinepesoinicial", $sinal->getSinalDefinePesoInicial());
+        $req->bindValue(":modulo_id", $sinal->getModulo_id());
+        $req->bindValue(":utilizacaodasmaos", $sinal->getUtilizacaoDasMaos());
+        $req->bindValue(":maoprincipal_id", $sinal->getMaoPrincipal_id());
+        $req->bindValue(":maosecundaria_id", $sinal->getMaoSecundaria_id());
         return $req->execute();
     }
 
@@ -88,14 +97,17 @@ class SinalDAO {
         $sinal = new Sinal();
 
         $sinal->setId($linha['id']);
-        $sinal->setFk_id_categoria($linha['fk_id_categoria']);
-        $sinal->setDificuldade($linha['dificuldade']);
-        $sinal->setFoto($linha['foto']);
         $sinal->setNome($linha['nome']);
-        $sinal->setOrientacao($linha['orientacao']);
         $sinal->setVideo($linha['video']);
-        $sinal->setFk_id_expressao_facial($linha['fk_id_expressao_facial']);
-        $sinal->setFk_id_ponto_de_articulacao($linha['fk_id_ponto_de_articulacao']);
+        $sinal->setFoto($linha['foto']);
+        $sinal->setOrientacao($linha['orientacao']);
+        $sinal->setExpressaoFacial_idExpressaoFacial($linha['expressaofacial_idexpressaofacial']);
+        $sinal->setPontoDeArticulacao_idPontoDeArticulacao($linha['pontodearticulacao_idpontodearticulacao']);
+        $sinal->setSinalDefinePesoInicial($linha['sinaldefinepesoinicial']);
+        $sinal->setModulo_id($linha['modulo_id']);
+        $sinal->setUtilizacaoDasMaos($linha['utilizacaodasmaos']);
+        $sinal->setMaoPrincipal_id($linha['maoprincipal_id']);
+        $sinal->setMaoSecundaria_id($linha['maosecundaria_id']);
 
         return $sinal;
     }
