@@ -110,63 +110,16 @@ class UsuarioController {
 
 
             $foto = $_FILES["imagem"];
-            $error = [];
+            
             $imagem_alterada = 0;
             
             
             // Se a foto estiver sido selecionada
             if (!empty($foto["name"])) {
-                $imagem_alterada = 1;
-                // Largura máxima em pixels
-                $largura = 500;
-                // Altura máxima em pixels
-                $altura = 500;
-                // Tamanho máximo do arquivo em bytes
-                $tamanho = 100000;
 
-                // Verifica se o arquivo é uma imagem
-                if(!preg_match("/^image\/(pjpeg|jpeg|png|gif|bmp)$/", $foto["type"])){
-                    $error[1] = "Isso não é uma imagem.";
+                $ioUtils = new IOUtils();
+                $error = $ioUtils->processImage($foto, "storage/imagens/users/", 500, 500, 100000);
 
-                }
-
-                // Pega as dimensões da imagem
-                $dimensoes = getimagesize($foto["tmp_name"]);
-
-                // Verifica se a largura da imagem é maior que a largura permitida
-                if($dimensoes[0] > $largura) {
-                    $error[2] = "A largura da imagem não deve ultrapassar ".$largura." pixels";
-
-                }
-
-                // Verifica se a altura da imagem é maior que a altura permitida
-                if($dimensoes[1] > $altura) {
-                    $error[3] = "Altura da imagem não deve ultrapassar ".$altura." pixels";
-                }
-
-                // Verifica se o tamanho da imagem é maior que o tamanho permitido
-
-                if($foto["size"] > $tamanho) {
-                    $error[4] = "A imagem deve ter no máximo ".$tamanho." bytes";
-                }
-
-                // Se não houver nenhum erro
-
-                if (count($error) == 0) {
-                    // Pega extensão da imagem
-                    preg_match("/\.(gif|bmp|png|jpg|jpeg){1}$/i", $foto["name"], $ext);
-
-                    // Gera um nome único para a imagem
-                    $nome_imagem = md5(uniqid(time())) . "." . $ext[1];
-
-                    // Caminho de onde ficará a imagem
-                    $caminho_imagem = "storage/imagens/users/" . $nome_imagem;
-
-                    // Faz o upload da imagem para seu respectivo caminho
-                    move_uploaded_file($foto["tmp_name"], $caminho_imagem);
-
-                    $usuario->setImagem($nome_imagem);
-                }
 
                 // Se houver mensagens de erro, exibe-as
                 if (count($error) != 0) {
@@ -179,14 +132,9 @@ class UsuarioController {
                     echo "<meta http-equiv=\"Refresh\" content=\"0; url=?controller=usuario&action=edit\">";
                     die();
                 }
+                $usuario->setImagem($ioUtils->saveImage());
+                $imagem_alterada =1;
             }
-
-
-
-
-
-
-
 
 
 
@@ -197,7 +145,7 @@ class UsuarioController {
                 $_SESSION['success'] = "Usuario alterado com sucesso!";
                 
                 if($imagem_alterada)
-                    unlink("storage/imagens/users/".$usuario_logado['imagem']);
+                    IOUtils::unlink("storage/imagens/users/".$usuario_logado['imagem']);
                 
                 
                 $usuario_logado['nome'] = $usuario->getNome();
@@ -218,6 +166,26 @@ class UsuarioController {
         $usuario = UsuarioDAO::find(($usuario_logado['id']));
 
         require_once('views/usuario/edit.php');
+    }
+
+
+    function addPontuacao($pontuacao){
+        $usuario_logado = $_SESSION['login_object'];
+
+        $usuario = new Usuario();
+        
+        if($usuario_logado['pontuacao']+pontuacao > 200){
+            $usuario_logado['pontuacao'] = $usuario_logado['pontuacao']+pontuacao - 200;
+            $usuario_logado['nivel'] += 1;
+        }else{
+            $usuario_logado['pontuacao'] += $pontuacao;    
+        }
+
+        $usuario->setPontuacao($usuario_logado['pontuacao']);
+        $usuario->setNivel($usuario_logado['nivel']);
+        $usuario->setId($usuario_logado['id']);
+
+        return UsuarioDAO::addPontuacao($usuario);
     }
 
 }

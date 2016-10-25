@@ -193,6 +193,22 @@ WHERE (a.fk_id_usuario1 = :id OR a.fk_id_usuario2 = :id)
         return $req->execute();
     }
 
+
+    public static function addPontuacao(Usuario $usuario) {
+        // we make sure $id is an integer
+
+        $req = Db::getInstance()->prepare("UPDATE usuario SET pontuacao=:pontuacao , nivel=:nivel WHERE id=:id");
+        $req->bindValue(":id", $usuario->getId());
+        $req->bindValue(":pontuacao", $usuario->getPontuacao());
+        $req->bindValue(":nivel", $usuario->getNivel());
+
+
+        return $req->execute();
+    }
+
+
+
+
     public static function popular($linha) {
         $usuario = new Usuario();
 
