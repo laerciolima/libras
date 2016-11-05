@@ -374,7 +374,7 @@
 
                 callback('Uploading ' + fileType + ' recording to server.');
 
-                makeXMLHttpRequest('save.php', formData, function (progress) {
+                makeXMLHttpRequest('?controller=gravacao&action=add', formData, function (progress) {
                     if (progress !== 'upload-ended') {
                         callback(progress);
                         return;

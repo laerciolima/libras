@@ -48,7 +48,7 @@
                                     <div class="panel-body">
                                         <form action="?controller=usuario&action=buscarUsuario">
     <div class="input-group">
-        
+
         <input type="hidden" name="controller" value="usuario">
         <input type="hidden" name="action" value="buscarUsuario">
         <input type="text" name="busca" class="form-control" placeholder="Encontre amigos...">
@@ -57,7 +57,7 @@
         </span>
     </div><!-- /input-group -->
     </form>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -81,11 +81,11 @@
                                 <div class="">
                                     <img src="storage/imagens/users/<?php echo $usuario_logado['imagem'];?>" width="100" class="img-responsive img-circle center-block"/>
                                     <span>&nbsp<?php echo $usuario_logado['nome']?>  </span>
-                                    <span class="text-right">LV <?php echo $usuario_logado['nivel']; ?></span>
+                                    <span id="user_level" class="text-right">LV <?php echo $usuario_logado['nivel']; ?></span>
                                 </div>
                                 <div class="progress">
-                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
-                                         aria-valuemin="0" aria-valuemax="100" style="width:1%">
+                                    <div id="progress-bar_pontuacao" class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
+                                         aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $usuario_logado['pontuacao']/2 ?>%">
                                         <?php echo $usuario_logado['pontuacao']; ?>pts
                                     </div>
 

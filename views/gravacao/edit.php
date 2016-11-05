@@ -6,9 +6,9 @@
 
 <form method="post" action="?controller=gravacao&action=edit&id=<?php echo $_GET['id'];?> " class="form-horizontal" role="form">
 <div class="form-group">
-        <label class="control-label col-sm-2" for="data">Data:</label>
+        <label class="control-label col-sm-2" for="data">data:</label>
         <div class="col-sm-4">
-            <input type="text" class="form-control" value="<?php echo $gravacao->getData(); ?>" name="data" id="data" placeholder="Digite o data">
+            <input type="text" class="form-control" value="<?php echo $gravacao->getdata(); ?>" name="data" id="data" placeholder="Digite o data">
         </div>
     </div><div class="form-group">
         <label class="control-label col-sm-2" for="video">Video:</label>

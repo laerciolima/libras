@@ -1,35 +1,196 @@
-tempo = 20;
+tempo = 10;
 var intervalo = null;
+
+
+var gravacao_atual_index = -1;
+var opcoes;
+
+var Gravacao = class Gravacao {
+   constructor(id, video, fk_id_usuario, fk_id_sinal) {
+      this.id = id;
+      this.video= video;
+      this.fk_id_usuario= fk_id_usuario;
+      this.fk_id_sinal= fk_id_sinal;
+   }
+}
 
 
 
 $(document).ready(function () {
-    $("video").bind("ended", function () {
-        if (intervalo == null) {
-            intervalo = setInterval(function () {
-                cronometro()
-            }, 1000);
-        }
-    });
+   nextVideo();
+   $("video").bind("ended", function () {
+      if (intervalo == null) {
+         intervalo = setInterval(function () {
+            cronometro()
+         }, 1000);
+      }
+   });
+
+
+   $("#addAvaliacao").click(function (e) {
+
+      var url = "?controller=avaliacao&action=add"; // the script where you handle the form input.,
+
+      $.ajax({
+         type: "POST",
+         url: url,
+         data: $("#avaliacao_sinal").serialize()+"&fk_id_gravacao="+gravacao.id, // serializes the form's elements.
+         success: function (data)
+         {
+            console.log("add avaliacao:"+data);
+
+            //nextVideo();
+            $('#form_id').trigger("reset");
+         }
+      });
+
+      e.preventDefault(); // avoid to execute the actual submit of the form.
+   });
+
 
 });
 
 
 function cronometro() {
-    tempo = tempo - 1;
-    if (tempo != 0) {
-        $("#tempo").html((tempo) + "s");
-        if (tempo < 9) {
-            if (tempo % 2 == 0) {
-                $("#tempo").css("color", "red");
-            } else {
-                $("#tempo").css("color", "white");
+   tempo = tempo - 1;
+   if (tempo != 0) {
+      $("#tempo").html((tempo) + "s");
+      if (tempo < 5) {
+         if (tempo % 2 == 0) {
+            $("#tempo").css("color", "red");
+         } else {
+            $("#tempo").css("color", "white");
+         }
+      }
+   } else {
+      $("#tempo").html("0s");
+
+      clearInterval(intervalo);
+
+   }
+}
+
+function nextVideo(){
+
+   if(gravacao_atual_index == 8){
+      alert("acabou");
+      return;
+   }
+   gravacao = gravacoes[++gravacao_atual_index];
+   opcoes = lista_de_opcoes[gravacao_atual_index];
+   console.log(opcoes);
+
+
+   var video = document.getElementById('video');
+   video.pause();
+
+   var mp4Vid = document.getElementById('mp4Source');
+
+
+   // Now simply set the 'src' property of the mp4Vid variable!!!!
+
+   mp4Vid.src = gravacao.video;
+
+   video.load();
+   video.play();
+
+   for (var i = 0; i < opcoes.length; i++) {
+      $("#opt"+i).html(opcoes[i]);
+
+   }
+
+
+}
+
+function validar(num){
+
+   $.ajax(
+      {
+         type: "POST",
+         url: "?controller=gravacao&action=verificarResposta",
+         data: "fk_id_sinal="+gravacao.fk_id_sinal+"&resposta="+opcoes[num],
+         beforeSend: function() {
+            // enquanto a função esta sendo processada, você
+            // pode exibir na tela uma
+            // msg de carregando
+
+         },
+         success: function(txt) {
+            // pego o id da div que envolve o select com
+            // name="id_modelo" e a substituiu
+            // com o texto enviado pelo php, que é um novo
+            //select com dados da marca x
+            //console.log("resposta_correta: "+txt);
+
+            if(txt.indexOf("verificarResposta=true") != -1){
+               $("#resposta_correta").show();
+               refreshPontuacao();
+            }else{
+               $("#resposta_incorreta").show();
+
             }
-        }
-    } else {
-        $("#tempo").html("0s");
 
-        clearInterval(intervalo);
+            $('#myModal').modal('show')
+         },
+         error: function(txt) {
+            // em caso de erro você pode dar um alert('erro');
+            alert("erro")
+         }
+      }
+   );//fim ajax
 
-    }
+
+
+   clearInterval(intervalo);
+   intervalo= null;
+   tempo = 10;
+   $("#tempo").html("10s");
+
+   $("#video").bind("ended", function () {
+      if (intervalo == null) {
+         intervalo = setInterval(function () {
+            cronometro()
+         }, 1000);
+      }
+   });
+
+}
+
+
+function refreshPontuacao(){
+   $.ajax(
+      {
+         type: "POST",
+         url: "controllers/UsuarioController.php",
+         data: "metodo=getPontuacao",
+         beforeSend: function() {
+            // enquanto a função esta sendo processada, você
+            // pode exibir na tela uma
+            // msg de carregando
+
+         },
+         success: function(txt) {
+            // pego o id da div que envolve o select com
+            // name="id_modelo" e a substituiu
+            // com o texto enviado pelo php, que é um novo
+            //select com dados da marca x
+            console.log(txt);
+
+            var content = txt.split("#");
+
+            console.log(content[0]);
+            console.log(content[1]);
+
+            $('#progress-bar_pontuacao').css('width', (content[1]/2)+'%').attr('aria-valuenow', content[1]/2);
+            $("#user_level").html("LV "+content[0]);
+            $('#progress-bar_pontuacao').html(content[1]+"pts")
+
+         },
+         error: function(txt) {
+            // em caso de erro você pode dar um alert('erro');
+            alert("erro")
+         }
+      }
+   );//fim ajax
+
 }

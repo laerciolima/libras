@@ -24,17 +24,12 @@ function call($controller, $action) {
             require_once('models/UniversidadeDAO.php');
             $controller = new UniversidadeController();
             break;
-        case 'estudante':
-            // we need the model to query the database later in the controller
-            require_once('models/EstudanteDAO.php');
-            require_once('models/UniversidadeDAO.php');
-            $controller = new EstudanteController();
-            break;
+
         case 'login':
             // we need the model to query the database later in the controller
             $controller = new LoginController();
             break;
-        
+
         case 'modulo':
             // we need the model to query the database later in the controller
             echo "aaaqui";
@@ -46,6 +41,10 @@ function call($controller, $action) {
             break;
         case 'gravacao':
             // we need the model to query the database later in the controller
+            require_once('models/CategoriaDAO.php');
+            require_once('models/SinalDAO.php');
+            require_once('models/UsuarioDAO.php');
+            require_once('controllers/UsuarioController.php');
             $controller = new GravacaoController();
             break;
         case 'movimento':
@@ -55,6 +54,10 @@ function call($controller, $action) {
         case 'sinal':
             // we need the model to query the database later in the controller
             $controller = new SinalController();
+            break;
+        case 'avaliacao':
+            // we need the model to query the database later in the controller
+            $controller = new AvaliacaoController();
             break;
         case 'login':
             // we need the model to query the database later in the controller
@@ -67,12 +70,12 @@ function call($controller, $action) {
 }
 
 function verificacoes() {
-    
-    
+
+
     if (isset($_SESSION['success'])) {
         ?>
         <div class="alert alert-success">
-            <strong><?php echo $_SESSION['success']; ?></strong> 
+            <strong><?php echo $_SESSION['success']; ?></strong>
         </div>
         <?php
         unset($_SESSION['success']);
@@ -80,7 +83,7 @@ function verificacoes() {
     if (isset($_SESSION['error'])) {
         ?>
         <div class="alert alert-danger">
-            <strong><?php echo $_SESSION['error']; ?></strong> 
+            <strong><?php echo $_SESSION['error']; ?></strong>
         </div>
         <?php
         unset($_SESSION['error']);
@@ -88,7 +91,7 @@ function verificacoes() {
     if (isset($_SESSION['warning'])) {
         ?>
         <div class="alert alert-warning">
-            <strong><?php echo $_SESSION['warning']; ?></strong> 
+            <strong><?php echo $_SESSION['warning']; ?></strong>
         </div>
         <?php
         unset($_SESSION['warning']);
@@ -97,11 +100,12 @@ function verificacoes() {
 
 // we're adding an entry for the new controller and its actions
 $controllers = array('pages' => ['home', 'error','avaliar', 'amigos', 'gravar'],
-    'usuario' => ['index', 'add', 'edit', 'view', 'home', 'delete', 'ranking', 'amigos', 'buscarUsuario'],
+    'usuario' => ['index', 'add', 'edit', 'view', 'home', 'delete', 'ranking', 'amigos', 'buscarUsuario', 'getPontuacao'],
     'modulo' => ['index', 'add', 'edit', 'view','delete'],
-    'categoria' => ['index', 'add', 'edit', 'view','delete'],
+    'categoria' => ['index', 'add', 'edit', 'view','delete', 'lista'],
     'sinal' => ['index', 'add', 'edit', 'view','delete'],
-    'gravacao' => ['index', 'add', 'edit', 'view','delete'],
+    'avaliacao' => ['index', 'add', 'edit', 'view','delete'],
+    'gravacao' => ['index', 'add', 'edit', 'view','delete','play', 'verificarResposta'],
     'movimento' => ['index', 'add', 'edit', 'view','delete'],
     'login' => ['login', 'logout'],
     'posts' => ['index', 'show' ]);

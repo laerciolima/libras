@@ -5,27 +5,27 @@
     <thead>
         <tr>
             <th>ID</th>
-            <th>Data</th>
+            <th>data</th>
             <th>Video</th>
-            <th>Fk_id_sinal</th>
-            <th>Fk_id_usuario</th>
+            <th>Fk id sinal</th>
+            <th>Fk id usuario</th>
             <th>Ações</th>
         </tr>
     </thead>
     <tfoot>
         <tr>
             <th>ID</th>
-            <th>Data</th>
+            <th>data</th>
             <th>Video</th>
-            <th>Fk_id_sinal</th>
-            <th>Fk_id_usuario</th>
+            <th>Fk id sinal</th>
+            <th>Fk id usuario</th>
             <th>Ações</th>
         </tr>
     </tfoot>
     <tbody>
         <?php foreach ($gravacoes as $gravacao) { ?>
             <tr>
-                <td><?php echo $gravacao->getId();?> </td>                <td><a href="?controller=gravacao&action=view&id=<?php echo $gravacao->getId();?>"><?php echo $gravacao->getData(); ?></a></td>
+                <td><?php echo $gravacao->getId();?> </td>                <td><a href="?controller=gravacao&action=view&id=<?php echo $gravacao->getId();?>"><?php echo $gravacao->getdata(); ?></a></td>
                 <td><?php echo $gravacao->getVideo(); ?></td>
                 <td><?php echo $gravacao->getFk_id_sinal(); ?></td>
                 <td><?php echo $gravacao->getFk_id_usuario(); ?></td>

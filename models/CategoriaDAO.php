@@ -24,6 +24,28 @@ class CategoriaDAO {
 
         return $lista;
     }
+    
+    
+    public static function listByModulo($fk_id_modulo) {
+        $lista = [];
+
+          $req = Db::getInstance()->prepare('SELECT * FROM categoria where fk_id_modulo = :fk_id_modulo');
+          $req->execute(array('fk_id_modulo' => $fk_id_modulo));
+        // we create a list of Post objects from the database results
+        foreach ($req->fetchAll() as $linha) {
+            $categoria = new Categoria();
+
+            $categoria->setId($linha['id']);
+            $categoria->setNome($linha["nome"]);
+            $categoria->setDescricao($linha["descricao"]);
+            $categoria->setImagem($linha["imagem"]);
+            $categoria->setFk_id_modulo($linha["fk_id_modulo"]);
+
+            $lista[] = $categoria;
+        }
+
+        return $lista;
+    }
 
     public static function find($id) {
         // we make sure $id is an integer
@@ -82,6 +104,29 @@ class CategoriaDAO {
         $categoria->setFk_id_modulo($linha['fk_id_modulo']);
 
         return $categoria;
+    }
+
+
+
+    public static function getOpcoes($sinal, $fk_id_categoria){
+         $req = Db::getInstance()->prepare("SELECT sn.nome FROM sinal as sn inner join categoria as ct on 
+    sn.categoria_id =  ct.id 
+    where ct.id = :categoria and sn.id <> :sinal
+    order by rand()
+    limit 3;");
+        $req->bindValue(":categoria", $fk_id_categoria);
+        $req->bindValue(":sinal", $sinal);
+        //$req->bindValue(":limit", $limit);
+        $req->execute();
+
+        
+        $lista = [];
+
+        foreach ($req->fetchAll() as $linha) {
+            $lista[] = $linha['nome'];
+        }
+
+        return $lista;
     }
 
 

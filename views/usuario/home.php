@@ -9,7 +9,6 @@
                 <div class="panel-heading"><?php echo $modulo->getNome(); ?></div>
                 <div class="panel-body">
                     <?php echo $modulo->getDescricao(); ?>
-
                 </div>
                 <div class="panel-footer">
                     <div class="progress">
@@ -17,16 +16,12 @@
                              aria-valuemin="0" aria-valuemax="100" style="width:95%">
                             1950pts
                         </div>
-
                     </div>
-
+                    <button type="button" class="btn btn-default btn-block" onclick="location.href = '?controller=categoria&action=lista&modulo=<?php echo $modulo->getId(); ?>'"><span class="glyphicon glyphicon-play"></span> Praticar</button>
 
                 </div>
             </div>
         </div>
-
-
-
         <?php
     }
     ?>
@@ -73,7 +68,7 @@
                     </div>
 
                 </div>
-                <button type="button" class="btn btn-default btn-block"><span class="glyphicon glyphicon-play"></span> Jogar</button>
+                
 
             </div>
         </div>

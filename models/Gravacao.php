@@ -6,6 +6,9 @@ class Gravacao{
     private $video;
     private $fk_id_sinal;
     private $fk_id_usuario;
+    private $opcoes = [];
+
+
     
 function setId ($id){
         
@@ -15,11 +18,11 @@ function setId ($id){
         
         return $this->id;
     }
-    public function getData() {
+    public function getdata() {
         return $this->data;
     }
 
-    public function setData($data) {
+    public function setdata($data) {
         $this->data = $data;
     }
 
@@ -39,12 +42,22 @@ function setId ($id){
         $this->fk_id_sinal = $fk_id_sinal;
     }
 
+    
     public function getFk_id_usuario() {
         return $this->fk_id_usuario;
     }
 
     public function setFk_id_usuario($fk_id_usuario) {
         $this->fk_id_usuario = $fk_id_usuario;
+    }
+
+    public function getOpcoes() {
+        
+        return $this->opcoes;
+    }
+
+    public function setOpcoes($opcoes) {
+        $this->opcoes = $opcoes;
     }
 
 }

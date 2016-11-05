@@ -9,7 +9,7 @@ class Sinal{
     private $expressaofacial_idexpressaofacial;
     private $pontodearticulacao_idpontodearticulacao;
     private $sinaldefinepesoinicial;
-    private $modulo_id;
+    private $categoria_id;
     private $utilizacaodasmaos;
     private $maoprincipal_id;
     private $maosecundaria_id;
@@ -78,12 +78,12 @@ function setId ($id){
         $this->sinaldefinepesoinicial = $sinaldefinepesoinicial;
     }
 
-    public function getModulo_id() {
-        return $this->modulo_id;
+    public function getCategoria_id() {
+        return $this->categoria_id;
     }
 
-    public function setModulo_id($modulo_id) {
-        $this->modulo_id = $modulo_id;
+    public function setCategoria_id($categoria_id) {
+        $this->categoria_id = $categoria_id;
     }
 
     public function getUtilizacaoDasMaos() {

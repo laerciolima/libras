@@ -4,9 +4,20 @@ class CategoriaController {
 
     public function index() {
         // we store all the posts in a variable
-        
-        $categorias = CategoriaDAO::all();
+        if(!isset($_GET['modulo'])){
+            return call('pages', 'error');
+        }
+        $categorias = CategoriaDAO::listByModulo($_GET['modulo']);
         require_once('views/categoria/index.php');
+        
+    }
+    public function lista() {
+        // we store all the posts in a variable
+        if(!isset($_GET['modulo'])){
+            return call('pages', 'error');
+        }
+        $categorias = CategoriaDAO::listByModulo($_GET['modulo']);
+        require_once('views/categoria/lista.php');
         
     }
 

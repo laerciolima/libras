@@ -6,7 +6,7 @@
 
 <form method="post" action="?controller=gravacao&action=add" class="form-horizontal" role="form">
 <div class="form-group">
-        <label class="control-label col-sm-2" for="data">Data:</label>
+        <label class="control-label col-sm-2" for="data">data:</label>
         <div class="col-sm-4">
             <input type="text" class="form-control" name="data" id="data" placeholder="Digite o data">
         </div>
@@ -16,12 +16,12 @@
             <input type="text" class="form-control" name="video" id="video" placeholder="Digite o video">
         </div>
     </div><div class="form-group">
-        <label class="control-label col-sm-2" for="fk_id_sinal">Fk_id_sinal:</label>
+        <label class="control-label col-sm-2" for="fk_id_sinal">Fk id sinal:</label>
         <div class="col-sm-4">
             <input type="text" class="form-control" name="fk_id_sinal" id="fk_id_sinal" placeholder="Digite o fk_id_sinal">
         </div>
     </div><div class="form-group">
-        <label class="control-label col-sm-2" for="fk_id_usuario">Fk_id_usuario:</label>
+        <label class="control-label col-sm-2" for="fk_id_usuario">Fk id usuario:</label>
         <div class="col-sm-4">
             <input type="text" class="form-control" name="fk_id_usuario" id="fk_id_usuario" placeholder="Digite o fk_id_usuario">
         </div>
