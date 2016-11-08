@@ -126,7 +126,7 @@ class GravacaoController {
       $fk_id_sinal = $_POST['fk_id_sinal'];
       $resposta =  $_POST['resposta'];
 
-      if(GravacaoDAO::respostaCorreta($fk_id_sinal, $resposta)){
+      if(SinalDAO::respostaCorreta($fk_id_sinal, $resposta)){
         $usuarioController = new UsuarioController();
         $usuarioController->addPontuacao(10);
         echo "verificarResposta=true";

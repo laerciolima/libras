@@ -52,6 +52,33 @@ class UsuarioDAO {
         return $lista;
     }
 
+    public static function rankingAmigos($fk_id_usuario) {
+        $lista = [];
+
+        $req = Db::getInstance()->prepare("SELECT id, nome, email, usuario, nivel, pontuacao, imagem FROM usuario u
+	inner join amizade a on (u.id = a.fk_id_usuario1 or u.id = a.fk_id_usuario2)
+WHERE perfil = 'comum' and (a.fk_id_usuario1=:id or a.fk_id_usuario2=:id) ORDER BY nivel DESC, pontuacao DESC");
+
+        $req->bindValue(":id", $fk_id_usuario);
+        $req->execute();
+        // we create a list of Post objects from the database results
+        foreach ($req->fetchAll() as $linha) {
+            $usuario = new Usuario();
+
+            $usuario->setId($linha['id']);
+            $usuario->setNome($linha["nome"]);
+            $usuario->setEmail($linha["email"]);
+            $usuario->setusuario($linha["usuario"]);
+            $usuario->setNivel($linha["nivel"]);
+            $usuario->setPontuacao($linha["pontuacao"]);
+            $usuario->setImagem($linha["imagem"]);
+
+            $lista[] = $usuario;
+        }
+
+        return $lista;
+    }
+
     public static function amigos($id) {
         $lista = [];
         echo $id;
@@ -79,11 +106,11 @@ WHERE (a.fk_id_usuario1 = :id OR a.fk_id_usuario2 = :id)
 
         return $lista;
     }
-    
+
     public static function buscarUsuario($busca, $id) {
         $lista = [];
 
-        
+
         $req = Db::getInstance()->prepare('SELECT * FROM usuario WHERE (nome LIKE :busca OR usuario LIKE :busca OR email LIKE :busca) AND id <> :id');
         // the query was prepared, now we replace :id with our actual $id value
         $req->bindValue(":busca", "%".$busca."%");
@@ -181,7 +208,7 @@ WHERE (a.fk_id_usuario1 = :id OR a.fk_id_usuario2 = :id)
 
         return $req->execute();
     }
-    
+
     public static function addAmigo($id_logado, $id_usuario) {
         // we make sure $id is an integer
 

@@ -53,6 +53,8 @@ class UsuarioController {
 
     public function ranking() {
         $ranking_geral = UsuarioDAO::rankingGeral();
+        $usuario_logado =  $_SESSION['login_object'];
+        $ranking_amigos = UsuarioDAO::rankingAmigos($usuario_logado['id']);
         require_once('views/ranking/index.php');
     }
 

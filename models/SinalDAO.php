@@ -11,8 +11,8 @@ class SinalDAO {
 
         // we create a list of Post objects from the database results
         foreach ($req->fetchAll() as $linha) {
-            
-            
+
+
             $lista[] = self::popular($linha);
         }
 
@@ -28,7 +28,7 @@ class SinalDAO {
         $req->execute(array('id' => $id));
 
         return SinalDAO::popular($req->fetch());
-        
+
     }
 
     public static function delete($id) {
@@ -59,7 +59,7 @@ class SinalDAO {
         $req->bindValue(":maoprincipal_id", $sinal->getMaoPrincipal_id());
         $req->bindValue(":maosecundaria_id", NULL);
         $req->execute();
-        
+
         return true;
     }
 
@@ -99,6 +99,13 @@ class SinalDAO {
         $sinal->setMaoSecundaria_id($linha['maoSecundaria_id']);
 
         return $sinal;
+    }
+
+    public static function respostaCorreta($id_sinal, $resposta){
+      if(SinalDAO::find($id_sinal)->getNome() == $resposta){
+        return true;
+      }
+      return false;
     }
 
 

@@ -60,17 +60,18 @@ console.log(lista_de_opcoes);
          <!-- Modal content-->
          <div class="modal-content">
             <div class="modal-header">
-               <button type="button" class="close" data-dismiss="modal">&times;</button>
                <h4 class="modal-title">Avalie este video</h4>
             </div>
             <div class="modal-body">
-               <p>Some text in the modal.</p>
 
                <div id="resposta_correta" style="display: none">
-                   resposta correta
+                 <h4 class="text-center">RESPOSTA CORRETA</h4>
+                 <img src="webroot/img/sinal_correto.png" class="img-responsive"/>
+
                </div>
                <div id="resposta_incorreta" style="display: none">
-                   resposta incorreta
+                 <h4 class="text-center">RESPOSTA INCORRETA</h4>
+                 <img src="webroot/img/sinal_incorreto.jpg" class="img-responsive"/>
                </div>
                <form id="avaliacao_sinal">
                   <div class="form-group">
@@ -100,7 +101,7 @@ console.log(lista_de_opcoes);
                </form>
             </div>
             <div class="modal-footer">
-               <button type="button" class="btn btn-info" id="addAvaliacao">Salvar</button>
+               <button type="button" class="btn btn-info" id="addAvaliacao" data-dismiss="myModal">Salvar</button>
             </div>
          </div>
       </div>

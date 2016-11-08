@@ -6,13 +6,14 @@ class Categoria{
     private $descricao;
     private $imagem;
     private $fk_id_modulo;
-    
+    private $porcentagem_gravada;
+
 function setId ($id){
-        
+
         $this->id=$id;
     }
     function getId (){
-        
+
         return $this->id;
     }
     public function getNome() {

@@ -39,8 +39,9 @@ $(document).ready(function () {
          {
             console.log("add avaliacao:"+data);
 
-            //nextVideo();
+            nextVideo();
             $('#form_id').trigger("reset");
+
          }
       });
 
@@ -124,13 +125,22 @@ function validar(num){
 
             if(txt.indexOf("verificarResposta=true") != -1){
                $("#resposta_correta").show();
+               $( "#resposta_correta" ).fadeOut( 2500, function() {
+                 $("#avaliacao_sinal").show();
+               });
                refreshPontuacao();
             }else{
                $("#resposta_incorreta").show();
-
+               $( "#resposta_incorreta" ).fadeOut( 2500, function() {
+                 $("#avaliacao_sinal").show();
+               });
             }
+            $("#avaliacao_sinal").hide();
+            $('#myModal').modal('show');
 
-            $('#myModal').modal('show')
+
+            //$('#resposta_incorreta').hide(5000)
+            //$('#resposta_correta').hide(5000)
          },
          error: function(txt) {
             // em caso de erro você pode dar um alert('erro');

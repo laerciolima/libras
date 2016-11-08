@@ -20,7 +20,7 @@
             <tbody>
                 <?php
                 $posicao = 0;
-                foreach ($ranking_geral as $usuario) {
+                foreach ($ranking_amigos as $usuario) {
                     $posicao++;
                     ?>
 
@@ -31,7 +31,7 @@
                         <td>LV <?php echo $usuario->getNivel();  ?></td>
                         <td><div class="progress">
                                 <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
-                                     aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $usuario->getPontuacao()/20  ?>%">
+                                     aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $usuario->getPontuacao()/2  ?>%">
                                     <?php echo $usuario->getPontuacao();  ?>pts
                                 </div>
 
@@ -40,7 +40,7 @@
                     </tr>
 
 
-                <?php } ?>       
+                <?php } ?>
             </tbody>
         </table>
         <button class="btn btn-default ">Ver tudo</button>
@@ -80,10 +80,10 @@
                     </tr>
 
 
-                <?php } ?>       
+                <?php } ?>
             </tbody>
         </table>
-        
+
     </div>
-    
+
 </div>
