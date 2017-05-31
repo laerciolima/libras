@@ -65,9 +65,12 @@ class UsuarioController {
     }
 
     public static function validarUsuario($url) {
+        require_once 'models/UsuarioDAO.php';
+        require_once 'connection.php';
         if(UsuarioDAO::validarUsuario($url)){
-            require_once('views/usuario/amigos.php');
+            return true;
         }
+        return false;
 
     }
 
