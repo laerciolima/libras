@@ -1,8 +1,10 @@
--- MySQL dump 10.13  Distrib 5.7.15, for Linux (x86_64)
+CREATE DATABASE  IF NOT EXISTS `libras` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `libras`;
+-- MySQL dump 10.13  Distrib 5.7.19, for Linux (x86_64)
 --
 -- Host: localhost    Database: libras
 -- ------------------------------------------------------
--- Server version	5.7.15-0ubuntu0.16.04.1
+-- Server version	5.7.19-0ubuntu0.16.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -415,7 +417,7 @@ LOCK TABLES `ponto_de_articulacao_sinal` WRITE;
 UNLOCK TABLES;
 
 --
--- Temporary view structure for view `ranking`
+-- Temporary table structure for view `ranking`
 --
 
 DROP TABLE IF EXISTS `ranking`;
@@ -530,4 +532,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-10-21  0:12:54
+-- Dump completed on 2017-08-25 11:15:54

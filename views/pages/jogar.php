@@ -27,7 +27,7 @@ console.log(lista_de_opcoes);
 <h1 class="text-center">Avaliar</h1>
 <div class="row" >
    <div id="cronometro" class="text-center">
-      <div id="tempo">10s</div>
+      <div id="tempo">10s</div> 
    </div>
 </div>
 <div class="row">
@@ -53,16 +53,7 @@ console.log(lista_de_opcoes);
    </div>
 
 
-   <!-- Modal -->
-   <div id="myModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-
-         <!-- Modal content-->
-         <div class="modal-content">
-            <div class="modal-header">
-               <h4 class="modal-title">Avalie este video</h4>
-            </div>
-            <div class="modal-body">
+            <div id="avaliacao_sinal_div">
 
                <div id="resposta_correta" style="display: none">
                  <h4 class="text-center">RESPOSTA CORRETA</h4>
@@ -100,9 +91,4 @@ console.log(lista_de_opcoes);
                   </div>
                </form>
             </div>
-            <div class="modal-footer">
-               <button type="button" class="btn btn-info" id="addAvaliacao" data-dismiss="myModal">Salvar</button>
-            </div>
-         </div>
-      </div>
-   </div>
+            

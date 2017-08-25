@@ -144,7 +144,7 @@ class CategoriaDAO {
 
       $req->execute();
 
-      $linha = $req->fetch()
+      $linha = $req->fetch();
       return $linha['total'];
     }
 
