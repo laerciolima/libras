@@ -37,11 +37,10 @@ class LoginController {
             header("Location: ../?controller=usuario&action=home");
             die();
         } else {
-            print_r($usuario);
             session_start();
             $_SESSION['erro'] = $usuario['erro'];
         }
-        //header("Location: ../views/login/index.php?login=error");
+        header("Location: ../views/login/index.php?login=error");
     }
 
     static function isLogged() {
@@ -61,6 +60,9 @@ class LoginController {
     }
 
     public static function logout() {
+        session_start();
+        
+        unset($_SESSION['login_object']);
         unset($_SESSION['login']);
         echo "<meta http-equiv=\"Refresh\" content=\"0; url=../views/login/index.php\">";
         die();
@@ -76,9 +78,8 @@ class LoginController {
         $req->bindValue(":senha", md5($senha));
         $req->execute();
         $linha = $req->fetch();
-        print_r($linha);
         if ($linha['usuario'] == '') {
-            $linha['erro'] = "E-mail ou senha inválidos.";
+            $linha['erro'] = "login ou senha inválidos.";
         } else if ($linha['status'] == 0) {
             $linha['erro'] = "Por favor, verifique sua caixa de entrada para validar seu e-mail.";
         }

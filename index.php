@@ -17,13 +17,18 @@
 
 <?php
 if(isset($_GET['validation'])){
+  echo "aqui";
+
+    @require_once('controllers/UsuarioController.php');
+
+
     if(UsuarioController::validarUsuario($_GET['validation'])){
         echo "E-mail confirmado.";
     }else{
         echo "URL inválida.";
     }
 
-    echo "<meta http-equiv=\"Refresh\" content=\"1; url=../views/login/index.php\">";
+    echo "<meta http-equiv=\"Refresh\" content=\"1; url=views/login/index.php\">";
 
     die();
 }

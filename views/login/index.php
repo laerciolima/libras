@@ -31,7 +31,7 @@
     <form class="form-signin" method="post" action="../../controllers/LoginController.php">
         <h2 class="form-signin-heading">Login</h2>
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="text" name="login" class="form-control" placeholder="E-mail" required autofocus>
+        <input type="text" name="login" class="form-control" placeholder="E-mail ou nome de usuario" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" name="senha" class="form-control" placeholder="Senha" required>
         <input type="hidden" name="login-web" />
@@ -146,7 +146,7 @@
 
 
             $("#btn-cadastrar").click(function (e) {
-                
+
                 var url = "../../controllers/LoginController.php"; // the script where you handle the form input.
 
                 $.ajax({
@@ -155,7 +155,7 @@
                     data: $("#form-cadastrar").serialize(), // serializes the form's elements.
                     success: function (data)
                     {
-                        alert(data); 
+                        alert(data);
                         if(data.indexOf("email_cadastrado") != -1){
                             alert("Email já cadastrado.")
                         }else if(data.indexOf("usuario_cadastrado") != -1){
