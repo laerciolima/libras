@@ -59,6 +59,10 @@ function call($controller, $action) {
             // we need the model to query the database later in the controller
             $controller = new AvaliacaoController();
             break;
+        case 'badge':
+            // we need the model to query the database later in the controller
+            $controller = new BadgeController();
+            break;
         case 'login':
             // we need the model to query the database later in the controller
             require_once('models/UsuarioDAO.php');
@@ -107,6 +111,7 @@ $controllers = array('pages' => ['home', 'error','avaliar', 'amigos', 'gravar'],
     'avaliacao' => ['index', 'add', 'edit', 'view','delete'],
     'gravacao' => ['index', 'add', 'edit', 'view','delete','play', 'verificarResposta'],
     'movimento' => ['index', 'add', 'edit', 'view','delete'],
+    'badge' => ['index', 'add', 'edit', 'view','delete'],
     'login' => ['login', 'logout'],
     'posts' => ['index', 'show' ]);
 
