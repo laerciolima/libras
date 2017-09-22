@@ -5,6 +5,7 @@ class Modulo{
     private $nome;
     private $descricao;
     private $nivel;
+    private $qntd_sinais;
     
 function setId ($id){
         
@@ -37,6 +38,15 @@ function setId ($id){
     public function setNivel($nivel) {
         $this->nivel = $nivel;
     }
+
+    public function getQntdSinais() {
+        return $this->qntd_sinais;
+    }
+
+    public function setQntdSinais($qntd_sinais) {
+        $this->qntd_sinais = $qntd_sinais;
+    }
+
 
 }
 ?>

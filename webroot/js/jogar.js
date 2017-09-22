@@ -42,6 +42,10 @@ $(document).ready(function () {
             nextVideo();
             $('#form_id').trigger("reset");
 
+             $("#avaliacao_sinal_div").hide();
+             $(".player_video_avaliacao").show();
+
+
          }
       });
 
@@ -92,8 +96,8 @@ function nextVideo(){
 
    mp4Vid.src = gravacao.video;
 
-   video.load();
-   video.play();
+   //video.load();
+   //video.play();
 
    for (var i = 0; i < opcoes.length; i++) {
       $("#opt"+i).html(opcoes[i]);
@@ -104,6 +108,11 @@ function nextVideo(){
 }
 
 function validar(num){
+
+
+   $("#avaliacao_sinal_div").show();
+   $(".player_video_avaliacao").hide();
+   $("#avaliacao_sinal").hide();
 
    $.ajax(
       {
@@ -135,8 +144,7 @@ function validar(num){
                  $("#avaliacao_sinal").show();
                });
             }
-            $("#avaliacao_sinal").hide();
-            $('#myModal').modal('show');
+            
 
 
             //$('#resposta_incorreta').hide(5000)

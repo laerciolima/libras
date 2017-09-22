@@ -37,6 +37,44 @@ $(document).ready(function () {
             }
         }
     });
+
+
+
+
+    $.ajax(
+      {
+         type: "POST",
+         url: "controllers/UsuarioController.php",
+         data: "metodo=getNumNotificacoes",
+         beforeSend: function() {
+            // enquanto a função esta sendo processada, você
+            // pode exibir na tela uma
+            // msg de carregando
+
+         },
+         success: function(txt) {
+            // pego o id da div que envolve o select com
+            // name="id_modelo" e a substituiu
+            // com o texto enviado pelo php, que é um novo
+            //select com dados da marca x
+            console.log(txt);
+
+            if(txt == 0){   
+                $("#num_notifications").hide()
+                $("#num_notifications").html(txt)
+            }else{
+                $("#num_notifications").show()
+                $("#num_notifications").html(txt)    
+            }
+            
+
+         },
+         error: function(txt) {
+            // em caso de erro você pode dar um alert('erro');
+            alert("erro ao validar ")
+         }
+      }
+   );//fim ajax
 });
 
 

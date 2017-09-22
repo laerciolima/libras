@@ -9,6 +9,9 @@ class UsuarioController {
              case 'getPontuacao':
                  self::getPontuacao();
                  break;
+            case 'getNumNotificacoes':
+                 self::getNumNotificacoes();
+                 break;
          }
      }
    }
@@ -16,9 +19,19 @@ class UsuarioController {
 
     public function index() {
         // we store all the posts in a variable
-
         $usuarios = UsuarioDAO::all();
+        
         require_once('views/usuario/index.php');
+    }
+
+     
+     public function notificacoes() {
+        // we store all the posts in a variable
+        $usuario_logado =  $_SESSION['login_object'];
+
+
+        $usuarios = UsuarioDAO::listSolicitacaoAmizade($usuario_logado['id']);
+        require_once('views/usuario/notificacoes.php');
     }
 
     public function home() {
@@ -123,19 +136,19 @@ class UsuarioController {
             $usuario->setImagem($usuario_logado['imagem']);
 
 
-
+            require_once("IOUtils.php");
 
 
             $foto = $_FILES["imagem"];
 
             $imagem_alterada = 0;
-
+            $ioUtils = new IOUtils();
 
             // Se a foto estiver sido selecionada
             if (!empty($foto["name"])) {
 
-                $ioUtils = new IOUtils();
-                $error = $ioUtils->processImage($foto, "storage/imagens/users/", 500, 500, 100000);
+                
+                $error = $ioUtils->processImage($foto, "storage/imagens/users/", 1920, 1920, 1000000);
 
 
                 // Se houver mensagens de erro, exibe-as
@@ -177,9 +190,6 @@ class UsuarioController {
         }
 
 
-        // we use the given id to get the right post"
-
-
         $usuario = UsuarioDAO::find(($usuario_logado['id']));
 
         require_once('views/usuario/edit.php');
@@ -216,6 +226,43 @@ class UsuarioController {
       $usuario_logado = $_SESSION['login_object'];
       $usuario = UsuarioDAO::find($usuario_logado['id']);
       echo $usuario->getNivel()."#".$usuario->getPontuacao();
+    }
+
+    function getNumNotificacoes(){
+      if(!isset($_SESSION)){
+        session_start();
+      }
+
+
+      @require_once '../connection.php';
+      @require_once '../models/Usuario.php';
+      @require_once '../models/UsuarioDAO.php';
+      $usuario_logado = $_SESSION['login_object'];
+      $usuario = UsuarioDAO::getNumNotificacoes($usuario_logado['id']);
+      echo $usuario;
+    }
+
+
+    function removerAmizade(){
+        $usuario_logado = $_SESSION['login_object'];
+        if(!UsuarioDAO::removerAmizade($usuario_logado['id'], base64_decode($_GET['id']))){
+               $_SESSION['error'] = "Não foi possível remover a amizade";   
+        }
+         
+         
+        echo "<meta http-equiv=\"Refresh\" content=\"0; url=?controller=usuario&action=notificacoes\">";
+        die();
+    }
+
+    function aceitarAmizade(){
+        $usuario_logado = $_SESSION['login_object'];
+        if(!UsuarioDAO::aceitarAmizade($usuario_logado['id'], base64_decode($_GET['id']))){
+            $_SESSION['error'] = "Não foi possível aceitar a amizade";
+        }
+           
+        echo "<meta http-equiv=\"Refresh\" content=\"0; url=?controller=usuario&action=notificacoes\">";
+         die();
+        
     }
 
 }

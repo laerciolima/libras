@@ -58,6 +58,7 @@ function call($controller, $action) {
         case 'avaliacao':
             // we need the model to query the database later in the controller
             $controller = new AvaliacaoController();
+            
             break;
         case 'badge':
             // we need the model to query the database later in the controller
@@ -104,7 +105,7 @@ function verificacoes() {
 
 // we're adding an entry for the new controller and its actions
 $controllers = array('pages' => ['home', 'error','avaliar', 'amigos', 'gravar'],
-    'usuario' => ['index', 'add', 'edit', 'view', 'home', 'delete', 'ranking', 'amigos', 'buscarUsuario', 'getPontuacao'],
+    'usuario' => ['index', 'add', 'edit', 'view', 'home', 'delete', 'ranking', 'amigos', 'buscarUsuario', 'getPontuacao', 'notificacoes', 'removerAmizade', 'aceitarAmizade'],
     'modulo' => ['index', 'add', 'edit', 'view','delete'],
     'categoria' => ['index', 'add', 'edit', 'view','delete', 'lista'],
     'sinal' => ['index', 'add', 'edit', 'view','delete'],

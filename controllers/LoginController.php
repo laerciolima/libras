@@ -31,6 +31,8 @@ class LoginController {
 
         if (!isset($usuario['erro'])) {
             session_start();
+            
+            
             $_SESSION['login'] = $usuario['usuario'];
 
             $_SESSION['login_object'] = $usuario;

@@ -1,4 +1,4 @@
-<script type="text/javascript" src="webroot/js/jogar.js"></script>
+
 <script type="text/javascript">
 var gravacoes = [
    <?php
@@ -53,7 +53,7 @@ console.log(lista_de_opcoes);
    </div>
 
 
-            <div id="avaliacao_sinal_div">
+            <div id="avaliacao_sinal_div" >
 
                <div id="resposta_correta" style="display: none">
                  <h4 class="text-center">RESPOSTA CORRETA</h4>
@@ -65,30 +65,41 @@ console.log(lista_de_opcoes);
                  <img src="webroot/img/sinal_incorreto.jpg" class="img-responsive"/>
                </div>
                <form id="avaliacao_sinal">
-                  <div class="form-group">
-                     <label for="email">Configuração de Mão:</label>
-                     <input type="range" class="form-control" name="nota_configuracao_mao">
+
+                  <div class="row">
+                     <div class="form-group col-xs-6">
+                        <label for="email">Configuração de Mão:</label>
+                        <input type="range" list="tickmarks" class="form-control" min="1" max="5" name="nota_configuracao_mao">                    
+                     </div>
+                     <div class="form-group col-xs-6">
+                        <label for="email">Ponto de articulação:</label>
+                        <input type="range" class="form-control" min="1" max="5" name="nota_ponto_articulacao">
+                     </div>
                   </div>
-                  <div class="form-group">
-                     <label for="email">Ponto de articulação:</label>
-                     <input type="range" class="form-control" name="nota_ponto_articulacao">
-                  </div>
-                  <div class="form-group">
+                   <div class="row">
+                  <div class="form-group col-xs-6">
                      <label for="email">Movimento:</label>
-                     <input type="range" class="form-control" name="nota_movimento">
+                     <input type="range" class="form-control" min="1" max="5" name="nota_movimento">
                   </div>
-                  <div class="form-group">
+                  <div class="form-group col-xs-6">
                      <label for="email">Orientação:</label>
-                     <input type="range" class="form-control" name="nota_orientacao">
+                     <input type="range" class="form-control" min="1" max="5" name="nota_orientacao">
                   </div>
-                  <div class="form-group">
-                     <label for="email">Expressão facial:</label>
-                     <input type="range" class="form-control" name="nota_expressao_facial">
                   </div>
-                  <div class="form-group">
+                   <div class="row">
+                  <div class="form-group col-xs-6">
                      <label for="email">Expressão facial:</label>
+                     <input type="range" class="form-control" min="1" max="5" name="nota_expressao_facial">
+                  </div>
+                  <div class="form-group col-xs-6">
+                     <label for="email">Observações:</label>
                      <textarea class="form-control" name="observacoes"></textarea>
                   </div>
+                  </div>
+                  <div class="form-group">
+                     <a class="btn btn-block btn-info" id="addAvaliacao">Enviar</a>
+                  </div>
+
                </form>
             </div>
             

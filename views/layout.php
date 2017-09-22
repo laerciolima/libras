@@ -37,11 +37,19 @@
                                         Libras
                                     </a>
                                 </div>
+                                 
+                                 <a href="?controller=usuario&action=notificacoes" class="btn btn-default" id="search-trigger" style="margin-right: 55px">
+                                    <span class="glyphicon glyphicon-bell"></span>
+                                    <span class="badge" id="num_notifications" style="display: none">...</span>
+                                </a>
 
                                 <!-- Search -->
                                 <a data-toggle="collapse" href="#search" class="btn btn-default" id="search-trigger">
                                     <span class="glyphicon glyphicon-search"></span>
                                 </a>
+
+
+
 
                                 <!-- Search body -->
                                 <div id="search" class="panel-collapse collapse">

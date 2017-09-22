@@ -14,7 +14,7 @@
                     <div class="progress">
                         <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50"
                              aria-valuemin="0" aria-valuemax="100" style="width:95%">
-                            1950pts
+                            30/<?php echo $modulo->getQntdSinais(); ?> sinais aprendidos
                         </div>
                     </div>
                     <button type="button" class="btn btn-default btn-block" onclick="location.href = '?controller=categoria&action=lista&modulo=<?php echo $modulo->getId(); ?>'"><span class="glyphicon glyphicon-play"></span> Praticar</button>

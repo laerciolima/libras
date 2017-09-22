@@ -7,7 +7,10 @@ class ModuloDAO {
     public static function all() {
         $lista = [];
 
-        $req = Db::getInstance()->query('SELECT * FROM modulo');
+        $req = Db::getInstance()->query('SELECT m.*, count(s.id) as qntd_sinais FROM jt.modulo m
+INNER JOIN categoria cat on cat.fk_id_modulo = m.id
+INNER JOIN sinal s on s.categoria_id = cat.id
+group by m.id');
 
         // we create a list of Post objects from the database results
         foreach ($req->fetchAll() as $linha) {
@@ -17,6 +20,7 @@ class ModuloDAO {
             $modulo->setNome($linha["nome"]);
             $modulo->setDescricao($linha["descricao"]);
             $modulo->setNivel($linha["nivel"]);
+            $modulo->setQntdSinais($linha["qntd_sinais"]);
 
             $lista[] = $modulo;
         }

@@ -59,11 +59,10 @@ class AvaliacaoDAO {
     public static function add(Avaliacao $avaliacao) {
         // we make sure $id is an integer
 
-        print_r($avaliacao);
-
-        return;
-
         $req = Db::getInstance()->prepare("INSERT INTO avaliacao (data,nota_configuracao_mao,nota_expressao_facial,nota_media,nota_movimento,nota_orientacao,nota_ponto_articulacao,fk_id_gravacao,fk_id_usuario,nota_final,observacoes) VALUES (NOW(),:nota_configuracao_mao,:nota_expressao_facial,:nota_media,:nota_movimento,:nota_orientacao,:nota_ponto_articulacao,:fk_id_gravacao,:fk_id_usuario,:nota_final,:observacoes)");
+
+
+
         $req->bindValue(":nota_configuracao_mao", $avaliacao->getNota_configuracao_mao());
         $req->bindValue(":nota_expressao_facial", $avaliacao->getNota_expressao_facial());
         $req->bindValue(":nota_media", $avaliacao->getNota_media());
@@ -74,6 +73,8 @@ class AvaliacaoDAO {
         $req->bindValue(":fk_id_usuario", $avaliacao->getFk_id_usuario());
         $req->bindValue(":nota_final", $avaliacao->getNota_final());
         $req->bindValue(":observacoes", $avaliacao->getObservacoes());
+        
+
         return $req->execute();
     }
 

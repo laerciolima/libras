@@ -55,7 +55,7 @@ class AvaliacaoController {
         $avaliacao->setNota_media($soma_das_notas/5);
         $avaliacao->setNota_final($soma_das_notas/5);
 
-
+            echo "salvando no banco...";
             if(AvaliacaoDAO::add($avaliacao)){
                 echo "addAvaliacao=true";
             }else{
