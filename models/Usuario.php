@@ -8,7 +8,7 @@ class Usuario{
     private $usuario;
     private $senha;
     private $nivel;
-    private $pontuacao;
+    private $sinais_aprendidos;
     private $imagem;
     private $url;
 
@@ -69,11 +69,11 @@ function setId ($id){
     }
 
     public function getPontuacao() {
-        return $this->pontuacao;
+        return $this->sinais_aprendidos;
     }
 
-    public function setPontuacao($pontuacao) {
-        $this->pontuacao = $pontuacao;
+    public function setPontuacao($sinais_aprendidos) {
+        $this->sinais_aprendidos = $sinais_aprendidos;
     }
 
     public function getImagem() {
