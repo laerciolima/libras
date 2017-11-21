@@ -93,6 +93,17 @@ class GravacaoController {
         require_once('views/gravacao/edit.php');
     }
 
+
+
+    public function meusVideos() {
+        // we store all the posts in a variable
+        $usuario_logado =  $_SESSION['login_object'];
+
+
+        $gravacoes = GravacaoDAO::getGravacoesByUsuario($usuario_logado['id']);
+        require_once('views/gravacao/index.php');
+    }
+
     public function play(){
         $type = -1;
         $id = 0;

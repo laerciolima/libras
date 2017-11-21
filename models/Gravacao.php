@@ -7,6 +7,7 @@ class Gravacao{
     private $fk_id_sinal;
     private $fk_id_usuario;
     private $opcoes = [];
+    private $qntd_avaliacao;
 
 
     
@@ -58,6 +59,15 @@ function setId ($id){
 
     public function setOpcoes($opcoes) {
         $this->opcoes = $opcoes;
+    }
+
+    public function getQntdAv() {
+        
+        return $this->qntd_avaliacao;
+    }
+
+    public function setQntdAv($qntd_avaliacao) {
+        $this->qntd_avaliacao = $qntd_avaliacao;
     }
 
 }

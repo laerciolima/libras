@@ -89,7 +89,7 @@
                                 <div class="">
                                     <img src="storage/imagens/users/<?php echo $usuario_logado['imagem'];?>" width="100" class="img-responsive img-circle center-block"/>
                                     <span>&nbsp<?php echo $usuario_logado['nome']?>  </span>
-                                    <span id="user_level" class="text-right">LV <?php echo $usuario_logado['nivel']; ?></span>
+                                    
                                 </div>
                                 <div class="progress">
                                     <div id="progress-bar_pontuacao" class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
@@ -125,8 +125,7 @@
                                 <li><a href="?controller=usuario&action=amigos"><span class="glyphicon glyphicon-user"></span> Amigos</a></li>
                                 <li><a href="?controller=usuario&action=ranking"><span class="glyphicon glyphicon-stats"></span> Ranking</a></li>
 
-                                <!-- Dropdown-->
-
+                                <li><a href="?controller=gravacao&action=meusVideos"><span class="glyphicon glyphicon-film"></span> Meus vídeos</a></li>
 
                                 <li><a href="?controller=pages&action=gravar"><span class="glyphicon glyphicon-signal"></span> Gravar</a></li>
 

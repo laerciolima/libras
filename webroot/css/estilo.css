@@ -453,3 +453,8 @@ table.view tr td img { margin: 0px; padding: 0px; }
     margin: 0;
   }
 }
+
+
+.progress-bar{
+  color: black !important;
+}

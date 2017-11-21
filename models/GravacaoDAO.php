@@ -58,6 +58,10 @@ class GravacaoDAO {
         $req->bindValue(":fk_id_sinal", $gravacao->getFk_id_sinal());
         $req->bindValue(":fk_id_usuario", $gravacao->getFk_id_usuario());
         return $req->execute();
+
+
+
+
     }
 
     public static function edit(Gravacao $gravacao) {
@@ -82,6 +86,37 @@ class GravacaoDAO {
         $gravacao->setFk_id_usuario($linha['fk_id_usuario']);
 
         return $gravacao;
+    }
+
+
+    public static function getGravacoesByUsuario($id) {
+        $lista = [];
+
+        $sql = "SELECT gr.*, count(av.id) as qntd_av FROM jt.gravacao gr 
+left JOIN avaliacao av 
+ON gr.id = av.fk_id_gravacao
+where gr.fk_id_usuario = 10
+group by gr.id;";
+
+
+        $req = Db::getInstance()->query($sql);
+
+
+        // we create a list of Post objects from the database results
+        foreach ($req->fetchAll() as $linha) {
+            $gravacao = new Gravacao();
+
+            $gravacao->setId($linha['id']);
+            $gravacao->setdata($linha["data"]);
+            $gravacao->setVideo($linha["video"]);
+            $gravacao->setFk_id_sinal($linha["fk_id_sinal"]);
+            $gravacao->setFk_id_usuario($linha["fk_id_usuario"]);
+            $gravacao->setQntdAv($linha["qntd_av"]);
+
+            $lista[] = $gravacao;
+        }
+
+        return $lista;
     }
 
 
