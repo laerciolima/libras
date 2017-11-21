@@ -1,7 +1,8 @@
 tempo = 10;
 var intervalo = null;
 
-
+gravacoes = [];
+lista_de_opcoes = [];
 var gravacao_atual_index = -1;
 var opcoes;
 
@@ -107,12 +108,12 @@ function nextVideo() {
 }
 
 function validar(num) {
-    
+
     $(".opt_sinal").prop("disabled",true);
 
-    
-    
-    
+
+
+
     $("#avaliacao_sinal_div").show();
     $(".player_video_avaliacao").hide();
     $("#avaliacao_sinal").hide();

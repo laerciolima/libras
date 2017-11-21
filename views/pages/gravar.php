@@ -1,4 +1,4 @@
-   
+
 <script src="https://cdn.webrtc-experiment.com/RecordRTC.js"></script>
 
 
@@ -9,29 +9,42 @@
 
 
 
+<div class="row">
 
+  <div class="col-md-6">
         <section class="experiment recordrtc">
-            <h2 class="header">
 
-                <button>Start Recording</button>
-            </h2>
 
-            <div style="text-align: center; display: none;">
-                <button id="save-to-disk">Save To Disk</button>
-                <button id="open-new-tab">Open New Tab</button>
-                <button id="upload-to-server">Upload To Server</button>
-            </div>
 
-            <br>
-
-            
             <div class="embed-responsive embed-responsive-4by3">
 
             <video controls muted class="embed-responsive-item">
-                
+
             </video>
         </div>
+
+        <button class="btn-lg btn-danger">Start Recording</button>
+
+        <div style="text-align: center; display: none;">
+            <button id="save-to-disk">Save To Disk</button>
+            <button id="open-new-tab">Open New Tab</button>
+            <button id="upload-to-server">Upload To Server</button>
+        </div>
+
         </section>
+      </div>
+
+
+      <div class="col-md-6">
+        <div class="embed-responsive embed-responsive-4by3">
+          <video controls class="embed-responsive-item">
+              <source id="mp4Source" src="storage/videos/users/1/madrugada.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+          </video>
+        <div>
+
+
+      </div>
 
         <script>
             (function () {

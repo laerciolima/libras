@@ -1,22 +1,25 @@
 
 <button  onclick="javascript:history.back()" type="button" class="btn btn-default btn-sm" style="margin-top: 5px">
                     < Voltar
-                </button><h2>Badge: <?php echo $badge->getDescricao();?></h2>
+                </button><h2 class="text-center">Seus badges</h2> <br/>
+
+<div class="row">
 
 
-<table class="view">
-    <tbody>
-      <tr>
-        <th>ID</th>
-        <td><?php echo $badge->getId() ?></td>
-      </tr>
-    <tr align="left">
-        <th>Descricao</th>
-        <td><?php echo $badge->getDescricao()?></td>
-    </tr>
-    <tr align="left">
-        <th>Img</th>
-        <td><?php echo $badge->getImg()?></td>
-    </tr>
-    </tbody>
-  </table>
+  <?php foreach ($badges as $badge) { ?>
+      <div class="col-sm-4">
+
+
+          <div class="panel panel-warning">
+              <div class="panel-heading"><?php echo $badge->getDescricao(); ?></div>
+              <div class="panel-body">
+                  <img src="webroot/img/badges/<?php echo $badge->getImg(); ?>" class="img-rounded img-responsive center-block"/>
+              </div>
+          </div>
+      </div>
+      <?php
+  }
+  ?>
+
+
+</div>
