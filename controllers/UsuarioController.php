@@ -20,11 +20,11 @@ class UsuarioController {
     public function index() {
         // we store all the posts in a variable
         $usuarios = UsuarioDAO::all();
-        
+
         require_once('views/usuario/index.php');
     }
 
-     
+
      public function notificacoes() {
         // we store all the posts in a variable
         $usuario_logado =  $_SESSION['login_object'];
@@ -113,7 +113,6 @@ class UsuarioController {
             $usuario->setPerfil($_POST["perfil"]);
             $usuario->setusuario($_POST["usuario"]);
             $usuario->setSenha($_POST["senha"]);
-            $usuario->setNivel($_POST["nivel"]);
             $usuario->setPontuacao($_POST["pontuacao"]);
             $usuario->setImagem($_POST["imagem"]);
             if (UsuarioDAO::add($usuario)) {
@@ -147,7 +146,7 @@ class UsuarioController {
             // Se a foto estiver sido selecionada
             if (!empty($foto["name"])) {
 
-                
+
                 $error = $ioUtils->processImage($foto, "storage/imagens/users/", 1920, 1920, 1000000);
 
 
@@ -201,15 +200,10 @@ class UsuarioController {
 
         $usuario = new Usuario();
 
-        if($usuario_logado['pontuacao']+$pontuacao > 200){
-            $usuario_logado['pontuacao'] = $usuario_logado['pontuacao']+$pontuacao - 200;
-            $usuario_logado['nivel'] += 1;
-        }else{
-            $usuario_logado['pontuacao'] += $pontuacao;
-        }
+        $usuario_logado['pontuacao'] += 1;
+
         $_SESSION['login_object'] = $usuario_logado;
         $usuario->setPontuacao($usuario_logado['pontuacao']);
-        $usuario->setNivel($usuario_logado['nivel']);
         $usuario->setId($usuario_logado['id']);
 
         return UsuarioDAO::addPontuacao($usuario);
@@ -225,7 +219,7 @@ class UsuarioController {
       @require_once '../models/UsuarioDAO.php';
       $usuario_logado = $_SESSION['login_object'];
       $usuario = UsuarioDAO::find($usuario_logado['id']);
-      echo $usuario->getNivel()."#".$usuario->getPontuacao();
+      echo "#".$usuario->getPontuacao();
     }
 
     function getNumNotificacoes(){
@@ -246,10 +240,10 @@ class UsuarioController {
     function removerAmizade(){
         $usuario_logado = $_SESSION['login_object'];
         if(!UsuarioDAO::removerAmizade($usuario_logado['id'], base64_decode($_GET['id']))){
-               $_SESSION['error'] = "Não foi possível remover a amizade";   
+               $_SESSION['error'] = "Não foi possível remover a amizade";
         }
-         
-         
+
+
         echo "<meta http-equiv=\"Refresh\" content=\"0; url=?controller=usuario&action=notificacoes\">";
         die();
     }
@@ -259,10 +253,10 @@ class UsuarioController {
         if(!UsuarioDAO::aceitarAmizade($usuario_logado['id'], base64_decode($_GET['id']))){
             $_SESSION['error'] = "Não foi possível aceitar a amizade";
         }
-           
+
         echo "<meta http-equiv=\"Refresh\" content=\"0; url=?controller=usuario&action=notificacoes\">";
          die();
-        
+
     }
 
 }

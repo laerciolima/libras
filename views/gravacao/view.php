@@ -28,3 +28,46 @@
     </tr>
     </tbody>
   </table>
+
+
+
+
+  <h1>Avaliações</h1>
+
+<div class="row">
+          <?php foreach ($avaliacoes as $avaliacao) { ?>
+            <table class="view col-md-5">
+                <tbody>
+                  <tr align="left">
+                    <th>Nota configuração mao</th>
+                    <td><?php echo $avaliacao->getNota_configuracao_mao()?></td>
+                </tr>
+                <tr align="left">
+                    <th>Nota expressão facial</th>
+                    <td><?php echo $avaliacao->getNota_expressao_facial()?></td>
+                </tr>
+                <tr align="left">
+                    <th>Nota movimento</th>
+                    <td><?php echo $avaliacao->getNota_movimento()?></td>
+                </tr>
+                <tr align="left">
+                    <th> Nota orientção</th>
+                    <td><?php echo $avaliacao->getNota_orientacao()?></td>
+                </tr>
+                <tr align="left">
+                    <th>Nota ponto articulação</th>
+                    <td><?php echo $avaliacao->getNota_ponto_articulacao()?></td>
+                </tr>
+                <tr align="left">
+                    <th>Nota media</th>
+                    <td><?php echo $avaliacao->getNota_media()?></td>
+                </tr>
+                <tr align="left">
+                    <th>Observações</th>
+                    <td><?php echo $avaliacao->getObservacoes()?></td>
+                </tr>
+                </tbody>
+              </table>
+
+          <?php } ?>
+</div>

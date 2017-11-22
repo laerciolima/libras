@@ -30,7 +30,7 @@
                         <td><div class="progress">
                                 <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
                                      aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $usuario->getPontuacao()  ?>%">
-                                    <?php echo $usuario->getPontuacao();  ?>
+                                    <?php echo $usuario->getPontuacao();  ?>sinais
                                 </div>
 
                             </div></td>
@@ -65,11 +65,10 @@
                     <tr>
                         <td><?php echo $posicao;  ?></td>
                         <td><?php echo $usuario->getNome();  ?></td>
-                        <td>LV <?php echo $usuario->getNivel();  ?></td>
                         <td><div class="progress">
                                 <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
                                      aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $usuario->getPontuacao()/20  ?>%">
-                                    <?php echo $usuario->getPontuacao();  ?>pts
+                                    <?php echo $usuario->getPontuacao();  ?>sinais
                                 </div>
 
                             </div></td>

@@ -92,11 +92,11 @@ class GravacaoDAO {
     public static function getGravacoesByUsuario($id) {
         $lista = [];
 
-        $sql = "SELECT gr.*, count(av.id) as qntd_av FROM jt.gravacao gr 
-left JOIN avaliacao av 
+        $sql = "SELECT gr.*, count(av.id) as qntd_av FROM jt.gravacao gr
+left JOIN avaliacao av
 ON gr.id = av.fk_id_gravacao
 where gr.fk_id_usuario = 10
-group by gr.id;";
+group by gr.id; order by qntd_av DESC";
 
 
         $req = Db::getInstance()->query($sql);

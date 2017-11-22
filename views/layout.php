@@ -37,7 +37,7 @@
                                         Libras
                                     </a>
                                 </div>
-                                 
+
                                  <a href="?controller=usuario&action=notificacoes" class="btn btn-default" id="search-trigger" style="margin-right: 55px">
                                     <span class="glyphicon glyphicon-bell"></span>
                                     <span class="badge" id="num_notifications" style="display: none">...</span>
@@ -89,12 +89,12 @@
                                 <div class="">
                                     <img src="storage/imagens/users/<?php echo $usuario_logado['imagem'];?>" width="100" class="img-responsive img-circle center-block"/>
                                     <span>&nbsp<?php echo $usuario_logado['nome']?>  </span>
-                                    
+
                                 </div>
                                 <div class="progress">
                                     <div id="progress-bar_pontuacao" class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
                                          aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $usuario_logado['pontuacao']/2 ?>%">
-                                        <?php echo $usuario_logado['pontuacao']; ?>pts
+                                        <?php echo $usuario_logado['pontuacao']; ?>/990
                                     </div>
 
                                 </div>

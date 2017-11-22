@@ -35,7 +35,7 @@ h2 { font-family: Arial, sans-serif; color: #3399CC; font-size: 30px; font-weigh
 .fright {float:right;}
 
 
-table.view {border: 1px solid #dfdfdf; background-color: #fff; clear: both; margin-bottom: 10px;}
+table.view {border: 1px solid #dfdfdf; background-color: #fff; margin-bottom: 10px;}
 table.view tr th {  padding: 10px; background-color: #e7e7e7; color: #3399CC; border-bottom: 0px; text-align: left; cursor: pointer;}
 table.view tr td { padding: 10px; border-bottom: 1px solid #dfdfdf; vertical-align: middle; }
 table.view tr td a { font-weight: normal; text-decoration: none; padding: 0px 5px 0px 0px; }

@@ -73,7 +73,7 @@ class AvaliacaoDAO {
         $req->bindValue(":fk_id_usuario", $avaliacao->getFk_id_usuario());
         $req->bindValue(":nota_final", $avaliacao->getNota_final());
         $req->bindValue(":observacoes", $avaliacao->getObservacoes());
-        
+
 
         return $req->execute();
     }
@@ -114,6 +114,37 @@ class AvaliacaoDAO {
         $avaliacao->setObservacoes($linha['observacoes']);
 
         return $avaliacao;
+    }
+
+
+
+    public static function findByGravacao($id) {
+        $lista = [];
+
+        $req = Db::getInstance()->prepare('SELECT * FROM avaliacao WHERE fk_id_gravacao = :idGravacao');
+
+          $req->execute(array('idGravacao' => $id));
+        // we create a list of Post objects from the database results
+        foreach ($req->fetchAll() as $linha) {
+            $avaliacao = new Avaliacao();
+
+            $avaliacao->setId($linha['id']);
+            $avaliacao->setData($linha["data"]);
+            $avaliacao->setNota_configuracao_mao($linha["nota_configuracao_mao"]);
+            $avaliacao->setNota_expressao_facial($linha["nota_expressao_facial"]);
+            $avaliacao->setNota_media($linha["nota_media"]);
+            $avaliacao->setNota_movimento($linha["nota_movimento"]);
+            $avaliacao->setNota_orientacao($linha["nota_orientacao"]);
+            $avaliacao->setNota_ponto_articulacao($linha["nota_ponto_articulacao"]);
+            $avaliacao->setFk_id_gravacao($linha["fk_id_gravacao"]);
+            $avaliacao->setFk_id_usuario($linha["fk_id_usuario"]);
+            $avaliacao->setNota_final($linha["nota_final"]);
+            $avaliacao->setObservacoes($linha["observacoes"]);
+
+            $lista[] = $avaliacao;
+        }
+
+        return $lista;
     }
 
 

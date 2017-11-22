@@ -41,6 +41,8 @@ class GravacaoController {
 
         // we use the given id to get the right post
         $gravacao = GravacaoDAO::find($_GET['id']);
+
+        $avaliacoes = AvaliacaoDAO::findByGravacao($_GET['id']);
         require_once('views/gravacao/view.php');
     }
 

@@ -44,6 +44,7 @@ function call($controller, $action) {
             require_once('models/CategoriaDAO.php');
             require_once('models/SinalDAO.php');
             require_once('models/UsuarioDAO.php');
+            require_once('models/AvaliacaoDAO.php');
             require_once('controllers/UsuarioController.php');
             $controller = new GravacaoController();
             break;
@@ -58,7 +59,7 @@ function call($controller, $action) {
         case 'avaliacao':
             // we need the model to query the database later in the controller
             $controller = new AvaliacaoController();
-            
+
             break;
         case 'badge':
             // we need the model to query the database later in the controller

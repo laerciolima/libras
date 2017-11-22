@@ -1,4 +1,4 @@
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -13,6 +13,7 @@ function remover(url) {
 
 $(document).ready(function () {
     $('#example').DataTable({
+        "order": [ 0, "desc" ],
         "language": {
             "sEmptyTable": "Nenhum registro encontrado",
             "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
@@ -59,14 +60,14 @@ $(document).ready(function () {
             //select com dados da marca x
             console.log(txt);
 
-            if(txt == 0){   
+            if(txt == 0){
                 $("#num_notifications").hide()
                 $("#num_notifications").html(txt)
             }else{
                 $("#num_notifications").show()
-                $("#num_notifications").html(txt)    
+                $("#num_notifications").html(txt)
             }
-            
+
 
          },
          error: function(txt) {
@@ -103,7 +104,7 @@ function gerarSenhaEstudante(){
 
 
 function generatePassword(length) {
-    
+
         charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
         retVal = "";
     for (var i = 0, n = charset.length; i < length; ++i) {
@@ -194,9 +195,9 @@ $(function () {
 
         /// uncomment code for absolute positioning tweek see top comment in css
         //$('.absolute-wrapper').toggleClass('slide-in');
-        
+
     });
-   
+
    // Remove menu for searching
    $('#search-trigger').click(function () {
         $('.navbar-nav').removeClass('slide-in');

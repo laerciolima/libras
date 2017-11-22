@@ -12,6 +12,8 @@
 
 <script src="webroot/js/scripts.js" ></script>
 
+<script src="webroot/js/jogar.js" ></script>
+
 
 <?php
 if(isset($_GET['validation'])){
