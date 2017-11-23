@@ -5,7 +5,10 @@ class ModuloController {
     public function index() {
         // we store all the posts in a variable
 
-        $modulos = ModuloDAO::all();
+        $usuario_logado =  $_SESSION['login_object'];
+        $modulos = ModuloDAO::all($usuario_logado['id']);
+
+
         require_once('views/modulo/index.php');
     }
 
@@ -63,7 +66,7 @@ class ModuloController {
                 $_SESSION['error'] = "Ocorreu um erro ao editar!";
             } else {
                 $_SESSION['success'] = "Modulo alterado com sucesso!";
-                header("Location: ?controller=modulo&action=index");
+                echo "<meta http-equiv=\"Refresh\" content=\"0; url=?controller=modulo&action=index\">";
                 die();
             }
         }

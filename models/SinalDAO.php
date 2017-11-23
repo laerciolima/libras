@@ -31,6 +31,9 @@ class SinalDAO {
 
     }
 
+
+   
+
     public static function delete($id) {
         // we make sure $id is an integer
 

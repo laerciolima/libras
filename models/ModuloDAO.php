@@ -4,7 +4,7 @@ require_once 'models/Modulo.php';
 
 class ModuloDAO {
 
-    public static function all() {
+    public static function all($fk_id_usuario) {
         $lista = [];
 
         $req = Db::getInstance()->query('SELECT m.*, count(s.id) as qntd_sinais FROM jt.modulo m
@@ -21,6 +21,7 @@ group by m.id');
             $modulo->setDescricao($linha["descricao"]);
             $modulo->setNivel($linha["nivel"]);
             $modulo->setQntdSinais($linha["qntd_sinais"]);
+            $modulo->setQntdSinaisAprendidos(self::getSinaisAprendidos($linha['id'], $fk_id_usuario));
 
             $lista[] = $modulo;
         }
@@ -37,6 +38,28 @@ group by m.id');
         $req->execute(array('id' => $id));
 
         return ModuloDAO::popular($req->fetch());
+        
+    }
+
+
+
+     public static function getSinaisAprendidos($fk_id_modulo, $fk_id_usuario) {
+        // we make sure $id is an integer
+
+        $req = Db::getInstance()->prepare('SELECT count(av.id) as qntd_acertados FROM jt.modulo m
+INNER JOIN categoria cat on cat.fk_id_modulo = m.id
+INNER JOIN sinal s on s.categoria_id = cat.id
+INNER JOIN gravacao g on g.fk_id_sinal = s.id
+INNER JOIN avaliacao av on av.fk_id_gravacao = g.id
+where av.acertado = 1 and m.id = :id_modulo and g.fk_id_usuario = :id_usuario');
+        // the query was prepared, now we replace :id with our actual $id value
+
+        $req->bindValue(":id_modulo", $fk_id_modulo);
+        $req->bindValue(":id_usuario", $fk_id_usuario);
+
+        $req->execute();
+
+        return $req->fetch()['qntd_acertados'];
         
     }
 

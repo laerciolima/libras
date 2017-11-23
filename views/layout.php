@@ -93,8 +93,8 @@
                                 </div>
                                 <div class="progress">
                                     <div id="progress-bar_pontuacao" class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
-                                         aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $usuario_logado['pontuacao']/2 ?>%">
-                                        <?php echo $usuario_logado['pontuacao']; ?>/990
+                                         aria-valuemin="0" aria-valuemax="100" style="width:<?php echo ($usuario_logado['pontuacao']*100) / $_SESSION['total_sinais_cadastrados'] ?>%">
+                                        <?php echo $usuario_logado['pontuacao']."/".$_SESSION['total_sinais_cadastrados']; ?>
                                     </div>
 
                                 </div>
@@ -112,7 +112,10 @@
                                     <div id="dropdown-lvl1" class="panel-collapse collapse">
                                         <div class="panel-body">
                                             <ul class="nav navbar-nav">
+                                                <li><a href="?controller=badge&action=view"><span class="glyphicon glyphicon-bookmark"></span> Conquistas</a></li>
+
                                                 <li><a href="?controller=usuario&action=edit"><span class="glyphicon glyphicon-pencil"></span> Editar</a></li>
+
                                                 <li><a href="controllers/LoginController.php?action=logout"><span class="glyphicon glyphicon-off"></span> Sair</a></li>
 
 
@@ -121,13 +124,20 @@
                                         </div>
                                     </div>
                                 </li>
+
+                                
+
                                 <li class="active"><a href="?controller=pages&action=avaliar"><span class="glyphicon glyphicon-list-alt"></span> Avaliar</a></li>
                                 <li><a href="?controller=usuario&action=amigos"><span class="glyphicon glyphicon-user"></span> Amigos</a></li>
                                 <li><a href="?controller=usuario&action=ranking"><span class="glyphicon glyphicon-stats"></span> Ranking</a></li>
 
+
+
                                 <li><a href="?controller=gravacao&action=meusVideos"><span class="glyphicon glyphicon-film"></span> Meus vídeos</a></li>
 
                                 <li><a href="?controller=pages&action=gravar"><span class="glyphicon glyphicon-signal"></span> Gravar</a></li>
+
+                                
 
                             </ul>
                         </div><!-- /.navbar-collapse -->

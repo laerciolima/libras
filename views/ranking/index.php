@@ -29,8 +29,8 @@
                         <td><?php echo $usuario->getNome();  ?></td>
                         <td><div class="progress">
                                 <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
-                                     aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $usuario->getPontuacao()  ?>%">
-                                    <?php echo $usuario->getPontuacao();  ?>sinais
+                                     aria-valuemin="0" aria-valuemax="100" style="width:<?php echo ($usuario->getPontuacao() *100) / $_SESSION['total_sinais_cadastrados'] ?>%">
+                                    <?php echo $usuario->getPontuacao()."/".$_SESSION['total_sinais_cadastrados'];  ?>
                                 </div>
 
                             </div></td>
@@ -41,7 +41,7 @@
                 <?php } ?>
             </tbody>
         </table>
-        <button class="btn btn-default ">Ver tudo</button>
+        
     </div>
     <div id="menu1" class="tab-pane fade">
         <h3>Geral</h3>
@@ -67,8 +67,8 @@
                         <td><?php echo $usuario->getNome();  ?></td>
                         <td><div class="progress">
                                 <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
-                                     aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $usuario->getPontuacao()/20  ?>%">
-                                    <?php echo $usuario->getPontuacao();  ?>sinais
+                                     aria-valuemin="0" aria-valuemax="100" style="width:<?php echo ($usuario->getPontuacao()*100) / $_SESSION['total_sinais_cadastrados']  ?>%">
+                                    <?php echo $usuario->getPontuacao()."/".$_SESSION['total_sinais_cadastrados'];  ?>
                                 </div>
 
                             </div></td>

@@ -200,14 +200,13 @@ function refreshPontuacao() {
                     //select com dados da marca x
                     console.log(txt);
 
-                    var content = txt.split("#");
-
+                    
+                    content = txt.split("#")
                     console.log(content[0]);
                     console.log(content[1]);
-
-                    $('#progress-bar_pontuacao').css('width', (content[1] / 2) + '%').attr('aria-valuenow', content[1] / 2);
-                    $("#user_level").html("LV " + content[0]);
-                    $('#progress-bar_pontuacao').html(content[1] + "pts")
+                    console.log("valor: "+((content[0] * 100 ) / content[1]))
+                    $('#progress-bar_pontuacao').css('width', ((content[0] * 100 ) / content[1]) + '%').attr('aria-valuenow', ((content[0] * 100 ) / content[1]));
+                    $('#progress-bar_pontuacao').html(content[0] + "/"+content[1]);
 
                 },
                 error: function (txt) {

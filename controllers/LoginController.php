@@ -35,6 +35,9 @@ class LoginController {
             
             $_SESSION['login'] = $usuario['usuario'];
 
+            $_SESSION['total_sinais_cadastrados'] = self::getTotalSinais();
+
+
             $_SESSION['login_object'] = $usuario;
             header("Location: ../?controller=usuario&action=home");
             die();
@@ -86,6 +89,18 @@ class LoginController {
             $linha['erro'] = "Por favor, verifique sua caixa de entrada para validar seu e-mail.";
         }
         return $linha;
+    }
+
+
+    public static function getTotalSinais() {
+
+        @include_once '../connection.php';
+        $req = Db::getInstance()->prepare('SELECT count(id) as total FROM sinal');
+
+       
+        $req->execute();
+        $linha = $req->fetch();
+        return $linha['total'];
     }
 
     public static function createUser() {

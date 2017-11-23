@@ -32,7 +32,6 @@ function call($controller, $action) {
 
         case 'modulo':
             // we need the model to query the database later in the controller
-            echo "aaaqui";
             $controller = new ModuloController();
             break;
         case 'categoria':

@@ -38,7 +38,9 @@ class UsuarioController {
         // we store all the posts in a variable
         include_once 'models/ModuloDAO.php';
 
-        $modulos = ModuloDAO::all();
+        $usuario_logado =  $_SESSION['login_object'];
+        $modulos = ModuloDAO::all($usuario_logado['id']);
+
 
         require_once('views/usuario/home.php');
     }
@@ -219,7 +221,7 @@ class UsuarioController {
       @require_once '../models/UsuarioDAO.php';
       $usuario_logado = $_SESSION['login_object'];
       $usuario = UsuarioDAO::find($usuario_logado['id']);
-      echo "#".$usuario->getPontuacao();
+      echo $usuario->getPontuacao()."#".$_SESSION['total_sinais_cadastrados'];
     }
 
     function getNumNotificacoes(){
