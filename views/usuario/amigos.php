@@ -1,5 +1,5 @@
-<h1 class="text-center">Amigos</h1>
-<div class="col-lg-6">
+<h1 class="text-center">Usuários</h1>
+<div class="col-lg-12" style="float: right;">
     <form action="?controller=usuario&action=buscarUsuario">
     <div class="input-group">
 
@@ -7,7 +7,7 @@
         <input type="hidden" name="action" value="buscarUsuario">
         <input type="text" name="busca" class="form-control" placeholder="Encontre amigos...">
         <span class="input-group-btn">
-            <button class="btn btn-default" type="submit">Go!</button>
+            <button class="btn btn-default" type="submit">Buscar</button>
         </span>
     </div><!-- /input-group -->
     </form>
@@ -30,7 +30,12 @@ foreach ($usuarios as $usuario) {
                             <?php echo $usuario->getPontuacao()."/".$_SESSION['total_sinais_cadastrados']; ?>
                         </div>
 
-                    </div></td>
+                    </div> </td>
+
+                    <?php if (!$usuario->isAmigo()) { ?>
+                    <td><button type="button" id="solicitarAmizade<?php echo $usuario->getId();?>" onclick="solicitarAmizade(<?php echo $usuario->getId();?>)" class="btn btn-xs btn-link glyphicon glyphicon-plus-sign"> add</button></td>
+
+                    <?php } ?>
             </tr>
         </tbody>
     </table>

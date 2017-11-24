@@ -17,7 +17,13 @@
                             <?php echo $modulo->getQntdSinaisAprendidos()."/".$modulo->getQntdSinais(); ?> 
                         </div>
                     </div>
-                    <button type="button" class="btn btn-default btn-block" onclick="location.href = '?controller=categoria&action=lista&modulo=<?php echo $modulo->getId(); ?>'"><span class="glyphicon glyphicon-play"></span> Praticar</button>
+                    <div class="row">
+                        <button type="button" class="btn btn-default col-sm-7" onclick="location.href = '?controller=categoria&action=lista&modulo=<?php echo $modulo->getId(); ?>'"><span class="glyphicon glyphicon-play"></span> Praticar</button>
+
+
+                        <button type="button" class="btn btn-default  col-sm-4 col-md-offset-1" onclick="location.href = '?controller=atividade&action=lista&modulo=<?php echo $modulo->getId(); ?>'"><span class="glyphicon glyphicon-list"></span> Atividades</button>
+                    </div>
+                    
 
                 </div>
             </div>

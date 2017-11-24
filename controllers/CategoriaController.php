@@ -16,7 +16,9 @@ class CategoriaController {
         if(!isset($_GET['modulo'])){
             return call('pages', 'error');
         }
-        $categorias = CategoriaDAO::listByModulo($_GET['modulo']);
+
+        $usuario_logado =  $_SESSION['login_object'];
+        $categorias = CategoriaDAO::listByModuloUsuario($_GET['modulo'], $usuario_logado['id']);
         require_once('views/categoria/lista.php');
         
     }

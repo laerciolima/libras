@@ -47,6 +47,56 @@ class CategoriaDAO {
         return $lista;
     }
 
+
+    public static function listByModuloUsuario($fk_id_modulo, $fk_id_usuario) {
+        $lista = [];
+
+          $req = Db::getInstance()->prepare('SELECT cat.*, count(s.id) as qntd_sinais 
+FROM categoria cat
+INNER JOIN sinal s on s.categoria_id = cat.id
+where fk_id_modulo = :fk_id_modulo
+group by cat.id;
+');
+          $req->execute(array('fk_id_modulo' => $fk_id_modulo));
+        // we create a list of Post objects from the database results
+        foreach ($req->fetchAll() as $linha) {
+            $categoria = new Categoria();
+
+            $categoria->setId($linha['id']);
+            $categoria->setNome($linha["nome"]);
+            $categoria->setDescricao($linha["descricao"]);
+            $categoria->setImagem($linha["imagem"]);
+            $categoria->setFk_id_modulo($linha["fk_id_modulo"]);
+            $categoria->setQntdSinais($linha['qntd_sinais']);
+            $categoria->setQntdSinaisAprendidos(self::getSinaisAprendidos($linha['id'], $fk_id_usuario));
+
+            $lista[] = $categoria;
+        }
+
+        return $lista;
+    }
+
+
+    public static function getSinaisAprendidos($fk_id_categoria, $fk_id_usuario) {
+        // we make sure $id is an integer
+
+        $req = Db::getInstance()->prepare('SELECT count(av.id) as qntd_acertados FROM categoria cat
+INNER JOIN sinal s on s.categoria_id = cat.id
+INNER JOIN gravacao g on g.fk_id_sinal = s.id
+INNER JOIN avaliacao av on av.fk_id_gravacao = g.id
+where av.acertado = 1 and cat.id = :id_categoria and av.fk_id_usuario = :id_usuario');
+        // the query was prepared, now we replace :id with our actual $id value
+
+        $req->bindValue(":id_categoria", $fk_id_categoria);
+        $req->bindValue(":id_usuario", $fk_id_usuario);
+
+        $req->execute();
+
+        return $req->fetch()['qntd_acertados'];
+        
+    }
+
+
     public static function find($id) {
         // we make sure $id is an integer
 

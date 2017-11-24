@@ -17,8 +17,7 @@
 
 <?php
 if(isset($_GET['validation'])){
-  echo "aqui";
-
+ 
     @require_once('controllers/UsuarioController.php');
 
 

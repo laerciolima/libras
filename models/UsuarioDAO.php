@@ -84,7 +84,7 @@ class UsuarioDAO {
 
         $req = Db::getInstance()->prepare("SELECT id, nome, email, usuario, pontuacao, imagem FROM usuario u
 	inner join amizade a on (u.id = a.fk_id_usuario1 or u.id = a.fk_id_usuario2)
-WHERE perfil = 'comum' and (a.fk_id_usuario1=:id or a.fk_id_usuario2=:id) ORDER BY pontuacao DESC");
+WHERE perfil = 'comum' and (a.fk_id_usuario1=:id or a.fk_id_usuario2=:id) group by u.id ORDER BY pontuacao DESC");
 
         $req->bindValue(":id", $fk_id_usuario);
         $req->execute();
@@ -125,6 +125,7 @@ WHERE (a.fk_id_usuario1 = :id OR a.fk_id_usuario2 = :id) and a.pendente = 0
             $usuario->setusuario($linha["usuario"]);
             $usuario->setPontuacao($linha["pontuacao"]);
             $usuario->setImagem($linha["imagem"]);
+            $usuario->setAmigo(1);
 
             $lista[] = $usuario;
         }
@@ -154,11 +155,32 @@ WHERE (a.fk_id_usuario1 = :id OR a.fk_id_usuario2 = :id) and a.pendente = 0
             $usuario->setSenha($linha["senha"]);
             $usuario->setPontuacao($linha["pontuacao"]);
             $usuario->setImagem($linha["imagem"]);
+            $usuario->setAmigo(self::verificaAmizade($id, $linha['id']));
 
             $lista[] = $usuario;
         }
 
         return $lista;
+    }
+
+
+    public static function verificaAmizade($fk_id_usuario1, $fk_id_usuario2) {
+        $lista = [];
+
+
+        $req1 = Db::getInstance()->prepare('SELECT * FROM jt.amizade
+WHERE (fk_id_usuario1 = :id1 and fk_id_usuario2 = :id2) or 
+        (fk_id_usuario1 = :id2 and fk_id_usuario2 = :id1) ');
+        // the query was prepared, now we replace :id with our actual $id value
+
+        $req1->bindValue(":id1", $fk_id_usuario1);
+        $req1->bindValue(":id2", $fk_id_usuario2);
+
+        $req1->execute();
+
+        
+
+        return $req1->rowCount();
     }
 
     public static function find($id) {

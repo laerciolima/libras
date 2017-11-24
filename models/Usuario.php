@@ -10,6 +10,7 @@ class Usuario{
     private $sinais_aprendidos;
     private $imagem;
     private $url;
+    private $isAmigo;
 
 function setId ($id){
 
@@ -81,6 +82,14 @@ function setId ($id){
 
     public function setUrl($url) {
         $this->url = $url;
+    }
+
+    public function isAmigo() {
+        return $this->isAmigo;
+    }
+
+    public function setAmigo($isAmigo) {
+        $this->isAmigo = $isAmigo;
     }
 
 }

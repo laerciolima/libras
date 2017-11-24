@@ -13,6 +13,7 @@ class Avaliacao{
     private $fk_id_usuario;
     private $nota_final;
     private $observacoes;
+    private $acertado;
     
 function setId ($id){
         
@@ -108,6 +109,14 @@ function setId ($id){
 
     public function setObservacoes($observacoes) {
         $this->observacoes = $observacoes;
+    }
+
+    public function getAcerto() {
+        return $this->acertado;
+    }
+
+    public function setAcerto($acertado) {
+        $this->acertado = $acertado;
     }
 
 }

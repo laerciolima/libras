@@ -22,7 +22,7 @@ for ($i = 1; $i < count($gravacoes); $i++) {
 </script>
 
 
-<h1 class="text-center">Avaliar</h1>
+<h1 class="text-center">Jogar</h1>
 
 <div class="row">
 
@@ -33,6 +33,10 @@ for ($i = 1; $i < count($gravacoes); $i++) {
             <div id="cronometro" class="text-center">
                 <div id="tempo">10s</div> 
             </div>
+            <div id="etapa_atividade">
+                1/10
+            </div>
+
         </div>
 
         <div class="embed-responsive embed-responsive-4by3">
@@ -74,6 +78,8 @@ for ($i = 1; $i < count($gravacoes); $i++) {
             <source id="video_player_avaliacao" src="storage/videos/users/1/madrugada.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
+
+        <input id="sinal_avaliacao" name="sinal_avaliacao" type="text" value=""/> 
 
         <div class="row">
             <div class="form-group col-xs-6">

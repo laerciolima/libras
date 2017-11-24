@@ -113,7 +113,28 @@ function generatePassword(length) {
     return retVal;
 }
 
+function solicitarAmizade(id){
 
+    $.ajax(
+            {
+                type: "POST",
+                url: "?controller=usuario&action=addAmigo",
+                data: "id=" + id,
+                success: function (txt) {
+                    
+                    console.log(txt);
+
+                    $("#solicitarAmizade"+id).hide("slow");
+                    
+                },
+                error: function (txt) {
+                    // em caso de erro você pode dar um alert('erro');
+                    alert("Erro ao tentar adicionar amigo")
+                }
+            }
+    );//fim ajax
+
+}
 
 
 
@@ -208,3 +229,5 @@ $(function () {
 
     });
 });
+
+

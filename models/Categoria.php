@@ -7,6 +7,8 @@ class Categoria{
     private $imagem;
     private $fk_id_modulo;
     private $porcentagem_gravada;
+    private $qntd_sinais;
+    private $qntd_sinais_aprendidos;
 
 function setId ($id){
 
@@ -46,6 +48,22 @@ function setId ($id){
 
     public function setFk_id_modulo($fk_id_modulo) {
         $this->fk_id_modulo = $fk_id_modulo;
+    }
+
+    public function getQntdSinaisAprendidos() {
+        return $this->qntd_sinais_aprendidos;
+    }
+
+    public function setQntdSinaisAprendidos($qntd_sinais) {
+        $this->qntd_sinais_aprendidos = $qntd_sinais;
+    }
+
+    public function getQntdSinais() {
+        return $this->qntd_sinais;
+    }
+
+    public function setQntdSinais($qntd_sinais) {
+        $this->qntd_sinais = $qntd_sinais;
     }
 
 }

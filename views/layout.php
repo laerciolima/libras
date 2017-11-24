@@ -135,7 +135,7 @@
 
                                 <li><a href="?controller=gravacao&action=meusVideos"><span class="glyphicon glyphicon-film"></span> Meus vídeos</a></li>
 
-                                <li><a href="?controller=pages&action=gravar"><span class="glyphicon glyphicon-signal"></span> Gravar</a></li>
+                                <li><a href="?controller=pages&action=gravar"><span class="glyphicon glyphicon-facetime-video"></span> Gravar</a></li>
 
                                 
 

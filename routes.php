@@ -105,7 +105,7 @@ function verificacoes() {
 
 // we're adding an entry for the new controller and its actions
 $controllers = array('pages' => ['home', 'error','avaliar', 'amigos', 'gravar'],
-    'usuario' => ['index', 'add', 'edit', 'view', 'home', 'delete', 'ranking', 'amigos', 'buscarUsuario', 'getPontuacao', 'notificacoes', 'removerAmizade', 'aceitarAmizade'],
+    'usuario' => ['index', 'add', 'edit', 'view', 'home', 'delete', 'ranking', 'amigos', 'buscarUsuario', 'getPontuacao', 'notificacoes', 'removerAmizade', 'aceitarAmizade', 'addAmigo'],
     'modulo' => ['index', 'add', 'edit', 'view','delete'],
     'categoria' => ['index', 'add', 'edit', 'view','delete', 'lista'],
     'sinal' => ['index', 'add', 'edit', 'view','delete'],

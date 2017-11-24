@@ -59,7 +59,7 @@ class UsuarioController {
 
     public function view() {
         if (!isset($_GET['id']))
-        return call('page', 'error');
+            return call('page', 'error');
 
         // we use the given id to get the right post
         $usuario = UsuarioDAO::find($_GET['id']);
@@ -89,10 +89,18 @@ class UsuarioController {
 
     }
 
-    public static function addAmigo($id){
+    public static function addAmigo(){
+
+        //if (!isset($_POST['id']))
+          //  return call('page', 'error');
+
+
+
+
         $usuario_logado = $_SESSION['login_object'];
-        if(UsuarioDAO::addAmigo($usuario_logado['id'], $id)){
-            echo "true";
+
+        if(UsuarioDAO::addAmigo($usuario_logado['id'], $_POST['id'])){
+            echo "addAmigo=true";
         }
 
     }

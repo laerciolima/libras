@@ -16,8 +16,9 @@
                 <div class="panel-footer">
                     <div class="progress">
                         <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50"
-                             aria-valuemin="0" aria-valuemax="100" style="width:95%">
-                            1950pts
+                             aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $categoria->getQntdSinaisAprendidos()*100 /$categoria->getQntdSinais(); ?>%">
+                            <?php echo $categoria->getQntdSinaisAprendidos()."/".$categoria->getQntdSinais(); ?> 
+                            
                         </div>
                     </div>
                     <button type="button" class="btn btn-default btn-block" onclick="location.href = '?controller=gravacao&action=play&categoria=<?php echo $categoria->getId(); ?>'"><span class="glyphicon glyphicon-play"></span> Praticar</button>

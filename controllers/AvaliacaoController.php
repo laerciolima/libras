@@ -50,12 +50,13 @@ class AvaliacaoController {
 
         $avaliacao->setObservacoes($_POST["observacoes"]);
 
+        $avaliacao->setAcerto($_POST['sinal_avaliacao']);
+
 
         $soma_das_notas = $_POST["nota_configuracao_mao"] + $_POST["nota_expressao_facial"] + $_POST["nota_movimento"] + $_POST["nota_orientacao"] + $_POST["nota_ponto_articulacao"];
         $avaliacao->setNota_media($soma_das_notas/5);
         $avaliacao->setNota_final($soma_das_notas/5);
 
-            echo "salvando no banco...";
             if(AvaliacaoDAO::add($avaliacao)){
                 echo "addAvaliacao=true";
             }else{

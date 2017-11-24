@@ -46,6 +46,9 @@ $(document).ready(function () {
                 $("#avaliacao_sinal_div").hide();
                 $(".player_video_avaliacao").show();
 
+
+                refreshPontuacao();
+
             }
         });
 
@@ -94,6 +97,8 @@ function nextVideo() {
 
     // Now simply set the 'src' property of the mp4Vid variable!!!!
 
+    $("#etapa_atividade").html((gravacao_atual_index+1)+"/"+gravacoes.length)
+
     mp4Vid.src = gravacao.video;
     video_avaliacao.src = gravacao.video;
     video.load();
@@ -139,12 +144,15 @@ function validar(num) {
                     if (txt.indexOf("verificarResposta=true") != -1) {
                         $("#resposta_correta").show();
                         $("#resposta_correta").fadeOut(2500, function () {
+                            $("#sinal_avaliacao").val(1);
                             $("#avaliacao_sinal").show();
+
                         });
-                        refreshPontuacao();
+                        
                     } else {
                         $("#resposta_incorreta").show();
                         $("#resposta_incorreta").fadeOut(2500, function () {
+                            $("#sinal_avaliacao").val(0);
                             $("#avaliacao_sinal").show();
                         });
                     }

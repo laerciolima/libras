@@ -51,7 +51,7 @@ INNER JOIN categoria cat on cat.fk_id_modulo = m.id
 INNER JOIN sinal s on s.categoria_id = cat.id
 INNER JOIN gravacao g on g.fk_id_sinal = s.id
 INNER JOIN avaliacao av on av.fk_id_gravacao = g.id
-where av.acertado = 1 and m.id = :id_modulo and g.fk_id_usuario = :id_usuario');
+where av.acertado = 1 and m.id = :id_modulo and av.fk_id_usuario = :id_usuario');
         // the query was prepared, now we replace :id with our actual $id value
 
         $req->bindValue(":id_modulo", $fk_id_modulo);

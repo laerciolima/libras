@@ -32,6 +32,9 @@ class AvaliacaoDAO {
         return $lista;
     }
 
+
+
+
     public static function find($id) {
         // we make sure $id is an integer
 
@@ -59,7 +62,7 @@ class AvaliacaoDAO {
     public static function add(Avaliacao $avaliacao) {
         // we make sure $id is an integer
 
-        $req = Db::getInstance()->prepare("INSERT INTO avaliacao (data,nota_configuracao_mao,nota_expressao_facial,nota_media,nota_movimento,nota_orientacao,nota_ponto_articulacao,fk_id_gravacao,fk_id_usuario,nota_final,observacoes) VALUES (NOW(),:nota_configuracao_mao,:nota_expressao_facial,:nota_media,:nota_movimento,:nota_orientacao,:nota_ponto_articulacao,:fk_id_gravacao,:fk_id_usuario,:nota_final,:observacoes)");
+        $req = Db::getInstance()->prepare("INSERT INTO avaliacao (data,nota_configuracao_mao,nota_expressao_facial,nota_media,nota_movimento,nota_orientacao,nota_ponto_articulacao,fk_id_gravacao,fk_id_usuario,nota_final,observacoes, acertado) VALUES (NOW(),:nota_configuracao_mao,:nota_expressao_facial,:nota_media,:nota_movimento,:nota_orientacao,:nota_ponto_articulacao,:fk_id_gravacao,:fk_id_usuario,:nota_final,:observacoes, :acertado)");
 
 
 
@@ -73,6 +76,8 @@ class AvaliacaoDAO {
         $req->bindValue(":fk_id_usuario", $avaliacao->getFk_id_usuario());
         $req->bindValue(":nota_final", $avaliacao->getNota_final());
         $req->bindValue(":observacoes", $avaliacao->getObservacoes());
+
+        $req->bindValue(":acertado", $avaliacao->getAcerto());
 
 
         return $req->execute();
@@ -112,6 +117,7 @@ class AvaliacaoDAO {
         $avaliacao->setFk_id_usuario($linha['fk_id_usuario']);
         $avaliacao->setNota_final($linha['nota_final']);
         $avaliacao->setObservacoes($linha['observacoes']);
+        $avaliacao->setAcerto($linha['acertado']);
 
         return $avaliacao;
     }
