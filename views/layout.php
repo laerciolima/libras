@@ -61,7 +61,7 @@
         <input type="hidden" name="action" value="buscarUsuario">
         <input type="text" name="busca" class="form-control" placeholder="Encontre amigos...">
         <span class="input-group-btn">
-            <button class="btn btn-default" type="submit">Go!</button>
+            <button class="btn btn-default" type="submit">Buscar</button>
         </span>
     </div><!-- /input-group -->
     </form>

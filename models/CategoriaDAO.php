@@ -80,7 +80,7 @@ group by cat.id;
     public static function getSinaisAprendidos($fk_id_categoria, $fk_id_usuario) {
         // we make sure $id is an integer
 
-        $req = Db::getInstance()->prepare('SELECT count(av.id) as qntd_acertados FROM categoria cat
+        $req = Db::getInstance()->prepare('SELECT count(DISTINCT s.id) as qntd_acertados FROM categoria cat
 INNER JOIN sinal s on s.categoria_id = cat.id
 INNER JOIN gravacao g on g.fk_id_sinal = s.id
 INNER JOIN avaliacao av on av.fk_id_gravacao = g.id

@@ -73,7 +73,6 @@
             var recordingMedia = "record-video";
             var recordingPlayer = recordingDIV.querySelector('video');
             var mediaContainerFormat = "WebM";
-            alert(recordingMedia);
             recordingDIV.querySelector('button').onclick = function () {
                 var button = this;
 
@@ -382,17 +381,21 @@
 
                 // create FormData
                 var formData = new FormData();
+                console.log(fileName);
                 formData.append(fileType + '-filename', fileName);
                 formData.append(fileType + '-blob', blob);
 
                 callback('Uploading ' + fileType + ' recording to server.');
 
-                makeXMLHttpRequest('?controller=gravacao&action=add', formData, function (progress) {
+
+                console.log("form data"+formData);
+                makeXMLHttpRequest('views/gravacao/save.php', formData, function (progress) {
                     if (progress !== 'upload-ended') {
+                        console.log("enviando video")
                         callback(progress);
                         return;
                     }
-
+                    console.log(progress);
                     var initialURL = location.href.replace(location.href.split('/').pop(), '') + 'uploads/';
 
                     callback('ended', initialURL + fileName);
@@ -409,6 +412,9 @@
                         callback('upload-ended');
                     }
                 };
+
+
+
 
                 request.upload.onloadstart = function () {
                     callback('Upload started...');

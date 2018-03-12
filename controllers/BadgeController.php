@@ -28,7 +28,10 @@ class BadgeController {
             //return call('page', 'error');
 
         // we use the given id to get the right post
-        $badges = BadgeDAO::all();
+
+        $usuario_logado =  $_SESSION['login_object'];
+
+        $badges = BadgeDAO::listByUsuario($usuario_logado['id']);
         require_once('views/badge/view.php');
     }
 

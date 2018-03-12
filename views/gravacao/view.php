@@ -1,10 +1,12 @@
 
 <button  onclick="javascript:history.back()" type="button" class="btn btn-default btn-sm" style="margin-top: 5px">
                     < Voltar
-                </button><h2>Gravacao: <?php echo $gravacao->getdata();?></h2>
+                </button><h2>Gravacao: <?php echo $gravacao->getId();?></h2>
+<div class="row">
 
 
-<table class="view">
+
+<table class="view col-md-12" >
     <tbody>
       <tr>
         <th>ID</th>
@@ -15,27 +17,34 @@
         <td><?php echo $gravacao->getdata()?></td>
     </tr>
     <tr align="left">
-        <th>Video</th>
-        <td><?php echo $gravacao->getVideo()?></td>
-    </tr>
-    <tr align="left">
-        <th>Fk id sinal</th>
+        <th>Sinal</th>
         <td><?php echo $gravacao->getFk_id_sinal()?></td>
-    </tr>
-    <tr align="left">
-        <th>Fk id usuario</th>
-        <td><?php echo $gravacao->getFk_id_usuario()?></td>
     </tr>
     </tbody>
   </table>
 
+<div class="col-md-6 ">
 
+    <div class="embed-responsive embed-responsive-4by3">
+
+
+        <video controls autoplay="true" id="video" class="embed-responsive-item">
+            <source id="mp4Source" src="storage/videos/users/<?php echo $gravacao->getFk_id_usuario()."/".$gravacao->getVideo()?>" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+  </div>
+</div>
 
 
   <h1>Avaliações</h1>
 
 <div class="row">
-          <?php foreach ($avaliacoes as $avaliacao) { ?>
+        <?php
+        if(!count($avaliacoes))
+          echo "Não há avaliações para este video!";
+
+           foreach ($avaliacoes as $avaliacao) { ?>
             <table class="view col-md-5">
                 <tbody>
                   <tr align="left">

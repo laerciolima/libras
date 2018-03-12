@@ -1,5 +1,9 @@
-
+<h1 class="text-center">Notificações</h1>
 <?php
+
+if(count($usuarios) == 0){
+    echo "Você não tem notificações no momento.";
+}
 
 foreach ($usuarios as $usuario) {
     ?>
