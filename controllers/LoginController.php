@@ -76,7 +76,7 @@ class LoginController {
     public static function verificarLogin($login, $senha) {
 
         @include_once '../connection.php';
-        $req = Db::getInstance()->prepare('SELECT * FROM usuario WHERE (email = :login or usuario = :login) and senha = :senha');
+        $req = Db::getInstance()->prepare('SELECT id, email, nome, perfil, usuario, pontuacao, imagem, status FROM usuario WHERE (email = :login or usuario = :login) and senha = :senha');
 
 
         $req->bindValue(":login", $login);

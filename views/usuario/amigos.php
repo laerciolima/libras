@@ -5,7 +5,7 @@
 
         <input type="hidden" name="controller" value="usuario">
         <input type="hidden" name="action" value="buscarUsuario">
-        <input type="text" name="busca" class="form-control" placeholder="Encontre amigos...">
+        <input type="text" name="busca" required="true" class="form-control" placeholder="Encontre amigos...">
         <span class="input-group-btn">
             <button class="btn btn-default" type="submit">Buscar</button>
         </span>

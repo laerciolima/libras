@@ -464,3 +464,25 @@ table.view tr td img { margin: 0px; padding: 0px; }
 .progress-bar{
   color: black !important;
 }
+
+
+
+.imagem-perfil {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+}
+
+
+.rounded{
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+}

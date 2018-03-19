@@ -1,12 +1,21 @@
 
 <button  onclick="javascript:history.back()" type="button" class="btn btn-default btn-sm" style="margin-top: 5px">
                     < Voltar
-                </button><h2 class="text-center">Seus badges</h2> <br/>
+                </button><h2 class="text-center">Suas conquistas</h2> <br/>
 
 <div class="row">
 
 
-  <?php foreach ($badges as $badge) { ?>
+  <?php 
+
+  if(count($badges) == 0){
+
+    echo "<h4>Voce ainda não tem conquistas, grave um sinal :D</h4>";
+
+
+  }
+
+  foreach ($badges as $badge) { ?>
       <div class="col-sm-4">
 
 
