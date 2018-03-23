@@ -1,9 +1,16 @@
-<h1 class="text-center">Módulos</h1>
+    <?php
+
+
+        if($usuario_logado['perfil'] != 'admin'){ ?>
+
+
+         <h1 class="text-center">Módulos</h1>
 <div class="row">
+       
 
-    <?php foreach ($modulos as $modulo) { ?>
-        <div class="col-sm-6">
+          <?php foreach ($modulos as $modulo) { ?>
 
+ <div class="col-sm-6">
 
             <div class="panel panel-success">
                 <div class="panel-heading"><?php echo $modulo->getNome(); ?></div>
@@ -27,7 +34,78 @@
 
                 </div>
             </div>
-        </div>
+            </div>
+       
         <?php
-    }
-    ?>
+    } ?>
+
+     
+        </div>
+
+        <?php
+
+
+} else { ?>
+
+    <h1 class="text-center">Painel de controle</h1>
+
+    <div class="row">
+        <div class="col-sm-6">
+
+
+            <div class="panel panel-info">
+                <div class="panel-heading">Gerenciar Módulo</div>
+                <div class="panel-body">
+<button type="button" class="btn btn-default btn-block" onclick="location.href = '?controller=modulo&action=add'"><span class="glyphicon glyphicon-plus-sign"></span> Novo</button>
+
+<button type="button" class="btn btn-default btn-block" onclick="location.href = '?controller=modulo&action=index'"><span class="glyphicon glyphicon-th-list"></span> Listar</button>
+                </div>
+            </div>
+        </div>
+        
+
+        
+        <div class="col-sm-6">
+
+
+            <div class="panel panel-info">
+                <div class="panel-heading">Gerenciar Categorias</div>
+                <div class="panel-body">
+                    <button type="button" class="btn btn-default btn-block">Button 1</button>
+                    <button type="button" class="btn btn-default btn-block">Button 2</button>
+                </div>
+            </div>
+        </div>
+
+
+
+        </div>
+
+
+        <div class="row">
+        <div class="col-sm-6">
+
+
+            <div class="panel panel-info">
+                <div class="panel-heading">Gerenciar Sinais </div>
+                <div class="panel-body">
+                    <button type="button" class="btn btn-default btn-block">Button 1</button>
+                    <button type="button" class="btn btn-default btn-block">Button 2</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-sm-6">
+
+
+            <div class="panel panel-info">
+                <div class="panel-heading">Gerenciar Atividades</div>
+                <div class="panel-body">
+                    <button type="button" class="btn btn-default btn-block">Button 1</button>
+                    <button type="button" class="btn btn-default btn-block">Button 2</button>
+                </div>
+            </div>
+        </div>
+        </div>
+
+<?php } ?>

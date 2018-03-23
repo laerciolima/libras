@@ -92,17 +92,25 @@ class GravacaoDAO {
     public static function getGravacoesByUsuario($id) {
         $lista = [];
 
-        $sql = "SELECT gr.*, count(av.id) as qntd_av FROM jt.gravacao gr
+        $sql = "SELECT gr.*, s.nome, count(av.id) as qntd_av FROM jt.gravacao gr
 left JOIN avaliacao av
 ON gr.id = av.fk_id_gravacao
-where gr.fk_id_usuario = 10
-group by gr.id; order by qntd_av DESC";
+inner join sinal s 
+on s.id = gr.fk_id_sinal
+where gr.fk_id_usuario = :id
+group by gr.id
+ order by qntd_av DESC";
 
 
-        $req = Db::getInstance()->query($sql);
 
 
-        // we create a list of Post objects from the database results
+        $req = Db::getInstance()->prepare($sql);
+        $req->bindValue(":id", $id);
+
+        $req->execute();
+
+
+
         foreach ($req->fetchAll() as $linha) {
             $gravacao = new Gravacao();
 
@@ -112,6 +120,7 @@ group by gr.id; order by qntd_av DESC";
             $gravacao->setFk_id_sinal($linha["fk_id_sinal"]);
             $gravacao->setFk_id_usuario($linha["fk_id_usuario"]);
             $gravacao->setQntdAv($linha["qntd_av"]);
+            $gravacao->setNome_sinal($linha['nome']);
 
             $lista[] = $gravacao;
         }

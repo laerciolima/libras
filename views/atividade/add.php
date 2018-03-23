@@ -21,7 +21,7 @@
             <input type="text" class="form-control" name="ordem" id="ordem" placeholder="Digite o ordem">
         </div>
     </div><div class="form-group">
-        <label class="control-label col-sm-2" for="fk_id_modulo">Fk id Modulo:</label>
+        <label class="control-label col-sm-2" for="fk_id_modulo">Modulo:</label>
         <div class="col-sm-4">
             <input type="text" class="form-control" name="fk_id_modulo" id="fk_id_modulo" placeholder="Digite o fk_id_modulo">
         </div>

@@ -74,8 +74,22 @@ function cronometro() {
         $("#tempo").html("0s");
 
         clearInterval(intervalo);
+        intervalo = null;
 
+
+
+        $("#video").bind("ended", function () {
+            if (intervalo == null) {
+                intervalo = setInterval(function () {
+                    cronometro()
+                }, 1000);
+            }
+        });
+
+        nextVideo()
     }
+
+
 }
 
 function nextVideo() {
@@ -84,6 +98,9 @@ function nextVideo() {
         alert("acabou");
         return;
     }
+    tempo = 10;
+    $("#tempo").html("10s");
+    $("#tempo").css("color", "white");
     gravacao = gravacoes[++gravacao_atual_index];
     opcoes = lista_de_opcoes[gravacao_atual_index];
     console.log(opcoes);
@@ -124,22 +141,18 @@ function validar(num) {
     $("#avaliacao_sinal").hide();
 
     $.ajax(
-            {
-                type: "POST",
-                url: "?controller=gravacao&action=verificarResposta",
-                data: "fk_id_sinal=" + gravacao.fk_id_sinal + "&resposta=" + opcoes[num],
-                beforeSend: function () {
+    {
+        type: "POST",
+        url: "?controller=gravacao&action=verificarResposta",
+        data: "fk_id_sinal=" + gravacao.fk_id_sinal + "&resposta=" + opcoes[num],
+        beforeSend: function () {
                     // enquanto a função esta sendo processada, você
                     // pode exibir na tela uma
                     // msg de carregando
 
                 },
                 success: function (txt) {
-                    // pego o id da div que envolve o select com
-                    // name="id_modelo" e a substituiu
-                    // com o texto enviado pelo php, que é um novo
-                    //select com dados da marca x
-                    //console.log("resposta_correta: "+txt);
+
 
                     if (txt.indexOf("verificarResposta=true") != -1) {
                         $("#resposta_correta").show();
@@ -191,11 +204,11 @@ function validar(num) {
 
 function refreshPontuacao() {
     $.ajax(
-            {
-                type: "POST",
-                url: "controllers/UsuarioController.php",
-                data: "metodo=getPontuacao",
-                beforeSend: function () {
+    {
+        type: "POST",
+        url: "controllers/UsuarioController.php",
+        data: "metodo=getPontuacao",
+        beforeSend: function () {
                     // enquanto a função esta sendo processada, você
                     // pode exibir na tela uma
                     // msg de carregando

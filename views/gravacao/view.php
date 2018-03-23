@@ -14,7 +14,7 @@
       </tr>
     <tr align="left">
         <th>data</th>
-        <td><?php echo $gravacao->getdata()?></td>
+       <td><?php echo date('d/m/Y', strtotime($gravacao->getData())); ?></td>
     </tr>
     <tr align="left">
         <th>Sinal</th>

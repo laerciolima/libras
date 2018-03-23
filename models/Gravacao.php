@@ -5,6 +5,7 @@ class Gravacao{
     private $data;
     private $video;
     private $fk_id_sinal;
+    private $nome_sinal;
     private $fk_id_usuario;
     private $opcoes = [];
     private $qntd_avaliacao;
@@ -41,6 +42,14 @@ function setId ($id){
 
     public function setFk_id_sinal($fk_id_sinal) {
         $this->fk_id_sinal = $fk_id_sinal;
+    }
+
+    public function getNome_sinal() {
+        return $this->nome_sinal;
+    }
+
+    public function setNome_sinal($nome_sinal) {
+        $this->nome_sinal = $nome_sinal;
     }
 
     
