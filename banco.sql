@@ -16,6 +16,23 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `amizade`
+--
+
+DROP TABLE IF EXISTS `amizade`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `amizade` (
+  `fk_id_usuario1` bigint(20) NOT NULL,
+  `fk_id_usuario2` bigint(20) NOT NULL,
+  `data` date DEFAULT NULL,
+  `pendente` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`fk_id_usuario1`,`fk_id_usuario2`),
+  KEY `fk_amizade_2_idx` (`fk_id_usuario2`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `amizade`
 --
 
@@ -26,13 +43,46 @@ INSERT INTO `amizade` VALUES (1,2,'2016-09-04',0),(2,6,'2017-11-24',0),(3,1,'201
 UNLOCK TABLES;
 
 --
+-- Table structure for table `atividade`
+--
+
+DROP TABLE IF EXISTS `atividade`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `atividade` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(45) DEFAULT NULL,
+  `descricao` varchar(250) DEFAULT NULL,
+  `ordem` int(11) DEFAULT NULL,
+  `fk_id_modulo` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `atividade`
 --
 
 LOCK TABLES `atividade` WRITE;
 /*!40000 ALTER TABLE `atividade` DISABLE KEYS */;
+INSERT INTO `atividade` VALUES (1,'Atividade 01','teste',1,1),(2,'Atividade 02','teste',1,1),(3,'Atividade 03','teste',1,1),(4,'Atividade 04','teste',1,1),(5,'Atividade 05','teste',1,1),(6,'Atividade 06','teste',1,1);
 /*!40000 ALTER TABLE `atividade` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `atividade_sinal`
+--
+
+DROP TABLE IF EXISTS `atividade_sinal`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `atividade_sinal` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fk_id_atividade` int(11) DEFAULT NULL,
+  `fk_id_sinal` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `atividade_sinal`
@@ -40,8 +90,64 @@ UNLOCK TABLES;
 
 LOCK TABLES `atividade_sinal` WRITE;
 /*!40000 ALTER TABLE `atividade_sinal` DISABLE KEYS */;
+INSERT INTO `atividade_sinal` VALUES (1,1,16),(2,1,16),(3,6,16),(4,6,17);
 /*!40000 ALTER TABLE `atividade_sinal` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `atividade_usuario`
+--
+
+DROP TABLE IF EXISTS `atividade_usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `atividade_usuario` (
+  `id` bigint(10) NOT NULL AUTO_INCREMENT,
+  `fk_id_usuario` bigint(10) NOT NULL,
+  `fk_id_atividade` int(11) NOT NULL,
+  `sinais_corretos` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `atividade_usuario`
+--
+
+LOCK TABLES `atividade_usuario` WRITE;
+/*!40000 ALTER TABLE `atividade_usuario` DISABLE KEYS */;
+INSERT INTO `atividade_usuario` VALUES (1,2,1,2),(2,2,1,3),(3,2,2,2);
+/*!40000 ALTER TABLE `atividade_usuario` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `avaliacao`
+--
+
+DROP TABLE IF EXISTS `avaliacao`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `avaliacao` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `data` datetime DEFAULT NULL,
+  `nota_configuracao_mao` float NOT NULL DEFAULT '0',
+  `nota_expressao_facial` float NOT NULL DEFAULT '0',
+  `nota_media` float NOT NULL DEFAULT '0',
+  `nota_movimento` float NOT NULL DEFAULT '0',
+  `nota_orientacao` float NOT NULL DEFAULT '0',
+  `nota_ponto_articulacao` float NOT NULL DEFAULT '0',
+  `fk_id_gravacao` bigint(20) DEFAULT NULL,
+  `fk_id_usuario` bigint(20) DEFAULT NULL,
+  `acertado` int(11) NOT NULL DEFAULT '0',
+  `observacoes` varchar(500) DEFAULT NULL,
+  `nota_final` float NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `FK2xgbif9g4i9tlof40w4tnybrv` (`fk_id_gravacao`),
+  KEY `FKbtyrfv47brffd6ettv6ax8moj` (`fk_id_usuario`),
+  CONSTRAINT `FK2xgbif9g4i9tlof40w4tnybrv` FOREIGN KEY (`fk_id_gravacao`) REFERENCES `gravacao` (`id`),
+  CONSTRAINT `FKbtyrfv47brffd6ettv6ax8moj` FOREIGN KEY (`fk_id_usuario`) REFERENCES `usuario` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `avaliacao`
@@ -49,9 +155,24 @@ UNLOCK TABLES;
 
 LOCK TABLES `avaliacao` WRITE;
 /*!40000 ALTER TABLE `avaliacao` DISABLE KEYS */;
-INSERT INTO `avaliacao` VALUES (1,'2016-11-03 19:01:41',1,0,0,0,0,0,6,10,0,NULL,0),(2,'2016-11-03 19:01:59',1,0,0,0,0,0,6,10,1,NULL,0),(3,'2015-01-01 00:00:00',1,1,1,1,1,1,50,10,1,'fasdfasdfasdf',0),(4,'2017-09-18 11:17:20',1,5,3.6,5,2,5,597,2,0,'gsgd',3.6),(5,'2017-09-18 11:17:20',1,5,3.6,5,2,5,597,2,0,'gsgd',3.6),(6,'2017-09-18 11:17:58',3,3,3,3,3,3,751,2,0,'',3),(7,'2017-09-18 11:17:58',3,3,3,3,3,3,751,2,0,'',3),(8,'2017-09-18 11:24:54',3,3,3,3,3,3,873,2,0,'',3),(9,'2017-09-18 11:24:54',3,3,3,3,3,3,873,2,0,'',3),(10,'2017-09-18 11:26:29',3,3,3,3,3,3,311,2,0,'',3),(11,'2017-09-18 11:26:29',3,3,3,3,3,3,311,2,0,'',3),(12,'2017-09-18 14:05:46',3,3,3,3,3,3,942,2,0,'',3),(13,'2017-09-18 14:05:46',3,3,3,3,3,3,942,2,0,'',3),(14,'2017-09-18 14:07:53',3,4,3.2,3,3,3,69,2,0,'',3.2),(15,'2017-09-18 14:07:56',3,4,3.2,3,3,3,69,2,0,'',3.2),(16,'2017-09-18 14:08:41',3,3,3,3,3,3,619,2,0,'',3),(17,'2017-09-18 14:08:44',3,3,3,3,3,3,619,2,0,'',3),(18,'2017-09-18 14:29:02',3,3,3,3,3,3,595,4,0,'afasdfasfasdf af dfad fasdf adfas dfasd fad afads fasd as fasd fad asf daf erqafdasf ',3),(19,'2017-09-18 14:29:04',3,3,3,3,3,3,888,4,0,'',3),(20,'2017-09-18 14:40:40',3,3,3,3,3,3,246,2,0,'',3),(21,'2017-09-18 14:40:43',3,3,3,3,3,3,246,2,0,'',3),(22,'2017-09-18 14:42:25',3,3,3,3,3,3,350,2,0,'',3),(23,'2017-09-18 14:42:26',3,3,3,3,3,3,350,2,0,'',3),(24,'2017-09-18 14:42:49',3,3,3,3,3,3,35,2,0,'',3),(25,'2017-09-18 14:42:50',3,3,3,3,3,3,35,2,0,'',3),(26,'2017-09-18 14:43:42',3,3,3,3,3,3,508,2,0,'',3),(27,'2017-09-18 14:43:43',3,3,3,3,3,3,508,2,0,'',3),(28,'2017-09-18 14:44:05',3,3,3,3,3,3,666,2,0,'',3),(29,'2017-09-18 14:44:06',3,3,3,3,3,3,666,2,0,'',3),(30,'2017-09-18 14:51:42',3,3,3,3,3,3,429,2,0,'',3),(31,'2017-09-21 17:40:14',5,4,3.2,1,4,2,388,2,0,'',3.2),(32,'2017-09-21 17:40:23',5,4,3.2,1,4,2,639,2,0,'',3.2),(33,'2017-09-21 17:40:35',5,4,3.2,1,4,2,659,2,0,'',3.2),(34,'2017-09-21 17:40:56',5,4,3.2,1,4,2,667,2,0,'',3.2),(35,'2017-09-21 18:15:20',5,3,3.4,5,3,1,180,2,0,'Tgjsdjsjdd',3.4),(36,'2017-09-22 17:59:29',3,3,3,3,3,3,403,2,0,'',3),(37,'2017-10-23 17:22:53',3,3,3,3,3,3,885,2,0,'',3),(38,'2017-10-23 17:32:55',3,3,3,3,3,3,356,2,0,'',3),(39,'2017-10-23 17:33:12',3,3,3,3,3,3,657,2,0,'',3),(40,'2017-10-23 17:33:38',5,4,4,3,3,5,896,2,0,'',4),(41,'2017-10-23 18:08:09',3,4,3.2,3,2,4,891,2,0,'',3.2),(42,'2017-10-23 18:08:41',3,4,3.2,3,2,4,910,2,0,'',3.2),(43,'2017-10-23 18:11:36',3,4,3.2,3,2,4,443,2,0,'',3.2),(44,'2017-10-23 18:11:46',1,3,3,2,4,5,765,2,0,'fadsfadsfdasf',3),(45,'2017-10-23 18:12:51',3,2,3.2,2,4,5,194,2,0,'fadfasfdsfasd',3.2),(46,'2017-10-23 18:18:03',3,3,3,3,3,3,684,2,0,'',3),(47,'2017-10-23 18:20:26',3,3,3,3,3,3,20,2,0,'',3),(48,'2017-10-23 18:20:34',3,3,3,3,3,3,192,2,0,'',3),(49,'2017-10-23 18:21:08',3,3,3,3,3,3,740,2,0,'',3),(50,'2017-10-23 18:21:24',3,3,2.8,4,2,2,565,2,0,'',2.8),(51,'2017-10-23 18:23:24',3,3,3,3,3,3,734,2,0,'',3),(52,'2017-11-07 16:22:36',4,4,3.2,4,2,2,627,2,0,'',3.2),(53,'2017-11-07 16:24:31',3,3,3,3,3,3,374,2,0,'',3),(54,'2017-11-22 18:57:32',3,2,3.4,4,4,4,906,2,0,'',3.4),(55,'2017-11-22 18:59:06',3,3,3,3,3,3,314,2,0,'',3),(56,'2017-11-22 19:42:55',5,4,4.2,4,4,4,788,2,0,'dsfasfasdfasf\r\nasdfasdfadsf\r\ngotstei da sua avaliacaro de maos\r\ntentar corrigir o movimento',4.2),(57,'2017-11-23 18:31:25',3,3,3,3,3,3,500,2,0,'',3),(58,'2017-11-23 19:01:49',3,3,3,3,3,3,223,2,0,'fasdfasdfasdfasdfasdfasdf',3),(59,'2017-11-24 18:50:52',5,3,4.2,5,4,4,965,2,1,'dfasfasdfasdfasdfads',4.2),(60,'2017-11-24 18:51:46',3,3,3,3,3,3,377,2,1,'',3),(61,'2017-11-24 18:53:50',4,4,3.4,3,4,2,716,2,1,'',3.4),(62,'2017-11-24 18:56:08',4,4,4,4,4,4,157,2,1,'fasdfasfasdfasdf',4),(63,'2017-11-24 18:56:29',3,3,3,3,3,3,272,2,1,'',3),(64,'2017-11-24 18:57:10',4,3,3,4,2,2,238,2,1,'fasdfasdfasdf',3),(65,'2017-11-24 19:00:04',4,4,3.2,2,4,2,475,9,1,'muito bom ',3.2),(66,'2017-11-24 19:00:18',4,4,3.2,4,1,3,331,9,1,'',3.2),(67,'2017-11-24 19:00:29',1,4,2.8,5,2,2,1001,9,1,'',2.8),(68,'2017-11-24 20:13:03',5,4,3.8,4,2,4,450,2,1,'fasdfasdfasdfasdfadsfasd',3.8),(69,'2017-11-24 20:44:58',4,3,3.2,4,3,2,588,1,1,'fasdfadfadsfasfdsaf',3.2),(70,'2017-11-24 20:45:16',2,4,3,2,2,5,661,1,1,'fasdfasdfasdfsadf',3),(71,'2017-11-24 20:46:25',5,5,3.8,4,2,3,515,8,1,'fadfasdfasdfasdfasd',3.8),(72,'2017-11-24 21:12:42',4,5,3.8,4,3,3,519,8,1,'fasdfasfasfasdfasd',3.8),(73,'2017-12-05 19:22:03',4,2,2.8,4,2,2,126,2,1,'',2.8),(74,'2017-12-11 18:19:58',4,3,3,3,2,3,124,2,1,'',3),(75,'2017-12-11 18:21:33',3,3,3,3,3,3,205,2,0,'',3),(76,'2018-03-05 18:08:26',3,3,3,3,3,3,756,2,0,'',3),(77,'2018-03-19 16:43:27',4,3,3.2,3,4,2,121,7,1,'',3.2),(78,'2018-03-19 16:43:43',4,5,3.2,3,2,2,367,7,1,'',3.2),(79,'2018-03-19 17:11:18',3,3,3,3,3,3,626,4,1,'',3),(80,'2018-03-21 13:18:15',3,3,3,3,3,3,790,2,1,'',3),(81,'2018-03-21 13:25:06',3,3,3,3,3,3,641,2,1,'',3),(82,'2018-03-21 13:25:17',3,3,3,3,3,3,181,2,1,'',3),(83,'2018-03-21 13:26:11',3,3,3,3,3,3,224,2,1,'',3),(84,'2018-03-21 13:27:18',3,3,3,3,3,3,770,2,1,'',3),(85,'2018-03-21 13:28:43',3,3,3,3,3,3,889,2,0,'',3),(86,'2018-03-21 13:57:36',4,3,3,2,2,4,257,4,1,'',3);
+INSERT INTO `avaliacao` VALUES (1,'2016-11-03 19:01:41',1,0,0,0,0,0,6,10,0,NULL,0),(2,'2016-11-03 19:01:59',1,0,0,0,0,0,6,10,1,NULL,0),(3,'2015-01-01 00:00:00',1,1,1,1,1,1,50,10,1,'fasdfasdfasdf',0),(4,'2017-09-18 11:17:20',1,5,3.6,5,2,5,597,2,0,'gsgd',3.6),(5,'2017-09-18 11:17:20',1,5,3.6,5,2,5,597,2,0,'gsgd',3.6),(6,'2017-09-18 11:17:58',3,3,3,3,3,3,751,2,0,'',3),(7,'2017-09-18 11:17:58',3,3,3,3,3,3,751,2,0,'',3),(8,'2017-09-18 11:24:54',3,3,3,3,3,3,873,2,0,'',3),(9,'2017-09-18 11:24:54',3,3,3,3,3,3,873,2,0,'',3),(10,'2017-09-18 11:26:29',3,3,3,3,3,3,311,2,0,'',3),(11,'2017-09-18 11:26:29',3,3,3,3,3,3,311,2,0,'',3),(12,'2017-09-18 14:05:46',3,3,3,3,3,3,942,2,0,'',3),(13,'2017-09-18 14:05:46',3,3,3,3,3,3,942,2,0,'',3),(14,'2017-09-18 14:07:53',3,4,3.2,3,3,3,69,2,0,'',3.2),(15,'2017-09-18 14:07:56',3,4,3.2,3,3,3,69,2,0,'',3.2),(16,'2017-09-18 14:08:41',3,3,3,3,3,3,619,2,0,'',3),(17,'2017-09-18 14:08:44',3,3,3,3,3,3,619,2,0,'',3),(18,'2017-09-18 14:29:02',3,3,3,3,3,3,595,4,0,'afasdfasfasdf af dfad fasdf adfas dfasd fad afads fasd as fasd fad asf daf erqafdasf ',3),(19,'2017-09-18 14:29:04',3,3,3,3,3,3,888,4,0,'',3),(20,'2017-09-18 14:40:40',3,3,3,3,3,3,246,2,0,'',3),(21,'2017-09-18 14:40:43',3,3,3,3,3,3,246,2,0,'',3),(22,'2017-09-18 14:42:25',3,3,3,3,3,3,350,2,0,'',3),(23,'2017-09-18 14:42:26',3,3,3,3,3,3,350,2,0,'',3),(24,'2017-09-18 14:42:49',3,3,3,3,3,3,35,2,0,'',3),(25,'2017-09-18 14:42:50',3,3,3,3,3,3,35,2,0,'',3),(26,'2017-09-18 14:43:42',3,3,3,3,3,3,508,2,0,'',3),(27,'2017-09-18 14:43:43',3,3,3,3,3,3,508,2,0,'',3),(28,'2017-09-18 14:44:05',3,3,3,3,3,3,666,2,0,'',3),(29,'2017-09-18 14:44:06',3,3,3,3,3,3,666,2,0,'',3),(30,'2017-09-18 14:51:42',3,3,3,3,3,3,429,2,0,'',3),(31,'2017-09-21 17:40:14',5,4,3.2,1,4,2,388,2,0,'',3.2),(32,'2017-09-21 17:40:23',5,4,3.2,1,4,2,639,2,0,'',3.2),(33,'2017-09-21 17:40:35',5,4,3.2,1,4,2,659,2,0,'',3.2),(34,'2017-09-21 17:40:56',5,4,3.2,1,4,2,667,2,0,'',3.2),(35,'2017-09-21 18:15:20',5,3,3.4,5,3,1,180,2,0,'Tgjsdjsjdd',3.4),(36,'2017-09-22 17:59:29',3,3,3,3,3,3,403,2,0,'',3),(37,'2017-10-23 17:22:53',3,3,3,3,3,3,885,2,0,'',3),(38,'2017-10-23 17:32:55',3,3,3,3,3,3,356,2,0,'',3),(39,'2017-10-23 17:33:12',3,3,3,3,3,3,657,2,0,'',3),(40,'2017-10-23 17:33:38',5,4,4,3,3,5,896,2,0,'',4),(41,'2017-10-23 18:08:09',3,4,3.2,3,2,4,891,2,0,'',3.2),(42,'2017-10-23 18:08:41',3,4,3.2,3,2,4,910,2,0,'',3.2),(43,'2017-10-23 18:11:36',3,4,3.2,3,2,4,443,2,0,'',3.2),(44,'2017-10-23 18:11:46',1,3,3,2,4,5,765,2,0,'fadsfadsfdasf',3),(45,'2017-10-23 18:12:51',3,2,3.2,2,4,5,194,2,0,'fadfasfdsfasd',3.2),(46,'2017-10-23 18:18:03',3,3,3,3,3,3,684,2,0,'',3),(47,'2017-10-23 18:20:26',3,3,3,3,3,3,20,2,0,'',3),(48,'2017-10-23 18:20:34',3,3,3,3,3,3,192,2,0,'',3),(49,'2017-10-23 18:21:08',3,3,3,3,3,3,740,2,0,'',3),(50,'2017-10-23 18:21:24',3,3,2.8,4,2,2,565,2,0,'',2.8),(51,'2017-10-23 18:23:24',3,3,3,3,3,3,734,2,0,'',3),(52,'2017-11-07 16:22:36',4,4,3.2,4,2,2,627,2,0,'',3.2),(53,'2017-11-07 16:24:31',3,3,3,3,3,3,374,2,0,'',3),(54,'2017-11-22 18:57:32',3,2,3.4,4,4,4,906,2,0,'',3.4),(55,'2017-11-22 18:59:06',3,3,3,3,3,3,314,2,0,'',3),(56,'2017-11-22 19:42:55',5,4,4.2,4,4,4,788,2,0,'dsfasfasdfasf\r\nasdfasdfadsf\r\ngotstei da sua avaliacaro de maos\r\ntentar corrigir o movimento',4.2),(57,'2017-11-23 18:31:25',3,3,3,3,3,3,500,2,0,'',3),(58,'2017-11-23 19:01:49',3,3,3,3,3,3,223,2,0,'fasdfasdfasdfasdfasdfasdf',3),(59,'2017-11-24 18:50:52',5,3,4.2,5,4,4,965,2,1,'dfasfasdfasdfasdfads',4.2),(60,'2017-11-24 18:51:46',3,3,3,3,3,3,377,2,1,'',3),(61,'2017-11-24 18:53:50',4,4,3.4,3,4,2,716,2,1,'',3.4),(62,'2017-11-24 18:56:08',4,4,4,4,4,4,157,2,1,'fasdfasfasdfasdf',4),(63,'2017-11-24 18:56:29',3,3,3,3,3,3,272,2,1,'',3),(64,'2017-11-24 18:57:10',4,3,3,4,2,2,238,2,1,'fasdfasdfasdf',3),(65,'2017-11-24 19:00:04',4,4,3.2,2,4,2,475,9,1,'muito bom ',3.2),(66,'2017-11-24 19:00:18',4,4,3.2,4,1,3,331,9,1,'',3.2),(67,'2017-11-24 19:00:29',1,4,2.8,5,2,2,1001,9,1,'',2.8),(68,'2017-11-24 20:13:03',5,4,3.8,4,2,4,450,2,1,'fasdfasdfasdfasdfadsfasd',3.8),(69,'2017-11-24 20:44:58',4,3,3.2,4,3,2,588,1,1,'fasdfadfadsfasfdsaf',3.2),(70,'2017-11-24 20:45:16',2,4,3,2,2,5,661,1,1,'fasdfasdfasdfsadf',3),(71,'2017-11-24 20:46:25',5,5,3.8,4,2,3,515,8,1,'fadfasdfasdfasdfasd',3.8),(72,'2017-11-24 21:12:42',4,5,3.8,4,3,3,519,8,1,'fasdfasfasfasdfasd',3.8),(73,'2017-12-05 19:22:03',4,2,2.8,4,2,2,126,2,1,'',2.8),(74,'2017-12-11 18:19:58',4,3,3,3,2,3,124,2,1,'',3),(75,'2017-12-11 18:21:33',3,3,3,3,3,3,205,2,0,'',3),(76,'2018-03-05 18:08:26',3,3,3,3,3,3,756,2,0,'',3),(77,'2018-03-19 16:43:27',4,3,3.2,3,4,2,121,7,1,'',3.2),(78,'2018-03-19 16:43:43',4,5,3.2,3,2,2,367,7,1,'',3.2),(79,'2018-03-19 17:11:18',3,3,3,3,3,3,626,4,1,'',3),(80,'2018-03-21 13:18:15',3,3,3,3,3,3,790,2,1,'',3),(81,'2018-03-21 13:25:06',3,3,3,3,3,3,641,2,1,'',3),(82,'2018-03-21 13:25:17',3,3,3,3,3,3,181,2,1,'',3),(83,'2018-03-21 13:26:11',3,3,3,3,3,3,224,2,1,'',3),(84,'2018-03-21 13:27:18',3,3,3,3,3,3,770,2,1,'',3),(85,'2018-03-21 13:28:43',3,3,3,3,3,3,889,2,0,'',3),(86,'2018-03-21 13:57:36',4,3,3,2,2,4,257,4,1,'',3),(87,'2018-04-12 09:38:19',4,5,3.6,5,2,2,177,2,0,'',3.6),(88,'2018-04-12 09:38:44',2,2,3.2,4,4,4,683,2,0,'',3.2),(89,'2018-04-12 09:39:10',5,4,3.8,4,2,4,692,2,1,'',3.8),(90,'2018-04-12 09:39:34',3,3,3,3,3,3,163,2,1,'',3),(91,'2018-04-12 09:39:48',3,3,3,3,3,3,408,2,1,'',3),(92,'2018-04-12 09:40:05',3,3,3,3,3,3,973,2,0,'',3);
 /*!40000 ALTER TABLE `avaliacao` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `badge`
+--
+
+DROP TABLE IF EXISTS `badge`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `badge` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `descricao` varchar(45) DEFAULT NULL,
+  `img` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `badge`
@@ -64,6 +185,21 @@ INSERT INTO `badge` VALUES (1,'Envio do 1Âº video','submit01.png'),(2,'Enviou 
 UNLOCK TABLES;
 
 --
+-- Table structure for table `badge_usuario`
+--
+
+DROP TABLE IF EXISTS `badge_usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `badge_usuario` (
+  `fk_id_usuario` int(11) NOT NULL,
+  `fk_id_badge` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `data` datetime DEFAULT NULL,
+  PRIMARY KEY (`fk_id_usuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `badge_usuario`
 --
 
@@ -72,6 +208,25 @@ LOCK TABLES `badge_usuario` WRITE;
 INSERT INTO `badge_usuario` VALUES (2,'1','2017-12-11 17:38:54');
 /*!40000 ALTER TABLE `badge_usuario` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `categoria`
+--
+
+DROP TABLE IF EXISTS `categoria`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `categoria` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(45) DEFAULT NULL,
+  `descricao` varchar(150) DEFAULT NULL,
+  `imagem` varchar(150) DEFAULT NULL,
+  `fk_id_modulo` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_categoria_idx` (`fk_id_modulo`),
+  CONSTRAINT `fk_categoria` FOREIGN KEY (`fk_id_modulo`) REFERENCES `modulo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `categoria`
@@ -84,33 +239,98 @@ INSERT INTO `categoria` VALUES (1,'Objetos escolares','sinais de objetos escolar
 UNLOCK TABLES;
 
 --
--- Dumping data for table `configuracaodemao`
+-- Table structure for table `configuracao_de_mao`
 --
 
-LOCK TABLES `configuracaodemao` WRITE;
-/*!40000 ALTER TABLE `configuracaodemao` DISABLE KEYS */;
-INSERT INTO `configuracaodemao` VALUES (1,'configMao1.png','1'),(2,'configMao2.png','2'),(3,'configMao3.png','3'),(4,'configMao4.png','Mão em Y'),(5,'configMao5.png','5'),(6,'configMao6.png','6'),(7,'configMao7.png','Mão em S'),(8,'configMao8.png','8'),(9,'configMao9.png','9'),(10,'configMao10.png','10'),(11,'configMao11.png','11'),(12,'configMao12.png','12'),(13,'configMao13.png','13'),(14,'configMao14.png','14'),(15,'configMao15.png','15'),(16,'configMao16.png','16'),(17,'configMao17.png','17'),(18,'configMao18.png','18'),(19,'configMao19.png','19'),(20,'configMao20.png','20'),(21,'configMao21.png','21'),(22,'configMao22.png','22'),(23,'configMao23.png','23'),(24,'configMao24.png','24'),(25,'configMao25.png','25'),(26,'configMao26.png','26'),(27,'configMao27.png','27'),(28,'configMao28.png','28'),(29,'configMao29.png','Mão em C'),(30,'configMao30.png','30'),(31,'configMao31.png','31'),(32,'configMao32.png','32'),(33,'configMao33.png','33'),(34,'configMao34.png','34'),(35,'configMao35.png','35'),(36,'configMao36.png','Mão fechada, com os dedos: indicador, médio e polegar distendidos'),(37,'configMao37.png','37'),(38,'configMao38.png','38'),(39,'configMao39.png','39'),(40,'configMao40.png','40'),(41,'configMao41.png','41'),(42,'configMao42.png','42'),(43,'configMao43.png','43'),(44,'configMao44.png','44'),(45,'configMao45.png','45'),(46,'configMao46.png','46'),(47,'configMao47.png','47'),(48,'configMao48.png','48'),(49,'configMao49.png','49'),(50,'configMao50.png','50'),(51,'configMao51.png','51'),(52,'configMao52.png','52'),(53,'configMao53.png','53'),(54,'configMao54.png','54'),(55,'configMao55.png','55'),(56,'configMao56.png','Mão aberta com dedos rentes um ao outro'),(57,'configMao57.png','57'),(58,'configMao58.png','58'),(59,'configMao59.png','Mão aberta com dedos curvados'),(60,'configMao60.png','60'),(61,'configMao61.png','61');
-/*!40000 ALTER TABLE `configuracaodemao` ENABLE KEYS */;
+DROP TABLE IF EXISTS `configuracao_de_mao`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `configuracao_de_mao` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `imagem` varchar(255) DEFAULT NULL,
+  `nome` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `configuracao_de_mao`
+--
+
+LOCK TABLES `configuracao_de_mao` WRITE;
+/*!40000 ALTER TABLE `configuracao_de_mao` DISABLE KEYS */;
+INSERT INTO `configuracao_de_mao` VALUES (1,'configMao1.png','1'),(2,'configMao2.png','2'),(3,'configMao3.png','3'),(4,'configMao4.png','Mão em Y'),(5,'configMao5.png','5'),(6,'configMao6.png','6'),(7,'configMao7.png','Mão em S'),(8,'configMao8.png','8'),(9,'configMao9.png','9'),(10,'configMao10.png','10'),(11,'configMao11.png','11'),(12,'configMao12.png','12'),(13,'configMao13.png','13'),(14,'configMao14.png','14'),(15,'configMao15.png','15'),(16,'configMao16.png','16'),(17,'configMao17.png','17'),(18,'configMao18.png','18'),(19,'configMao19.png','19'),(20,'configMao20.png','20'),(21,'configMao21.png','21'),(22,'configMao22.png','22'),(23,'configMao23.png','23'),(24,'configMao24.png','24'),(25,'configMao25.png','25'),(26,'configMao26.png','26'),(27,'configMao27.png','27'),(28,'configMao28.png','28'),(29,'configMao29.png','Mão em C'),(30,'configMao30.png','30'),(31,'configMao31.png','31'),(32,'configMao32.png','32'),(33,'configMao33.png','33'),(34,'configMao34.png','34'),(35,'configMao35.png','35'),(36,'configMao36.png','Mão fechada, com os dedos: indicador, médio e polegar distendidos'),(37,'configMao37.png','37'),(38,'configMao38.png','38'),(39,'configMao39.png','39'),(40,'configMao40.png','40'),(41,'configMao41.png','41'),(42,'configMao42.png','42'),(43,'configMao43.png','43'),(44,'configMao44.png','44'),(45,'configMao45.png','45'),(46,'configMao46.png','46'),(47,'configMao47.png','47'),(48,'configMao48.png','48'),(49,'configMao49.png','49'),(50,'configMao50.png','50'),(51,'configMao51.png','51'),(52,'configMao52.png','52'),(53,'configMao53.png','53'),(54,'configMao54.png','54'),(55,'configMao55.png','55'),(56,'configMao56.png','Mão aberta com dedos rentes um ao outro'),(57,'configMao57.png','57'),(58,'configMao58.png','58'),(59,'configMao59.png','Mão aberta com dedos curvados'),(60,'configMao60.png','60'),(61,'configMao61.png','61');
+/*!40000 ALTER TABLE `configuracao_de_mao` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Dumping data for table `configuracaodemao_sinal`
+-- Table structure for table `configuracao_de_mao_sinal`
 --
 
-LOCK TABLES `configuracaodemao_sinal` WRITE;
-/*!40000 ALTER TABLE `configuracaodemao_sinal` DISABLE KEYS */;
-/*!40000 ALTER TABLE `configuracaodemao_sinal` ENABLE KEYS */;
+DROP TABLE IF EXISTS `configuracao_de_mao_sinal`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `configuracao_de_mao_sinal` (
+  `fk_id_configuracao_de_mao` bigint(20) NOT NULL,
+  `fk_id_sinal` bigint(20) NOT NULL,
+  KEY `FKiyqnus80idfr8b05ap42ep6s0` (`fk_id_sinal`),
+  KEY `FKpdeqm7yr558mccrxko6r4cul3` (`fk_id_configuracao_de_mao`),
+  CONSTRAINT `FKiyqnus80idfr8b05ap42ep6s0` FOREIGN KEY (`fk_id_sinal`) REFERENCES `sinal` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `configuracao_de_mao_sinal`
+--
+
+LOCK TABLES `configuracao_de_mao_sinal` WRITE;
+/*!40000 ALTER TABLE `configuracao_de_mao_sinal` DISABLE KEYS */;
+/*!40000 ALTER TABLE `configuracao_de_mao_sinal` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Dumping data for table `expressaofacial`
+-- Table structure for table `expressao_facial`
 --
 
-LOCK TABLES `expressaofacial` WRITE;
-/*!40000 ALTER TABLE `expressaofacial` DISABLE KEYS */;
-INSERT INTO `expressaofacial` VALUES (1,NULL,'Afirmação'),(2,NULL,'Exclamação'),(3,NULL,'Interrogação'),(4,NULL,'Bochechas infladas');
-/*!40000 ALTER TABLE `expressaofacial` ENABLE KEYS */;
+DROP TABLE IF EXISTS `expressao_facial`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `expressao_facial` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `imagem` varchar(255) DEFAULT NULL,
+  `nome` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `expressao_facial`
+--
+
+LOCK TABLES `expressao_facial` WRITE;
+/*!40000 ALTER TABLE `expressao_facial` DISABLE KEYS */;
+INSERT INTO `expressao_facial` VALUES (1,'','AfirmaÃ§Ã£o'),(2,'','ExclamaÃ§Ã£o'),(3,'','InterrogaÃ§Ã£o'),(4,NULL,'Bochechas infladas');
+/*!40000 ALTER TABLE `expressao_facial` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `gravacao`
+--
+
+DROP TABLE IF EXISTS `gravacao`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `gravacao` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `data` datetime DEFAULT NULL,
+  `video` varchar(255) DEFAULT NULL,
+  `fk_id_sinal` bigint(20) DEFAULT NULL,
+  `fk_id_usuario` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK4y4g80yljinxbgbsyjge6fa22` (`fk_id_sinal`),
+  KEY `FKo3f7nqj7w7aydkgvu8py80vxh` (`fk_id_usuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=1002 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `gravacao`
@@ -123,6 +343,29 @@ INSERT INTO `gravacao` VALUES (1,'2016-11-03 18:49:38','video1.mp4',34,7),(2,'20
 UNLOCK TABLES;
 
 --
+-- Table structure for table `mao`
+--
+
+DROP TABLE IF EXISTS `mao`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `mao` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `orientacao` varchar(255) DEFAULT NULL,
+  `fk_id_configuracao_de_mao` bigint(20) DEFAULT NULL,
+  `fk_id_movimento` bigint(20) DEFAULT NULL,
+  `fk_id_ponto_de_articulacao` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK2b6byyk0upawvilfdiv8vopvb` (`fk_id_configuracao_de_mao`),
+  KEY `FK91l59owqgxip3ahadhjf0mv3j` (`fk_id_movimento`),
+  KEY `FKgwwuapbsofb31yodnohnlq6uh` (`fk_id_ponto_de_articulacao`),
+  CONSTRAINT `FK2b6byyk0upawvilfdiv8vopvb` FOREIGN KEY (`fk_id_configuracao_de_mao`) REFERENCES `configuracao_de_mao` (`id`),
+  CONSTRAINT `FK91l59owqgxip3ahadhjf0mv3j` FOREIGN KEY (`fk_id_movimento`) REFERENCES `movimento` (`id`),
+  CONSTRAINT `FKgwwuapbsofb31yodnohnlq6uh` FOREIGN KEY (`fk_id_ponto_de_articulacao`) REFERENCES `ponto_de_articulacao` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `mao`
 --
 
@@ -131,6 +374,22 @@ LOCK TABLES `mao` WRITE;
 INSERT INTO `mao` VALUES (4,'PARA_DENTRO',29,1,1),(5,'PARA_DENTRO',4,5,5),(6,'PARA_BAIXO',56,4,2),(7,'PARA_CIMA',7,3,4);
 /*!40000 ALTER TABLE `mao` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `modulo`
+--
+
+DROP TABLE IF EXISTS `modulo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `modulo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(45) DEFAULT NULL,
+  `descricao` varchar(45) DEFAULT NULL,
+  `nivel` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `modulo`
@@ -143,14 +402,46 @@ INSERT INTO `modulo` VALUES (1,'Modulo 1','Modulo inicial do curso de libras',1)
 UNLOCK TABLES;
 
 --
+-- Table structure for table `movimento`
+--
+
+DROP TABLE IF EXISTS `movimento`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `movimento` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `imagem` varchar(255) DEFAULT NULL,
+  `nome` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `movimento`
 --
 
 LOCK TABLES `movimento` WRITE;
 /*!40000 ALTER TABLE `movimento` DISABLE KEYS */;
-INSERT INTO `movimento` VALUES (1,'movimento1.png','Girar mão pelo pulso para cima'),(2,'movimento2.png','Unir as pontas dos dedos'),(3,'movimento2.png','Mover mão para cima e para baixo'),(4,'movimento2.png','Elevar mão para cima'),(5,'excluir.png','Sem movimento');
+INSERT INTO `movimento` VALUES (1,'movimento1.png','Girar mão pelo pulso para cima'),(2,'movimento2.png','Unir as pontas dos dedos'),(3,'movimento2.png','Mover mão para cima e para baixo'),(4,'movimento2.png','Elevar mão para cima'),(5,'excluir.png','Sem movimento'),(10,'08fc511478ecd33889fc37927948c2b2.png','testewsdf');
 /*!40000 ALTER TABLE `movimento` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `movimento_sinal`
+--
+
+DROP TABLE IF EXISTS `movimento_sinal`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `movimento_sinal` (
+  `movimentos_idMovimento` bigint(20) NOT NULL,
+  `sinais_idSinal` bigint(20) NOT NULL,
+  KEY `FK8ohmi6cxq7xkomhjgsscne3rv` (`sinais_idSinal`),
+  KEY `FK544ecxjd1kyyq7etf3qh7cc2w` (`movimentos_idMovimento`),
+  CONSTRAINT `FK544ecxjd1kyyq7etf3qh7cc2w` FOREIGN KEY (`movimentos_idMovimento`) REFERENCES `movimento` (`id`),
+  CONSTRAINT `FK8ohmi6cxq7xkomhjgsscne3rv` FOREIGN KEY (`sinais_idSinal`) REFERENCES `sinal` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `movimento_sinal`
@@ -162,14 +453,62 @@ LOCK TABLES `movimento_sinal` WRITE;
 UNLOCK TABLES;
 
 --
--- Dumping data for table `pontodearticulacao`
+-- Table structure for table `ponto_de_articulacao`
 --
 
-LOCK TABLES `pontodearticulacao` WRITE;
-/*!40000 ALTER TABLE `pontodearticulacao` DISABLE KEYS */;
-INSERT INTO `pontodearticulacao` VALUES (1,'pontoArticulacao1.png','Diante da boca'),(2,'pontoArticulacao2.png','Diante do peito'),(3,'pontoArticulacao3.png','Diante da barriga'),(4,'pontoArticulacao3.png','Lado direito do corpo'),(5,'pontoArticulacao2.png','Diante da orelha (Encostar)');
-/*!40000 ALTER TABLE `pontodearticulacao` ENABLE KEYS */;
+DROP TABLE IF EXISTS `ponto_de_articulacao`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ponto_de_articulacao` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `imagem` varchar(255) DEFAULT NULL,
+  `nome` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ponto_de_articulacao`
+--
+
+LOCK TABLES `ponto_de_articulacao` WRITE;
+/*!40000 ALTER TABLE `ponto_de_articulacao` DISABLE KEYS */;
+INSERT INTO `ponto_de_articulacao` VALUES (1,'pontoArticulacao1.png','Diante da boca'),(2,'pontoArticulacao2.png','Diante do peito'),(3,'pontoArticulacao3.png','Diante da barriga'),(4,'pontoArticulacao3.png','Lado direito do corpo'),(5,'pontoArticulacao2.png','Diante da orelha (Encostar)');
+/*!40000 ALTER TABLE `ponto_de_articulacao` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `sinal`
+--
+
+DROP TABLE IF EXISTS `sinal`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sinal` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `dificuldade` varchar(255) DEFAULT NULL,
+  `foto` varchar(255) DEFAULT NULL,
+  `nome` varchar(255) DEFAULT NULL,
+  `orientacao` varchar(255) DEFAULT NULL,
+  `video` varchar(255) DEFAULT NULL,
+  `expressaoFacial_idExpressaoFacial` bigint(20) DEFAULT NULL,
+  `pontoDeArticulacao_idPontoDeArticulacao` bigint(20) DEFAULT NULL,
+  `sinalDefinePesoInicial` bit(11) NOT NULL,
+  `categoria_id` int(11) DEFAULT NULL,
+  `utilizacaoDasMaos` int(11) DEFAULT NULL,
+  `maoPrincipal_id` bigint(20) DEFAULT NULL,
+  `maoSecundaria_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKi9e3itky8jwl4qc2tfjjo4fk7` (`expressaoFacial_idExpressaoFacial`),
+  KEY `FKldln178n6a4e3uknphcilafdh` (`pontoDeArticulacao_idPontoDeArticulacao`),
+  KEY `FK67dapt9ktyhtljrn85qjh9im0` (`categoria_id`),
+  KEY `FKsgnsoxu5qlsa4gpugu1uabs7` (`maoSecundaria_id`),
+  KEY `FKswu95fhcu9tehm2mr1339p3ad` (`maoPrincipal_id`,`maoSecundaria_id`),
+  CONSTRAINT `FKi9e3itky8jwl4qc2tfjjo4fk7` FOREIGN KEY (`expressaoFacial_idExpressaoFacial`) REFERENCES `expressao_facial` (`id`),
+  CONSTRAINT `FKldln178n6a4e3uknphcilafdh` FOREIGN KEY (`pontoDeArticulacao_idPontoDeArticulacao`) REFERENCES `ponto_de_articulacao` (`id`),
+  CONSTRAINT `FKsgnsoxu5qlsa4gpugu1uabs7` FOREIGN KEY (`maoSecundaria_id`) REFERENCES `mao` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=568 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `sinal`
@@ -182,12 +521,34 @@ INSERT INTO `sinal` VALUES (15,NULL,'Maca.png','Maça',NULL,'Maca.mp4',1,NULL,'\
 UNLOCK TABLES;
 
 --
+-- Table structure for table `usuario`
+--
+
+DROP TABLE IF EXISTS `usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `usuario` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) DEFAULT NULL,
+  `nome` varchar(255) DEFAULT NULL,
+  `perfil` varchar(255) DEFAULT NULL,
+  `senha` varchar(255) DEFAULT NULL,
+  `usuario` varchar(255) DEFAULT NULL,
+  `pontuacao` int(10) unsigned DEFAULT '0',
+  `imagem` varchar(45) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `url` varchar(150) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `usuario`
 --
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'','Marcos Junior','comum','202cb962ac59075b964b07152d234b70','marcos',152,'bcc41e031efb9484396537be1e84a350.gif',1,NULL),(2,'laercio.lima@gmail.com','Laercio Lima','comum','202cb962ac59075b964b07152d234b70','laercio',38,'51ae814c6fe69bfedb0ce0818b68687b.png',1,NULL),(3,'llaercio.lima@gmail.com','lucas','comum','202cb962ac59075b964b07152d234b70','lucas',0,'8154861bed1a58c7ee644609afcfe0da.png',1,NULL),(4,'joao@mail.com','Joao Augusto','comum','202cb962ac59075b964b07152d234b70','joao',2,'joao.jpg',1,''),(5,'mateus@mail.com','Mateus Ferreira','comum','202cb962ac59075b964b07152d234b70','mateus',0,'mateus.jpg',1,''),(6,'fernanda@mail.com','Maria Fernanda','admin','202cb962ac59075b964b07152d234b70','fernanda',0,'9a6156ff2dffba008169b16280093033.jpeg',1,''),(7,'eunice@mail.com','Eunice Cardoso','comum','202cb962ac59075b964b07152d234b70','eunice',2,'1.jpg',1,''),(8,'maria@mail.com','Maria Julia','comum','202cb962ac59075b964b07152d234b70','maria',2,'2.jpg',1,''),(9,'rafaela@mail.com','Rafaela Campos','comum','202cb962ac59075b964b07152d234b70','rafaela',3,'cfd115d67330ff2f6dce6900db8c775d.jpg',1,''),(10,'marta@mail.com','Marta Helena','comum','202cb962ac59075b964b07152d234b70','marta',0,'4.jpg',1,''),(11,'talita@mail.com','Talita Fernandes','comum','202cb962ac59075b964b07152d234b70','talita',0,'5.jpg',1,''),(12,'romario@mail.com','Romario Vieira','comum','202cb962ac59075b964b07152d234b70','romario',0,'6.jpg',1,''),(13,'italo@mail.com','Italo FranÃ§a','comum','202cb962ac59075b964b07152d234b70','italo',0,'7.jpg',1,''),(14,'paulo@mail.com','Paulo Roberto','comum','202cb962ac59075b964b07152d234b70','paulo',0,'8.jpg',1,''),(15,'afasdfrcio.lima@gmail.com','Davi dos Santos Lima Pereira Luciene Lopes Pereira Lima','comum','dbe03058ce2e7ccbe55f8c937d69b542','12343124',0,NULL,NULL,''),(16,'testes@mail.com','testes','comum','dbe03058ce2e7ccbe55f8c937d69b542','testes',0,NULL,NULL,'');
+INSERT INTO `usuario` VALUES (1,'','Marcos Junior','comum','202cb962ac59075b964b07152d234b70','marcos',152,'bcc41e031efb9484396537be1e84a350.gif',1,NULL),(2,'laercio.lima@gmail.com','Laercio Lima','comum','202cb962ac59075b964b07152d234b70','laercio',42,'51ae814c6fe69bfedb0ce0818b68687b.png',1,NULL),(3,'llaercio.lima@gmail.com','lucas','comum','123','lucas',0,'8154861bed1a58c7ee644609afcfe0da.png',1,NULL),(4,'joao@mail.com','Joao Augusto','comum','202cb962ac59075b964b07152d234b70','joao',2,'joao.jpg',1,''),(5,'mateus@mail.com','Mateus Ferreira','comum','202cb962ac59075b964b07152d234b70','mateus',0,'mateus.jpg',1,''),(6,'fernanda@mail.com','Usuario Admin','admin','202cb962ac59075b964b07152d234b70','fernanda',0,'cf0957074cfb7e3af002b073f00ce14c.jpeg',1,''),(7,'eunice@mail.com','Eunice Cardoso','comum','202cb962ac59075b964b07152d234b70','eunice',2,'1.jpg',1,''),(8,'maria@mail.com','Maria Julia','comum','202cb962ac59075b964b07152d234b70','maria',2,'2.jpg',1,''),(9,'rafaela@mail.com','Rafaela Campos','comum','202cb962ac59075b964b07152d234b70','rafaela',3,'cfd115d67330ff2f6dce6900db8c775d.jpg',1,''),(10,'marta@mail.com','Marta Helena','comum','202cb962ac59075b964b07152d234b70','marta',0,'4.jpg',1,''),(11,'talita@mail.com','Talita Fernandes','comum','202cb962ac59075b964b07152d234b70','talita',0,'5.jpg',1,''),(12,'romario@mail.com','Romario Vieira','comum','202cb962ac59075b964b07152d234b70','romario',0,'6.jpg',1,''),(13,'italo@mail.com','Italo FranÃ§a','comum','202cb962ac59075b964b07152d234b70','italo',0,'7.jpg',1,''),(14,'paulo@mail.com','Paulo Roberto','comum','202cb962ac59075b964b07152d234b70','paulo',0,'8.jpg',1,''),(15,'afasdfrcio.lima@gmail.com','Davi dos Santos Lima Pereira Luciene Lopes Pereira Lima','comum','dbe03058ce2e7ccbe55f8c937d69b542','12343124',0,NULL,NULL,''),(16,'testes@mail.com','testes','comum','dbe03058ce2e7ccbe55f8c937d69b542','testes',0,NULL,NULL,'');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -200,4 +561,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-23 17:46:00
+-- Dump completed on 2018-04-13 10:36:57
