@@ -94,7 +94,7 @@ function cronometro() {
 
 function nextVideo() {
 
-    if (gravacao_atual_index == 8) {
+    if (gravacao_atual_index == gravacoes.length) {
         alert("acabou");
         return;
     }
@@ -107,7 +107,8 @@ function nextVideo() {
 
 
     var video = document.getElementById('video');
-    video.pause();
+    if(video)
+        video.pause();
 
     var mp4Vid = document.getElementById('mp4Source');
     var video_avaliacao = document.getElementById('video_player_avaliacao');

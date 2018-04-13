@@ -30,6 +30,7 @@ class SinalController {
         require_once('views/sinal/view.php');
     }
 
+
     public function add() {
         if (isset($_POST['video'])) {
 

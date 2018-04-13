@@ -1,4 +1,4 @@
-
+<script src="webroot/js/jogar.js" ></script>
 <script type="text/javascript">
     var gravacoes = [
 <?php
@@ -34,7 +34,7 @@ for ($i = 1; $i < count($gravacoes); $i++) {
                 <div id="tempo">10s</div> 
             </div>
             <div id="etapa_atividade">
-                1/10
+                1/<?php echo count($gravacoes); ?>
             </div>
 
         </div>

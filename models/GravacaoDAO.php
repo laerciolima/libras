@@ -177,6 +177,49 @@ group by gr.id
     }
 
 
+
+
+    public static function getGravacoesAleatoriasBySinal($fk_id_sinal, $fk_id_usuario){
+        $sql = "SELECT gr.*, count(av.id) as avaliacoes from gravacao as gr left outer join avaliacao as av
+        ON gr.id = av.fk_id_gravacao
+        WHERE gr.fk_id_usuario <> :fk_id_usuario
+        AND gr.fk_id_sinal = :fk_id_sinal
+        AND (av.fk_id_usuario is NULL OR av.fk_id_usuario <> :fk_id_usuario ) 
+        
+        
+        group by gr.id
+    order by avaliacoes, rand()
+
+    LIMIT 1";
+
+
+    //echo $sql;
+
+
+
+
+
+        $req = Db::getInstance()->prepare($sql);
+
+        echo $fk_id_usuario;
+        $req->bindValue("fk_id_usuario", $fk_id_usuario);
+        $req->bindValue("fk_id_sinal", $fk_id_sinal);
+        //$req->bindValue(":limit", $limit);
+        $req->execute();
+
+
+        $gravacao = new Gravacao();
+
+        foreach ($req->fetchAll() as $linha) {
+            $gravacao = GravacaoDAO::popular($linha);
+        }
+
+        return $gravacao;
+
+    }
+
+
+
     public static function respostaCorreta($fk_id_sinal, $resposta){
         return true;
     }

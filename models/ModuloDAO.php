@@ -29,6 +29,27 @@ group by m.id');
         return $lista;
     }
 
+
+    public static function listAll() {
+        $lista = [];
+
+        $req = Db::getInstance()->query('SELECT * from modulo');
+
+        // we create a list of Post objects from the database results
+        foreach ($req->fetchAll() as $linha) {
+            $modulo = new Modulo();
+
+            $modulo->setId($linha['id']);
+            $modulo->setNome($linha['nome']);
+            $modulo->setDescricao($linha['descricao']);
+            $modulo->setNivel($linha['nivel']);
+
+            $lista[] = $modulo;
+        }
+
+        return $lista;
+    }
+
     public static function find($id) {
         // we make sure $id is an integer
 

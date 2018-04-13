@@ -7,9 +7,10 @@ class CategoriaController
     {
         // we store all the posts in a variable
         if (!isset($_GET['modulo'])) {
-            return call('pages', 'error');
-        }
-        $categorias = CategoriaDAO::listByModulo($_GET['modulo']);
+            $categorias = CategoriaDAO::all();    
+        }else
+            $categorias = CategoriaDAO::listByModulo($_GET['modulo']);
+            
         require_once 'views/categoria/index.php';
 
     }

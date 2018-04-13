@@ -129,7 +129,7 @@ class GravacaoController {
             sort($opcoes, SORT_STRING);
             $gravacoes[$i]->setOpcoes($opcoes);
 
-        }
+       }
 
         require_once('views/pages/jogar.php');
     }

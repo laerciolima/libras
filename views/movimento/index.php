@@ -22,7 +22,7 @@
         <?php foreach ($movimentos as $movimento) { ?>
             <tr>
                 <td><?php echo $movimento->getId();?> </td>                <td><a href="?controller=movimento&action=view&id=<?php echo $movimento->getId();?>"><?php echo $movimento->getNome(); ?></a></td>
-                <td><?php echo $movimento->getImagem(); ?></td>
+                <td><img src="/libras/storage/imagens/movimento/<?php echo $movimento->getImagem(); ?>" width=32 /></td>
                 <td><button type="button" onclick="location.href='?controller=movimento&action=edit&id=<?php echo base64_encode($movimento->getId());?>';" class="btn btn-default btn-xs">Editar</button>
                     <button type="button" onclick="javascript:remover('?controller=movimento&action=delete&id=<?php echo base64_encode($movimento->getId());?>');" class="btn btn-danger btn-xs">Remover</button>
                     

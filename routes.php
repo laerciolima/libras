@@ -51,9 +51,29 @@ function call($controller, $action) {
             // we need the model to query the database later in the controller
             $controller = new MovimentoController();
             break;
+        case 'configuracaoDeMao':
+            // we need the model to query the database later in the controller
+            $controller = new ConfiguracaoDeMaoController();
+            break;
+        case 'expressaoFacial':
+            // we need the model to query the database later in the controller
+            $controller = new ExpressaoFacialController();
+            break;
+         case 'pontoDeArticulacao':
+            // we need the model to query the database later in the controller
+            $controller = new PontoDeArticulacaoController();
+            break;
         case 'sinal':
             // we need the model to query the database later in the controller
             $controller = new SinalController();
+            break;
+        case 'atividade':
+            // we need the model to query the database later in the controller
+            require_once('models/ModuloDAO.php');
+            require_once('models/SinalDAO.php');
+            require_once('models/GravacaoDAO.php');
+            require_once('models/CategoriaDAO.php');
+            $controller = new AtividadeController();
             break;
         case 'avaliacao':
             // we need the model to query the database later in the controller
@@ -112,6 +132,10 @@ $controllers = array('pages' => ['home', 'error','avaliar', 'amigos', 'gravar'],
     'avaliacao' => ['index', 'add', 'edit', 'view','delete'],
     'gravacao' => ['index', 'add', 'edit', 'view','delete','play', 'verificarResposta', 'meusVideos'],
     'movimento' => ['index', 'add', 'edit', 'view','delete'],
+    'atividade' => ['index', 'add', 'edit', 'view','delete', 'lista', 'play'],
+    'configuracaoDeMao' => ['index', 'add', 'edit', 'view','delete'],
+    'pontoDeArticulacao' => ['index', 'add', 'edit', 'view','delete'],
+    'expressaoFacial' => ['index', 'add', 'edit', 'view','delete'],
     'badge' => ['index', 'add', 'edit', 'view','delete'],
     'login' => ['login', 'logout'],
     'posts' => ['index', 'show' ]);

@@ -38,10 +38,7 @@
         <th>SinalDefinePesoInicial</th>
         <td><?php echo $sinal->getSinalDefinePesoInicial()?></td>
     </tr>
-    <tr align="left">
-        <th>Modulo_id</th>
-        <td><?php echo $sinal->getModulo_id()?></td>
-    </tr>
+    
     <tr align="left">
         <th>UtilizacaoDasMaos</th>
         <td><?php echo $sinal->getUtilizacaoDasMaos()?></td>
