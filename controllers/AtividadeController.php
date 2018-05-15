@@ -62,24 +62,22 @@ class AtividadeController
         $gravacoes = [];
 
         $atividade = AtividadeDAO::listSinais($fk_id_atividade);
-    
-
+        
         foreach ($atividade->getSinais() as $sinal) {
             $gravacoes[] = GravacaoDAO::getGravacoesAleatoriasBySinal($sinal, $usuario_logado['id']);
+            if(empty($gravacoes[count($gravacoes)-1]->getId()))
+                array_pop($gravacoes);
         }
-
-
         for ($i = 0; $i < count($gravacoes); $i++) {
             $sinal = SinalDAO::find($gravacoes[$i]->getFk_id_sinal());
             $opcoes = [];
-            echo $sinal->getNome() . "-";
             $opcoes[] = $sinal->getNome();
             $opcoes = array_merge($opcoes, CategoriaDAO::getOpcoes($sinal->getId(), $sinal->getCategoria_id()));
             sort($opcoes, SORT_STRING);
             $gravacoes[$i]->setOpcoes($opcoes);
 
         }
-
+        
         require_once 'views/pages/jogar.php';
     }
 

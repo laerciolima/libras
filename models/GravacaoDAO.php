@@ -92,7 +92,7 @@ class GravacaoDAO {
     public static function getGravacoesByUsuario($id) {
         $lista = [];
 
-        $sql = "SELECT gr.*, s.nome, count(av.id) as qntd_av FROM jt.gravacao gr
+        $sql = "SELECT gr.*, s.nome, count(av.id) as qntd_av FROM gravacao gr
 left JOIN avaliacao av
 ON gr.id = av.fk_id_gravacao
 inner join sinal s 
@@ -184,9 +184,6 @@ group by gr.id
         ON gr.id = av.fk_id_gravacao
         WHERE gr.fk_id_usuario <> :fk_id_usuario
         AND gr.fk_id_sinal = :fk_id_sinal
-        AND (av.fk_id_usuario is NULL OR av.fk_id_usuario <> :fk_id_usuario ) 
-        
-        
         group by gr.id
     order by avaliacoes, rand()
 
@@ -201,7 +198,6 @@ group by gr.id
 
         $req = Db::getInstance()->prepare($sql);
 
-        echo $fk_id_usuario;
         $req->bindValue("fk_id_usuario", $fk_id_usuario);
         $req->bindValue("fk_id_sinal", $fk_id_sinal);
         //$req->bindValue(":limit", $limit);
@@ -213,7 +209,6 @@ group by gr.id
         foreach ($req->fetchAll() as $linha) {
             $gravacao = GravacaoDAO::popular($linha);
         }
-
         return $gravacao;
 
     }

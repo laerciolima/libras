@@ -13,7 +13,7 @@
     </div><div class="form-group">
         <label class="control-label col-sm-2" for="imagem">Imagem:</label>
         <div class="col-sm-4">
-            <input type="text" class="form-control" name="imagem" id="imagem" placeholder="Digite o imagem">
+            <input type="file" class="form-control" name="imagem" id="imagem">
         </div>
     </div>  <div class="form-group"> 
     <div class="col-sm-offset-2 col-sm-10">

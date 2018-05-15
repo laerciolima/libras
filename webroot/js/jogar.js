@@ -93,9 +93,10 @@ function cronometro() {
 }
 
 function nextVideo() {
-
-    if (gravacao_atual_index == gravacoes.length) {
+    console.log('TAM GRAV', gravacoes.length)
+    if (gravacao_atual_index == (gravacoes.length-1)) {
         alert("acabou");
+        //chama api pra finalizar a tarefa
         return;
     }
     tempo = 10;

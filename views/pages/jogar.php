@@ -79,7 +79,7 @@ for ($i = 1; $i < count($gravacoes); $i++) {
             Your browser does not support the video tag.
         </video>
 
-        <input id="sinal_avaliacao" name="sinal_avaliacao" type="text" value=""/> 
+        <input id="sinal_avaliacao" name="sinal_avaliacao" type="hidden" value=""/> 
 
         <div class="row">
             <div class="form-group col-xs-6">

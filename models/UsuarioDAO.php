@@ -168,7 +168,7 @@ WHERE (a.fk_id_usuario1 = :id OR a.fk_id_usuario2 = :id) and a.pendente = 0
         $lista = [];
 
 
-        $req1 = Db::getInstance()->prepare('SELECT * FROM jt.amizade
+        $req1 = Db::getInstance()->prepare('SELECT * FROM amizade
 WHERE (fk_id_usuario1 = :id1 and fk_id_usuario2 = :id2) or 
         (fk_id_usuario1 = :id2 and fk_id_usuario2 = :id1) ');
         // the query was prepared, now we replace :id with our actual $id value

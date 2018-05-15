@@ -7,7 +7,7 @@ class ModuloDAO {
     public static function all($fk_id_usuario) {
         $lista = [];
 
-        $req = Db::getInstance()->query('SELECT m.*, count(s.id) as qntd_sinais FROM jt.modulo m
+        $req = Db::getInstance()->query('SELECT m.*, count(s.id) as qntd_sinais FROM modulo m
 INNER JOIN categoria cat on cat.fk_id_modulo = m.id
 INNER JOIN sinal s on s.categoria_id = cat.id
 group by m.id');
@@ -67,7 +67,7 @@ group by m.id');
      public static function getSinaisAprendidos($fk_id_modulo, $fk_id_usuario) {
         // we make sure $id is an integer
 
-        $req = Db::getInstance()->prepare('SELECT count(DISTINCT s.id) as qntd_acertados FROM jt.modulo m
+        $req = Db::getInstance()->prepare('SELECT count(DISTINCT s.id) as qntd_acertados FROM modulo m
 INNER JOIN categoria cat on cat.fk_id_modulo = m.id
 INNER JOIN sinal s on s.categoria_id = cat.id
 INNER JOIN gravacao g on g.fk_id_sinal = s.id

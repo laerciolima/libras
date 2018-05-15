@@ -103,7 +103,7 @@ GROUP BY atv.id;
 
 
     public static function listSinais($fk_id_atividade) {
-        $lista = [];
+        $lista = array();
 
         $req = Db::getInstance()->prepare('SELECT * FROM atividade_sinal
                                         WHERE fk_id_atividade = :fk_id_atividade');
