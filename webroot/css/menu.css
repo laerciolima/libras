@@ -1,0 +1,44 @@
+/* CSSTerm.com Simple Horizontal DropDown CSS menu */
+
+.drop_menu {
+    background: #236B8E;
+	padding:0;
+	margin:0;
+	list-style-type:none;
+	height:30px;
+        border-bottom: 1px #fff ridge
+}
+.drop_menu li { float:left; }
+.drop_menu li a {
+	padding:9px 20px;
+	display:block;
+	color:#fff;
+	text-decoration:none;
+	font-size: 12px
+}
+
+/* Submenu */
+.drop_menu ul {
+	position:absolute;
+	left:-9999px;
+	top:-9999px;
+	list-style-type:none;
+}
+.drop_menu li:hover { position:relative; background: white;}
+.drop_menu li:hover a {color: #236B8E;}
+.drop_menu li:hover ul {
+	left:0px;
+	top:30px;
+	background:white;
+	padding:0px;
+        border-bottom: 1px #236B8E solid
+}
+
+.drop_menu li:hover ul li a {
+	padding:5px;
+	display:block;
+	width:168px;
+	text-indent:15px;
+	background-color:white;
+}
+.drop_menu li:hover ul li a:hover { background-color: #e0e0e0; }
