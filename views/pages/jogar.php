@@ -2,13 +2,14 @@
 <script type="text/javascript">
     var gravacoes = [
 <?php
-echo "new Gravacao(" . $gravacoes[0]->getId() . ",'storage/videos/users/" . $gravacoes[0]->getFk_id_usuario() . "/" . $gravacoes[0]->getVideo() . "'," . $gravacoes[0]->getFk_id_usuario() . "," . $gravacoes[0]->getFk_id_sinal() . ")";
+echo "new Gravacao(" . $gravacoes[0]->getId() . ",'storage/videos/users/" . $gravacoes[0]->getFk_id_usuario() . "/" . $gravacoes[0]->getVideo() . "'," . $gravacoes[0]->getFk_id_usuario() . "," . $gravacoes[0]->getFk_id_sinal() . ", '".$gravacoes[0]->getVideoOriginal()."')";
 for ($i = 1; $i < count($gravacoes); $i++) {
-    echo ", new Gravacao(" . $gravacoes[$i]->getId() . ",'storage/videos/users/" . $gravacoes[$i]->getFk_id_usuario() . "/" . $gravacoes[$i]->getVideo() . "'," . $gravacoes[$i]->getFk_id_usuario() . "," . $gravacoes[$i]->getFk_id_sinal() . ")";
+    echo ", new Gravacao(" . $gravacoes[$i]->getId() . ",'storage/videos/users/" . $gravacoes[$i]->getFk_id_usuario() . "/" . $gravacoes[$i]->getVideo() . "'," . $gravacoes[$i]->getFk_id_usuario() . "," . $gravacoes[$i]->getFk_id_sinal() . ", '".$gravacoes[$i]->getVideoOriginal()."')";
 }
 ?>
     ];
 
+    console.log(gravacoes);
     var lista_de_opcoes = [
 
 <?php
@@ -18,6 +19,12 @@ for ($i = 1; $i < count($gravacoes); $i++) {
 }
 ?>
     ];
+
+
+    var tempo_modulo = <?php echo $modulo->getTempo(); ?>;
+    
+
+
     console.log(lista_de_opcoes);
 </script>
 
@@ -73,11 +80,26 @@ for ($i = 1; $i < count($gravacoes); $i++) {
         <img src="webroot/img/sinal_incorreto.jpg" width="150" class="img-responsive center-block"/>
     </div>
     <form id="avaliacao_sinal" style="display: none;">
-
-        <video controls autoplay="true" class="video_player" class="embed-responsive-item">
-            <source id="video_player_avaliacao" src="storage/videos/users/1/madrugada.mp4" type="video/mp4">
+<div class="row">
+<div class="col-sm-6">
+        
+        <video controls autoplay="true" class="video_player"  id="video_player_avaliacao" class="embed-responsive-item">
+            <source id="source_avaliacao" src="" type="video/mp4">
             Your browser does not support the video tag.
         </video>
+    </div>
+
+<div class="col-sm-6">
+    
+        <video controls autoplay="true" id="video_sinal_original" class="video_player" class="embed-responsive-item">
+            <source id="source_avaliacao_original" src="" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+
+
+        </div>
 
         <input id="sinal_avaliacao" name="sinal_avaliacao" type="hidden" value=""/> 
 

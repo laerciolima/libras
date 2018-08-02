@@ -47,6 +47,26 @@ class AvaliacaoDAO {
 
     }
 
+
+    public static function verificaSinalAprendido($sinal, $usuario) {
+        // we make sure $id is an integer
+
+        $req = Db::getInstance()->prepare('select av.* from avaliacao as av
+        inner join gravacao as gr on gr.id = av.fk_id_gravacao and acertado = 1
+        where av.fk_id_usuario = :usuario and gr.fk_id_sinal = :sinal');
+        // the query was prepared, now we replace :id with our actual $id value
+        $req->bindValue(":sinal", $sinal);
+        $req->bindValue(":usuario", $usuario);
+
+
+        $req->execute();
+
+        return AvaliacaoDAO::popular($req->fetch());
+
+    }
+
+
+
     public static function delete($id) {
         // we make sure $id is an integer
 

@@ -1,53 +1,27 @@
 <div class="container">
 	<div class="row">
-		<div class="col-sm-4 col-md-4 user-details">
-            <div class="user-image">
-                <img src="http://www.gravatar.com/avatar/2ab7b2009d27ec37bffee791819a090c?s=100&d=mm&r=g" alt="Karan Singh Sisodia" title="Karan Singh Sisodia" class="img-circle">
-            </div>
-            <div class="user-info-block">
-                <div class="user-heading">
-                    <h3>Karan Singh Sisodia</h3>
-                    <span class="help-block">Chandigarh, IN</span>
-                </div>
-                <ul class="navigation">
-                    <li class="active">
-                        <a data-toggle="tab" href="#information">
-                            <span class="glyphicon glyphicon-user"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a data-toggle="tab" href="#settings">
-                            <span class="glyphicon glyphicon-cog"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a data-toggle="tab" href="#email">
-                            <span class="glyphicon glyphicon-envelope"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a data-toggle="tab" href="#events">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                        </a>
-                    </li>
-                </ul>
-                <div class="user-body">
-                    <div class="tab-content">
-                        <div id="information" class="tab-pane active">
-                            <h4>Account Information</h4>
+    <table class="table col-xs-12">
+        <tbody>
+            <tr>
+                <td style="width: 120px" rowspan="2" ><img src="storage/imagens/users/<?php echo $usuario->getImagem(); ?>" class="img-responsive center-block rounded img-circle" alt="Cinque Terre" style="max-height: 100px; max-width: 100px"></td>
+                <td style="width: 150px"><a href="#"><?php echo $usuario->getNome(); ?></a></td>
+                <td><?php echo $usuario->getUsuario(); ?></td>
+            </tr>
+            <tr>
+                <td><div class="progress">
+                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="90"
+                             aria-valuemin="0" aria-valuemax="100" style="width:<?php echo ($usuario->getPontuacao()*100) / $_SESSION['total_sinais_cadastrados']  ?>%">
+                            <?php echo $usuario->getPontuacao()."/".$_SESSION['total_sinais_cadastrados']; ?>
                         </div>
-                        <div id="settings" class="tab-pane">
-                            <h4>Settings</h4>
-                        </div>
-                        <div id="email" class="tab-pane">
-                            <h4>Send Message</h4>
-                        </div>
-                        <div id="events" class="tab-pane">
-                            <h4>Events</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+                    </div> </td>
+
+                    <?php if (!$usuario->isAmigo()) { ?>
+                    <td><button type="button" id="solicitarAmizade<?php echo $usuario->getId();?>" onclick="solicitarAmizade(<?php echo $usuario->getId();?>)" class="btn btn-xs btn-link glyphicon glyphicon-plus-sign"> add</button></td>
+
+                    <?php } ?>
+            </tr>
+        </tbody>
+    </table>
 	</div>
 </div>

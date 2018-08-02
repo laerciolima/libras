@@ -1,4 +1,5 @@
-tempo = 10;
+tempo_modulo = 10;
+tempo = tempo_modulo;
 var intervalo = null;
 
 gravacoes = [];
@@ -7,11 +8,12 @@ var gravacao_atual_index = -1;
 var opcoes;
 
 var Gravacao = class Gravacao {
-    constructor(id, video, fk_id_usuario, fk_id_sinal) {
+    constructor(id, video, fk_id_usuario, fk_id_sinal, video_sinal) {
         this.id = id;
         this.video = video;
         this.fk_id_usuario = fk_id_usuario;
         this.fk_id_sinal = fk_id_sinal;
+        this.video_sinal = video_sinal
     }
 }
 
@@ -19,14 +21,7 @@ var Gravacao = class Gravacao {
 
 $(document).ready(function () {
     nextVideo();
-    $("video").bind("ended", function () {
-        if (intervalo == null) {
-            intervalo = setInterval(function () {
-                cronometro()
-            }, 1000);
-        }
-    });
-
+    
 
     $("#addAvaliacao").click(function (e) {
 
@@ -78,13 +73,6 @@ function cronometro() {
 
 
 
-        $("#video").bind("ended", function () {
-            if (intervalo == null) {
-                intervalo = setInterval(function () {
-                    cronometro()
-                }, 1000);
-            }
-        });
 
         nextVideo()
     }
@@ -99,8 +87,8 @@ function nextVideo() {
         //chama api pra finalizar a tarefa
         return;
     }
-    tempo = 10;
-    $("#tempo").html("10s");
+    tempo = tempo_modulo;
+    $("#tempo").html(tempo);
     $("#tempo").css("color", "white");
     gravacao = gravacoes[++gravacao_atual_index];
     opcoes = lista_de_opcoes[gravacao_atual_index];
@@ -112,14 +100,23 @@ function nextVideo() {
         video.pause();
 
     var mp4Vid = document.getElementById('mp4Source');
+    
     var video_avaliacao = document.getElementById('video_player_avaliacao');
+    var mp4avaliacao = document.getElementById('source_avaliacao');
+
+    var video_avaliacao_original = document.getElementById('video_sinal_original');
+    var mp4avaliacao_original = document.getElementById('source_avaliacao_original');
+
 
     // Now simply set the 'src' property of the mp4Vid variable!!!!
 
     $("#etapa_atividade").html((gravacao_atual_index+1)+"/"+gravacoes.length)
 
     mp4Vid.src = gravacao.video;
-    video_avaliacao.src = gravacao.video;
+    mp4avaliacao.src = gravacao.video;
+    video_avaliacao.load();
+    mp4avaliacao_original.src = "storage/videos/sinais/"+gravacao.video_sinal;
+    video_avaliacao_original.load();
     video.load();
     video.play();
 
@@ -127,6 +124,16 @@ function nextVideo() {
         $("#opt" + i).html(opcoes[i]);
 
     }
+
+    $("#video").bind("ended", function () {
+        
+        if (intervalo == null) {
+          
+            intervalo = setInterval(function () {
+                cronometro()
+            }, 1000);
+        }
+    });
 
 
 }
@@ -172,7 +179,7 @@ function validar(num) {
                         });
                     }
 
-
+console.log(txt);
 
                     //$('#resposta_incorreta').hide(5000)
                     //$('#resposta_correta').hide(5000)
@@ -190,17 +197,10 @@ function validar(num) {
 
     clearInterval(intervalo);
     intervalo = null;
-    tempo = 10;
-    $("#tempo").html("10s");
+    tempo = tempo;
+    $("#tempo").html(tempo);
 
-    $("#video").bind("ended", function () {
-        if (intervalo == null) {
-            intervalo = setInterval(function () {
-                cronometro()
-            }, 1000);
-        }
-    });
-
+    
 }
 
 

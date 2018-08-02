@@ -41,6 +41,7 @@ function call($controller, $action) {
         case 'gravacao':
             // we need the model to query the database later in the controller
             require_once('models/CategoriaDAO.php');
+            require_once('models/ModuloDAO.php');
             require_once('models/SinalDAO.php');
             require_once('models/UsuarioDAO.php');
             require_once('models/AvaliacaoDAO.php');

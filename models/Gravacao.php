@@ -9,6 +9,7 @@ class Gravacao{
     private $fk_id_usuario;
     private $opcoes = [];
     private $qntd_avaliacao;
+    private $video_original;
 
 
     
@@ -77,6 +78,15 @@ function setId ($id){
 
     public function setQntdAv($qntd_avaliacao) {
         $this->qntd_avaliacao = $qntd_avaliacao;
+    }
+
+    public function getVideoOriginal() {
+        
+        return $this->video_original;
+    }
+
+    public function setVideoOriginal($video_original) {
+        $this->video_original = $video_original;
     }
 
 }

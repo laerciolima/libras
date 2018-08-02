@@ -19,7 +19,8 @@ class UsuarioController {
 
     public function index() {
         // we store all the posts in a variable
-        $usuarios = UsuarioDAO::all();
+        
+        $usuarios = UsuarioDAO::find();
 
         require_once('views/usuario/index.php');
     }
@@ -213,7 +214,7 @@ class UsuarioController {
     }
 
 
-    function addPontuacao($pontuacao){
+    function addPontuacao(){
         $usuario_logado = $_SESSION['login_object'];
 
         $usuario = new Usuario();

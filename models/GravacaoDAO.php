@@ -84,6 +84,8 @@ class GravacaoDAO {
         $gravacao->setVideo($linha['video']);
         $gravacao->setFk_id_sinal($linha['fk_id_sinal']);
         $gravacao->setFk_id_usuario($linha['fk_id_usuario']);
+        if(isset($linha['video_original']))
+            $gravacao->setVideoOriginal($linha['video_original']);
 
         return $gravacao;
     }
@@ -130,7 +132,7 @@ group by gr.id
 
 
     public static function getGravacoesAleatorias($type, $id, $id_usuario, $limit){
-        $sql = "SELECT gr.*, count(av.id) as avaliacoes from gravacao as gr left outer join avaliacao as av
+        $sql = "SELECT gr.*, sn.video as video_original, count(av.id) as avaliacoes from gravacao as gr left outer join avaliacao as av
         ON gr.id = av.fk_id_gravacao
     inner join sinal as sn
         ON gr.fk_id_sinal = sn.id
@@ -153,10 +155,6 @@ group by gr.id
     LIMIT 8";
 
 
-    //echo $sql;
-
-
-
 
 
         $req = Db::getInstance()->prepare($sql);
@@ -171,7 +169,7 @@ group by gr.id
         foreach ($req->fetchAll() as $linha) {
             $lista[] = GravacaoDAO::popular($linha);
         }
-
+        
         return $lista;
 
     }
@@ -180,7 +178,7 @@ group by gr.id
 
 
     public static function getGravacoesAleatoriasBySinal($fk_id_sinal, $fk_id_usuario){
-        $sql = "SELECT gr.*, count(av.id) as avaliacoes from gravacao as gr left outer join avaliacao as av
+        $sql = "SELECT gr.*, sn.video as video_original, count(av.id) as avaliacoes from gravacao as gr left outer join avaliacao as av
         ON gr.id = av.fk_id_gravacao
         WHERE gr.fk_id_usuario <> :fk_id_usuario
         AND gr.fk_id_sinal = :fk_id_sinal
