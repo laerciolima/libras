@@ -11,8 +11,6 @@ class Gravacao{
     private $qntd_avaliacao;
     private $video_original;
 
-
-    
 function setId ($id){
         
         $this->id=$id;

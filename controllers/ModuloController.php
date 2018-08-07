@@ -43,6 +43,7 @@ class ModuloController {
             $modulo->setNivel($_POST["nivel"]);
             $modulo->setTempo($_POST["tempo"]);
 
+
             if (ModuloDAO::add($modulo)) {
                 $_SESSION['success'] = "Modulo cadastrado com sucesso!";
                 echo "<meta http-equiv=\"Refresh\" content=\"0; url=?controller=modulo&action=index\">";

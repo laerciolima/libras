@@ -87,6 +87,7 @@ class GravacaoDAO {
         if(isset($linha['video_original']))
             $gravacao->setVideoOriginal($linha['video_original']);
 
+
         return $gravacao;
     }
 
@@ -133,6 +134,7 @@ group by gr.id
 
     public static function getGravacoesAleatorias($type, $id, $id_usuario, $limit){
         $sql = "SELECT gr.*, sn.video as video_original, count(av.id) as avaliacoes from gravacao as gr left outer join avaliacao as av
+
         ON gr.id = av.fk_id_gravacao
     inner join sinal as sn
         ON gr.fk_id_sinal = sn.id

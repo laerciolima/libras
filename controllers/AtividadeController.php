@@ -42,7 +42,6 @@ class AtividadeController
         if (!isset($_GET['modulo'])) {
             return call('page', 'error');
         }
-        echo "lista";
         // we use the given id to get the right post
         $atividades = AtividadeDAO::listByModulo($_GET['modulo']);
         require_once 'views/atividade/lista.php';

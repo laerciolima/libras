@@ -18,8 +18,7 @@ class UsuarioController {
 
 
     public function index() {
-        // we store all the posts in a variable
-        
+        // we store all the posts in a variable        
         $usuarios = UsuarioDAO::find();
 
         require_once('views/usuario/index.php');

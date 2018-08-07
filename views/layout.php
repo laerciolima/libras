@@ -133,7 +133,6 @@
 
                                 
                         ?>
-
                         <li><a href="?controller=usuario&action=amigos"><span class="glyphicon glyphicon-user"></span> Amigos</a></li>
 
                             <li><a href="?controller=gravacao&action=meusVideos"><span class="glyphicon glyphicon-film"></span> Meus vídeos</a></li>

@@ -47,7 +47,6 @@ class AvaliacaoDAO {
 
     }
 
-
     public static function verificaSinalAprendido($sinal, $usuario) {
         // we make sure $id is an integer
 

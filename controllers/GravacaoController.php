@@ -127,7 +127,6 @@ class GravacaoController {
             $modulo = ModuloDAO::find(CategoriaDAO::find($id)->getFk_id_modulo());
         }
 
-        
         for($i= 0; $i < count($gravacoes); $i++){
             $sinal = SinalDAO::find($gravacoes[$i]->getFk_id_sinal());
             $opcoes = [];
@@ -148,6 +147,7 @@ class GravacaoController {
       $resposta =  $_POST['resposta'];
 
       if(SinalDAO::respostaCorreta($fk_id_sinal, $resposta)){
+
         $usuario_logado =  $_SESSION['login_object'];
 
         if(!AvaliacaoDAO::verificaSinalAprendido(148, $usuario_logado['id'])){
@@ -155,6 +155,7 @@ class GravacaoController {
             $usuarioController->addPontuacao(10);
         }
         
+
         echo "verificarResposta=true";
       }else{
         echo "false";
