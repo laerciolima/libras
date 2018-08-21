@@ -67,6 +67,7 @@ class AtividadeController
             if(empty($gravacoes[count($gravacoes)-1]->getId()))
                 array_pop($gravacoes);
         }
+        print_r($gravacoes);
         for ($i = 0; $i < count($gravacoes); $i++) {
             $sinal = SinalDAO::find($gravacoes[$i]->getFk_id_sinal());
             $opcoes = [];

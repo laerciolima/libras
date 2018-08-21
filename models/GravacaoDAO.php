@@ -182,17 +182,14 @@ group by gr.id
     public static function getGravacoesAleatoriasBySinal($fk_id_sinal, $fk_id_usuario){
         $sql = "SELECT gr.*, sn.video as video_original, count(av.id) as avaliacoes from gravacao as gr left outer join avaliacao as av
         ON gr.id = av.fk_id_gravacao
+        inner join sinal as sn
+            ON gr.fk_id_sinal = sn.id
         WHERE gr.fk_id_usuario <> :fk_id_usuario
         AND gr.fk_id_sinal = :fk_id_sinal
         group by gr.id
     order by avaliacoes, rand()
 
     LIMIT 1";
-
-
-    //echo $sql;
-
-
 
 
 
