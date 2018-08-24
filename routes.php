@@ -66,6 +66,9 @@ function call($controller, $action) {
             break;
         case 'sinal':
             // we need the model to query the database later in the controller
+            require_once('models/ExpressaoFacialDAO.php');
+            require_once('models/PontoDeArticulacaoDAO.php');
+            require_once('models/ModuloDAO.php');
             $controller = new SinalController();
             break;
         case 'atividade':

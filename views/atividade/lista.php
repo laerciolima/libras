@@ -15,7 +15,7 @@
                 </div>
                 <div class="panel-footer">
                     Pontuação: <?php echo $atividade->getPontuacao() ?>
-                    <button type="button" class="btn btn-default btn-block" onclick="location.href = '?controller=atividade&action=play&id=<?php echo $atividade->getId(); ?>'"><span class="glyphicon glyphicon-play"></span> Praticar</button>
+                    <button type="button" class="btn btn-default btn-block" onclick="location.href = '?controller=atividade&action=play&id=<?php echo $atividade->getId(); ?>&modulo=<?php echo $_GET['modulo']; ?>'"><span class="glyphicon glyphicon-play"></span> Praticar</button>
 
                 </div>
             </div>

@@ -55,6 +55,10 @@ class SinalController {
                 $_SESSION['error'] = "Ocorreu um erro no cadastro!";
             }
         }
+        $expressoes = ExpressaoFacialDAO::all();
+        $articulacoes = PontoDeArticulacaoDAO::all();
+        $modulos = ModuloDAO::listAll();
+        print_r($modulos);
         require_once('views/sinal/add.php');
     }
 

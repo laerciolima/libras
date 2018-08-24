@@ -13,27 +13,43 @@
     </div><div class="form-group">
         <label class="control-label col-sm-2" for="video">Video:</label>
         <div class="col-sm-4">
-            <input type="text" class="form-control" name="video" id="video" placeholder="Digite o video">
+            <input type="file" class="form-control" name="video" id="video" placeholder="Digite o video">
         </div>
     </div><div class="form-group">
         <label class="control-label col-sm-2" for="foto">Foto:</label>
         <div class="col-sm-4">
-            <input type="text" class="form-control" name="foto" id="foto" placeholder="Digite o foto">
+            <input type="file" class="form-control" name="foto" id="foto" placeholder="Digite o foto">
         </div>
     </div><div class="form-group">
         <label class="control-label col-sm-2" for="orientacao">Orientacao:</label>
         <div class="col-sm-4">
-            <input type="text" class="form-control" name="orientacao" id="orientacao" placeholder="Digite o orientacao">
+            <select name="orientacao" id="orientacao" class="form-control">
+                <option>pra cima</option>
+                <option>pra baixo</option>
+                <option>pra dentro</option>
+                <option>pra fora</option>
+                <option>pra esquerda</option>
+                <option>pra direita</option>
+            </select>
         </div>
     </div><div class="form-group">
-        <label class="control-label col-sm-2" for="expressaofacial_idexpressaofacial">ExpressaoFacial_idExpressaoFacial:</label>
+        <label class="control-label col-sm-2" for="expressaofacial_idexpressaofacial">Expressão Facial:</label>
         <div class="col-sm-4">
-            <input type="text" class="form-control" name="expressaofacial_idexpressaofacial" id="expressaofacial_idexpressaofacial" placeholder="Digite o expressaofacial_idexpressaofacial">
+            <select  name="expressaofacial_idexpressaofacial" id="expressaofacial_idexpressaofacial" class="form-control">
+            <?php foreach ($expressoes as $expressao ){ ?>
+                    <option value="<?php echo $expressao->getId();?>"><?php echo $expressao->getNome();?></option>
+            <?php } ?>
+            </select>
+
         </div>
     </div><div class="form-group">
-        <label class="control-label col-sm-2" for="pontodearticulacao_idpontodearticulacao">PontoDeArticulacao_idPontoDeArticulacao:</label>
+        <label class="control-label col-sm-2" for="pontodearticulacao_idpontodearticulacao">Ponto de articulação:</label>
         <div class="col-sm-4">
-            <input type="text" class="form-control" name="pontodearticulacao_idpontodearticulacao" id="pontodearticulacao_idpontodearticulacao" placeholder="Digite o pontodearticulacao_idpontodearticulacao">
+                <select  class="form-control" name="pontodearticulacao_idpontodearticulacao" id="pontodearticulacao_idpontodearticulacao">
+                        <?php foreach ($articulacoes as $articulacao ){ ?>
+                            <option value="<?php echo $articulacao->getId();?>"><?php echo $articulacao->getNome();?></option>
+                    <?php } ?>
+                    </select>
         </div>
     </div><div class="form-group">
         <label class="control-label col-sm-2" for="sinaldefinepesoinicial">SinalDefinePesoInicial:</label>
@@ -43,7 +59,11 @@
     </div><div class="form-group">
         <label class="control-label col-sm-2" for="modulo_id">Modulo_id:</label>
         <div class="col-sm-4">
-            <input type="text" class="form-control" name="modulo_id" id="modulo_id" placeholder="Digite o modulo_id">
+                <select   class="form-control" name="modulo_id" id="modulo_id">
+                        <?php foreach ($modulos as $modulo ){ ?>
+                            <option value="<?php echo $modulo->getId();?>"><?php echo $modulo->getNome();?></option>
+                    <?php } ?>
+                    </select>
         </div>
     </div><div class="form-group">
         <label class="control-label col-sm-2" for="utilizacaodasmaos">UtilizacaoDasMaos:</label>

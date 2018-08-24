@@ -147,5 +147,14 @@ GROUP BY atv.id;
         return $atividade;
     }
 
+    public static function finalizarAtividade($fk_id_atividade, $fk_id_usuario){
+        $req = Db::getInstance()->prepare("INSERT INTO atividade_usuario (fk_id_atividade, fk_id_usuario) VALUES (:atividade,:usuario)");
+
+        $req->bindValue(":atividade", $fk_id_atividade);
+        $req->bindValue(":sinal", $fk_id_usuario);
+        return $req->execute();
+
+    }
+
 
 }

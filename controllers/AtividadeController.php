@@ -55,6 +55,11 @@ class AtividadeController
             call('pages', 'error');
         }
 
+        if(isset($_GET['modulo'])){
+            $id = $_GET['modulo'];
+        }
+
+        $modulo = ModuloDAO::find($id);
         $fk_id_atividade = $_GET['id'];
 
         $usuario_logado = $_SESSION['login_object'];
@@ -67,17 +72,18 @@ class AtividadeController
             if(empty($gravacoes[count($gravacoes)-1]->getId()))
                 array_pop($gravacoes);
         }
-        print_r($gravacoes);
+        
         for ($i = 0; $i < count($gravacoes); $i++) {
             $sinal = SinalDAO::find($gravacoes[$i]->getFk_id_sinal());
             $opcoes = [];
             $opcoes[] = $sinal->getNome();
             $opcoes = array_merge($opcoes, CategoriaDAO::getOpcoes($sinal->getId(), $sinal->getCategoria_id()));
+            
             sort($opcoes, SORT_STRING);
+           
             $gravacoes[$i]->setOpcoes($opcoes);
 
         }
-        
         require_once 'views/pages/jogar.php';
     }
 
@@ -154,6 +160,13 @@ class AtividadeController
 
         $atividade = AtividadeDAO::find(base64_decode($_GET['id']));
         require_once 'views/atividade/edit.php';
+    }
+
+    public function finalizarAtividade()
+    {
+        // we use the given id to get the right post"
+        $usuario_logado = $_SESSION['login_object'];
+        $atividade = AtividadeDAO::finalizarAtividade($_POST['fk_id_atividade'], $usuario_logado['id']);
     }
 
 }
