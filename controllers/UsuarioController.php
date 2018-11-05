@@ -224,6 +224,33 @@ class UsuarioController {
         $usuario->setPontuacao($usuario_logado['pontuacao']);
         $usuario->setId($usuario_logado['id']);
 
+        $badge = 0;
+        switch($usuario_logado['pontuacao']){
+            case 10:
+                $badge = 7;
+                break;
+            case 50:
+                $badge =8;
+                break;
+            case 80: 
+                $badge = 9;
+                break;
+            case 100:
+                $badge = 10;
+                break;
+            case 150:
+                $badge = 11;
+                break;
+            case 200;
+                $badge = 12;
+                break;
+        }
+
+        if($badge > 0){
+            BadgeDAO::addToUsuario($usuario_logado['id'], $badge);
+            $_SESSION['warning'] = "Parabens, voce aprendeu ".$usuario_logado['pontuacao']." diferentes e ganhou um novo selo.";
+        }
+            
         return UsuarioDAO::addPontuacao($usuario);
     }
 

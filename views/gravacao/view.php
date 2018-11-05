@@ -18,7 +18,7 @@
     </tr>
     <tr align="left">
         <th>Sinal</th>
-        <td><?php echo $gravacao->getFk_id_sinal()?></td>
+        <td><?php echo SinalDAO::find($gravacao->getFk_id_sinal())->getNome();?></td>
     </tr>
     </tbody>
   </table>

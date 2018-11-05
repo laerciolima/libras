@@ -17,6 +17,7 @@ function call($controller, $action) {
         case 'usuario':
             // we need the model to query the database later in the controller
             require_once('models/UsuarioDAO.php');
+            require_once('models/BadgeDAO.php');
             $controller = new UsuarioController();
             break;
         case 'universidade':
@@ -45,6 +46,7 @@ function call($controller, $action) {
             require_once('models/SinalDAO.php');
             require_once('models/UsuarioDAO.php');
             require_once('models/AvaliacaoDAO.php');
+            require_once('models/BadgeDAO.php');
             require_once('controllers/UsuarioController.php');
             $controller = new GravacaoController();
             break;
@@ -66,6 +68,9 @@ function call($controller, $action) {
             break;
         case 'sinal':
             // we need the model to query the database later in the controller
+            require_once('models/ExpressaoFacialDAO.php');
+            require_once('models/PontoDeArticulacaoDAO.php');
+            require_once('models/ModuloDAO.php');
             $controller = new SinalController();
             break;
         case 'atividade':
@@ -133,7 +138,7 @@ $controllers = array('pages' => ['home', 'error','avaliar', 'amigos', 'gravar'],
     'avaliacao' => ['index', 'add', 'edit', 'view','delete'],
     'gravacao' => ['index', 'add', 'edit', 'view','delete','play', 'verificarResposta', 'meusVideos'],
     'movimento' => ['index', 'add', 'edit', 'view','delete'],
-    'atividade' => ['index', 'add', 'edit', 'view','delete', 'lista', 'play'],
+    'atividade' => ['index', 'add', 'edit', 'view','delete', 'lista', 'play', 'finalizar'],
     'configuracaoDeMao' => ['index', 'add', 'edit', 'view','delete'],
     'pontoDeArticulacao' => ['index', 'add', 'edit', 'view','delete'],
     'expressaoFacial' => ['index', 'add', 'edit', 'view','delete'],

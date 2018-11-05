@@ -150,9 +150,12 @@ class GravacaoController {
 
         $usuario_logado =  $_SESSION['login_object'];
 
-        if(!AvaliacaoDAO::verificaSinalAprendido(148, $usuario_logado['id'])){
+
+        $avaliacao  = AvaliacaoDAO::verificaSinalAprendido($fk_id_sinal, $usuario_logado['id'])->getId();
+
+        if(!isset($avaliacao)){
             $usuarioController = new UsuarioController();
-            $usuarioController->addPontuacao(10);
+            $usuarioController->addPontuacao();
         }
         
 

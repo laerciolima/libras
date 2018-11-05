@@ -4,7 +4,12 @@
                 </button><h2>Sinal: <?php echo $sinal->getNome();?></h2>
 
 
-<table class="view">
+
+                <div class="col-md-6 ">
+                
+
+
+<table class="view" >
     <tbody>
       <tr>
         <th>ID</th>
@@ -53,3 +58,16 @@
     </tr>
     </tbody>
   </table>
+</div>
+
+  <div class="col-md-6 ">
+
+<div class="embed-responsive embed-responsive-4by3">
+
+
+    <video controls autoplay="true" id="video" class="embed-responsive-item">
+        <source id="mp4Source" src="storage/videos/sinais/<?php echo $sinal->getVideo()?>" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+</div>

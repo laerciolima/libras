@@ -14,6 +14,16 @@
 </div><!-- /.col-lg-6 -->
 
 <?php
+
+if(count($usuarios)== 0) { ?>
+
+     <br/>
+     <br/>
+     <br/>
+    <h3 style="padding-left: 15px">Voce ainda não tem amigos, faça uma busca.</h3>
+<?php }
+
+
 foreach ($usuarios as $usuario) {
     ?>
     <table class="table col-xs-12">

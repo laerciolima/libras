@@ -17,12 +17,18 @@ echo "['" . $gravacoes[0]->getOpcoes()[0] . "','" . $gravacoes[0]->getOpcoes()[1
 for ($i = 1; $i < count($gravacoes); $i++) {
     echo ", ['" . $gravacoes[$i]->getOpcoes()[0] . "','" . $gravacoes[$i]->getOpcoes()[1] . "','" . $gravacoes[$i]->getOpcoes()[2] . "','" . $gravacoes[$i]->getOpcoes()[3] . "'] ";
 }
+
 ?>
     ];
 
-
+<?php
+if(isset($fk_id_atividade)){
+    echo "var id_atividade = ".$fk_id_atividade.";";
+}
+?>
     var tempo_modulo = <?php echo $modulo->getTempo(); ?>;
     
+
 
 
     console.log(lista_de_opcoes);
@@ -30,7 +36,6 @@ for ($i = 1; $i < count($gravacoes); $i++) {
 
 
 <h1 class="text-center">Jogar</h1>
-
 <div class="row">
 
 

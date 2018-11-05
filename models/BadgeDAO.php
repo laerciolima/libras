@@ -78,6 +78,14 @@ where bu.fk_id_usuario = :id
         $req = Db::getInstance()->prepare("INSERT INTO badge (descricao,img) VALUES (:descricao,:img)");
         $req->bindValue(":descricao", $badge->getDescricao());
         $req->bindValue(":img", $badge->getImg());
+        return $req->execute();       
+    }
+
+    public static function addToUsuario($badge, $usuario) {
+        // we make sure $id is an integer
+        $req = Db::getInstance()->prepare("INSERT INTO badge_usuario VALUES (:usuario,:badge, NOW())");
+        $req->bindValue(":badge", $badge);
+        $req->bindValue(":usuario", $usuario);
         return $req->execute();
     }
 

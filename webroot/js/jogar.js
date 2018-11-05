@@ -6,7 +6,7 @@ gravacoes = [];
 lista_de_opcoes = [];
 var gravacao_atual_index = -1;
 var opcoes;
-
+var acertos = 0;
 var Gravacao = class Gravacao {
     constructor(id, video, fk_id_usuario, fk_id_sinal, video_sinal) {
         this.id = id;
@@ -84,7 +84,10 @@ function nextVideo() {
     console.log('TAM GRAV', gravacoes.length)
     if (gravacao_atual_index == (gravacoes.length-1)) {
         alert("acabou");
-        //chama api pra finalizar a tarefa
+        
+
+        finalizarAtividade();
+
         return;
     }
     tempo = tempo_modulo;
@@ -168,7 +171,7 @@ function validar(num) {
                         $("#resposta_correta").fadeOut(2500, function () {
                             $("#sinal_avaliacao").val(1);
                             $("#avaliacao_sinal").show();
-
+                            acertos++;
                         });
                         
                     } else {
@@ -211,25 +214,39 @@ function refreshPontuacao() {
         url: "controllers/UsuarioController.php",
         data: "metodo=getPontuacao",
         beforeSend: function () {
-                    // enquanto a função esta sendo processada, você
-                    // pode exibir na tela uma
-                    // msg de carregando
-
+     
                 },
                 success: function (txt) {
-                    // pego o id da div que envolve o select com
-                    // name="id_modelo" e a substituiu
-                    // com o texto enviado pelo php, que é um novo
-                    //select com dados da marca x
-                    console.log(txt);
-
                     
                     content = txt.split("#")
-                    console.log(content[0]);
-                    console.log(content[1]);
                     console.log("valor: "+((content[0] * 100 ) / content[1]))
                     $('#progress-bar_pontuacao').css('width', ((content[0] * 100 ) / content[1]) + '%').attr('aria-valuenow', ((content[0] * 100 ) / content[1]));
                     $('#progress-bar_pontuacao').html(content[0] + "/"+content[1]);
+
+                },
+                error: function (txt) {
+                    // em caso de erro você pode dar um alert('erro');
+                    alert("erro")
+                }
+            }
+    );//fim ajax
+
+}
+
+
+function finalizarAtividade() {
+    $.ajax(
+    {
+        type: "POST",
+        url: "?controller=atividade&action=finalizar",
+        data: "metodo=finalizarTarefa&fk_id_atividade="+id_atividade+"&acertos="+acertos,
+        beforeSend: function () {
+
+                },
+                success: function (txt) {
+                    alert("Tafera finalizada com sucesso.");
+                    window.location = "?controller=usuario&action=home"
+
 
                 },
                 error: function (txt) {

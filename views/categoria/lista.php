@@ -2,12 +2,13 @@
 <div class="row">
 <?php if(empty($categorias)){ ?>
 <h3 class="text-center">Não há categorias neste módulo</h3>
-<?php } ?>
+<?php }
+$categoria_liberada = 1; ?>
  <?php foreach ($categorias as $categoria) { ?>
         <div class="col-sm-6">
 
 
-            <div class="panel panel-info">
+           <div class="panel panel-<?php echo ($categoria_liberada >= 0.7) ? "info" : "default mod_desabilitado"?>">
                 <div class="panel-heading"><?php echo $categoria->getNome(); ?></div>
                 <div class="panel-body">
                     <?php echo $categoria->getDescricao(); ?>
@@ -30,6 +31,8 @@
 
 
         <?php
+
+$categoria_liberada = $categoria->getQntdSinaisAprendidos() / $categoria->getQntdSinais();
     }
     ?>
 
