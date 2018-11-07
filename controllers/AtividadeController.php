@@ -46,8 +46,12 @@ class AtividadeController
         if (!isset($_GET['modulo'])) {
             return call('page', 'error');
         }
+
+
+        $usuario_logado = $_SESSION['login_object'];
+
         // we use the given id to get the right post
-        $atividades = AtividadeDAO::listByModulo($_GET['modulo']);
+        $atividades = AtividadeDAO::listByModulo($_GET['modulo'], $usuario_logado['id']);
         require_once 'views/atividade/lista.php';
     }
 

@@ -22,7 +22,7 @@ $categoria_liberada = 1; ?>
                             
                         </div>
                     </div>
-                    <button type="button" class="btn btn-default btn-block" onclick="location.href = '?controller=gravacao&action=play&categoria=<?php echo $categoria->getId(); ?>'"><span class="glyphicon glyphicon-play"></span> Praticar</button>
+                    <button <?php echo ($categoria_liberada >= 0.7) ? "" : "disabled"; ?> type="button" class="btn btn-default btn-block" onclick="location.href = '?controller=gravacao&action=play&categoria=<?php echo $categoria->getId(); ?>'"><span class="glyphicon glyphicon-play"></span> Praticar</button>
 
                 </div>
             </div>

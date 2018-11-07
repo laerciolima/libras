@@ -25,19 +25,21 @@ class AtividadeDAO {
         return $lista;
     }
 
-    public static function listByModulo($fk_id_modulo) {
+    public static function listByModulo($fk_id_modulo, $usuario) {
         $lista = [];
 
         $req = Db::getInstance()->prepare('SELECT atv.*, MAX(atu.sinais_corretos) AS pontuacao
 FROM atividade atv
 LEFT JOIN atividade_usuario atu
-ON atv.id = atu.fk_id_atividade
+ON atv.id = atu.fk_id_atividade and atu.fk_id_usuario = :usuario
 WHERE atv.fk_id_modulo = :fk_id_modulo
 GROUP BY atv.id;
 ');
 
-        $req->execute(array('fk_id_modulo' => $fk_id_modulo));
-
+        //$req->execute(array('fk_id_modulo' => $fk_id_modulo));
+        $req->bindValue("fk_id_modulo", $fk_id_modulo);
+        $req->bindValue("usuario", $usuario);
+        $req->execute();
         // we create a list of Post objects from the database results
         foreach ($req->fetchAll() as $linha) {
             $atividade = new Atividade();

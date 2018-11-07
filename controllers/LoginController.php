@@ -129,7 +129,7 @@ class LoginController {
         $usuario->setPerfil("comum");
         $usuario->setusuario($_POST["usuario"]);
         $usuario->setSenha(md5($_POST["senha"]));
-        $usuario->setNivel("1");
+        
         $usuario->setPontuacao("0");
         $usuario->setUrl(md5(uniqid(time())));
         if (UsuarioDAO::add($usuario)) {

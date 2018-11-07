@@ -57,8 +57,10 @@ class SinalController {
         }
         $expressoes = ExpressaoFacialDAO::all();
         $articulacoes = PontoDeArticulacaoDAO::all();
-        $modulos = ModuloDAO::listAll();
-        print_r($modulos);
+        $categorias = CategoriaDAO::all();
+        $movimentos = MovimentoDAO::all();
+        $configuracoes = ConfiguracaoDeMaoDAO::all();
+        
         require_once('views/sinal/add.php');
     }
 
