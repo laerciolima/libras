@@ -2,9 +2,13 @@
 <script type="text/javascript">
     var gravacoes = [
 <?php
-echo "new Gravacao(" . $gravacoes[0]->getId() . ",'storage/videos/users/" . $gravacoes[0]->getFk_id_usuario() . "/" . $gravacoes[0]->getVideo() . "'," . $gravacoes[0]->getFk_id_usuario() . "," . $gravacoes[0]->getFk_id_sinal() . ", '".$gravacoes[0]->getVideoOriginal()."')";
+
+$path = $gravacoes[0]->getFk_id_usuario() == 0 ? "storage/videos/sinais" : "storage/videos/users/".$gravacoes[0]->getFk_id_usuario();
+
+echo "new Gravacao(" . $gravacoes[0]->getId() . ",'" . $path . "/" . $gravacoes[0]->getVideo() . "'," . $gravacoes[0]->getFk_id_usuario() . "," . $gravacoes[0]->getFk_id_sinal() . ", '".$gravacoes[0]->getVideoOriginal()."')";
 for ($i = 1; $i < count($gravacoes); $i++) {
-    echo ", new Gravacao(" . $gravacoes[$i]->getId() . ",'storage/videos/users/" . $gravacoes[$i]->getFk_id_usuario() . "/" . $gravacoes[$i]->getVideo() . "'," . $gravacoes[$i]->getFk_id_usuario() . "," . $gravacoes[$i]->getFk_id_sinal() . ", '".$gravacoes[$i]->getVideoOriginal()."')";
+    $path = $gravacoes[$i]->getFk_id_usuario() == 0 ? "storage/videos/sinais" : "storage/videos/users/".$gravacoes[$i]->getFk_id_usuario();
+    echo ", new Gravacao(" . $gravacoes[$i]->getId() . ",'" . $path . "/" . $gravacoes[$i]->getVideo() . "'," . $gravacoes[$i]->getFk_id_usuario() . "," . $gravacoes[$i]->getFk_id_sinal() . ", '".$gravacoes[$i]->getVideoOriginal()."')";
 }
 ?>
     ];
@@ -84,7 +88,7 @@ if(isset($fk_id_atividade)){
         <h4 class="text-center">RESPOSTA INCORRETA</h4>
         <img src="webroot/img/sinal_incorreto.jpg" width="150" class="img-responsive center-block"/>
     </div>
-    <form id="avaliacao_sinal" style="display: none;">
+    <form id="avaliacao_sinal" style="display: ;">
 <div class="row">
 <div class="col-sm-6">
         

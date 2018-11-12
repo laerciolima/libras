@@ -20,32 +20,12 @@ var Gravacao = class Gravacao {
 
 
 $(document).ready(function () {
-    nextVideo();
+    nextVideo(); 
     
 
     $("#addAvaliacao").click(function (e) {
 
-        var url = "?controller=avaliacao&action=add"; // the script where you handle the form input.,
-
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: $("#avaliacao_sinal").serialize() + "&fk_id_gravacao=" + gravacao.id, // serializes the form's elements.
-            success: function (data)
-            {
-                console.log("add avaliacao:" + data);
-
-                nextVideo();
-                $('#avaliacao_sinal').trigger("reset");
-
-                $("#avaliacao_sinal_div").hide();
-                $(".player_video_avaliacao").show();
-
-
-                refreshPontuacao();
-
-            }
-        });
+        adicionarAvaliacao();
 
         e.preventDefault(); // avoid to execute the actual submit of the form.
     });
@@ -235,6 +215,9 @@ function refreshPontuacao() {
 
 
 function finalizarAtividade() {
+    if(id_atividade == null)
+        return;
+
     $.ajax(
     {
         type: "POST",
@@ -256,4 +239,38 @@ function finalizarAtividade() {
             }
     );//fim ajax
 
+}
+
+
+function adicionarAvaliacao(){
+    var url = "?controller=avaliacao&action=add"; // the script where you handle the form input.,
+
+
+
+    var sinal = "&fk_id_sinal="
+        if(gravacao.fk_id_usuario == 0){
+            sinal += gravacao.fk_id_sinal;
+        }
+
+
+
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: $("#avaliacao_sinal").serialize() + "&fk_id_gravacao=" + gravacao.id+sinal, // serializes the form's elements.
+            success: function (data)
+            {
+                console.log("add avaliacao:" + data);
+
+                nextVideo();
+                $('#avaliacao_sinal').trigger("reset");
+
+                $("#avaliacao_sinal_div").hide();
+                $(".player_video_avaliacao").show();
+
+
+                refreshPontuacao();
+
+            }
+        });
 }

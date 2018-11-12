@@ -156,8 +156,9 @@ group by gr.id
 
     LIMIT 8";
 
+        
 
-
+        
 
         $req = Db::getInstance()->prepare($sql);
         $req->bindValue(":id_usuario", $id_usuario);
@@ -171,9 +172,39 @@ group by gr.id
         foreach ($req->fetchAll() as $linha) {
             $lista[] = GravacaoDAO::popular($linha);
         }
+        if(count($lista) < 8){
+            $sql = "SELECT sn.id, null as data, sn.video, null as fk_id_sinal, 0 as fk_id_usuario, sn.nome, sn.id as fk_id_sinal
+            from sinal as sn 
+            inner join categoria as ct 
+            ON sn.categoria_id = ct.id 
+            INNER JOIN modulo as md 
+            ON ct.fk_id_modulo = md.id";
+
+            if($type == 0){
+                $sql .= " and md.id = :id ";
+            }else{
+                $sql .= " and ct.id = :id ";
+            }
+
+            
+            $sql .= " order by rand() LIMIT ".(8 - count($lista));
+
+            echo $sql;
+
+            $req = Db::getInstance()->prepare($sql);
+            $req->bindValue(":id", $id);
+
+            $req->execute();
+
+            foreach ($req->fetchAll() as $linha) {
+                
+                $lista[] = GravacaoDAO::popular($linha);
+            }
+
+        }
         
         return $lista;
-
+        
     }
 
 

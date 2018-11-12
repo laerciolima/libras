@@ -137,7 +137,6 @@ class GravacaoController {
             $gravacoes[$i]->setOpcoes($opcoes);
 
        }
-
         require_once('views/pages/jogar.php');
     }
 
