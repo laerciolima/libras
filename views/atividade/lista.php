@@ -7,7 +7,7 @@
         <div class="col-sm-4">
 
 
-            <div class="panel panel-<?php echo (($atividade->getPontuacao()) ? 'info' : 'default'); ?>">
+            <div class="panel panel-<?php echo (($atividade->getPontuacao()) ? 'default' : 'info'); ?>">
                 <div class="panel-heading"><?php echo $atividade->getTitulo(); ?></div>
                 <div class="panel-body">
                     <?php echo $atividade->getDescricao(); ?>

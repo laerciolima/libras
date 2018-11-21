@@ -51,6 +51,7 @@ class AvaliacaoController {
         $avaliacao->setObservacoes($_POST["observacoes"]);
 
         $avaliacao->setAcerto($_POST['sinal_avaliacao']);
+        $avaliacao->setFk_id_sinal($_POST['fk_id_sinal']);
 
 
 

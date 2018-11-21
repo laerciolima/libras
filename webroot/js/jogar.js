@@ -150,15 +150,24 @@ function validar(num) {
                         $("#resposta_correta").show();
                         $("#resposta_correta").fadeOut(2500, function () {
                             $("#sinal_avaliacao").val(1);
-                            $("#avaliacao_sinal").show();
+                            if(gravacao.fk_id_usuario == 0)
+                                adicionarAvaliacao();
+                            else 
+                                $("#avaliacao_sinal").show();
                             acertos++;
+                            
+
                         });
                         
                     } else {
                         $("#resposta_incorreta").show();
                         $("#resposta_incorreta").fadeOut(2500, function () {
                             $("#sinal_avaliacao").val(0);
-                            $("#avaliacao_sinal").show();
+                            if(gravacao.fk_id_usuario == 0)
+                                adicionarAvaliacao();
+                            else 
+                                $("#avaliacao_sinal").show();
+                            
                         });
                     }
 
