@@ -30,7 +30,7 @@
 
     <form class="form-signin" method="post" action="../../controllers/LoginController.php">
         <h2 class="form-signin-heading">Login</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
+        <label for="inputEmail" class="sr-only">E-mail</label>
         <input type="text" name="login" class="form-control" placeholder="E-mail ou nome de usuario" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" name="senha" class="form-control" placeholder="Senha" required>
@@ -64,9 +64,9 @@
                             <input type="text" class="form-control" name="nome" id="nome" placeholder="Digite o nome">
                         </div>
                     </div><div class="form-group">
-                        <label class="control-label col-sm-2" for="email">Email:</label>
+                        <label class="control-label col-sm-2" for="email">E-mail:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" name="email" id="email" placeholder="Digite o email">
+                            <input type="text" class="form-control" name="email" id="email" placeholder="Digite o e-mail">
                         </div>
                     </div><div class="form-group">
                         <label class="control-label col-sm-2" for="usuario">Usuário:</label>

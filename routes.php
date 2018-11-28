@@ -37,6 +37,7 @@ function call($controller, $action) {
             break;
         case 'categoria':
             // we need the model to query the database later in the controller
+            require_once('models/ModuloDAO.php');
             $controller = new CategoriaController();
             break;
         case 'gravacao':

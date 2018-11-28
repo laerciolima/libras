@@ -1,5 +1,5 @@
 
-<h2>Adicionar Modulo</h2>
+<h2>Adicionar Módulo</h2>
 
 
 

@@ -11,15 +11,20 @@
             <input type="text" class="form-control" name="nome" id="nome" placeholder="Digite o nome">
         </div>
     </div><div class="form-group">
-        <label class="control-label col-sm-2" for="descricao">Descricao:</label>
+        <label class="control-label col-sm-2" for="descricao">Descrição:</label>
         <div class="col-sm-4">
             <input type="text" class="form-control" name="descricao" id="descricao" placeholder="Digite o descricao">
         </div>
     </div>
     <div class="form-group">
-        <label class="control-label col-sm-2" for="fk_id_modulo">Modulo:</label>
+        <label class="control-label col-sm-2" for="fk_id_modulo">Módulo:</label>
         <div class="col-sm-4">
-            <input type="text" class="form-control" name="fk_id_modulo" id="fk_id_modulo" placeholder="Digite o fk_id_modulo">
+        <select class="form-control" name="fk_id_modulo">
+                <?php foreach ($modulos as $modulo) { ?>
+                    <option value="<?php echo $modulo->getId();?>"><?php echo $modulo->getNome()?></option>
+                <?php } ?>
+            </select>
+            
         </div>
     </div>  <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">

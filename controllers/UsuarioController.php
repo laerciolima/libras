@@ -247,7 +247,7 @@ class UsuarioController {
         }
 
         if($badge > 0){
-            BadgeDAO::addToUsuario($usuario_logado['id'], $badge);
+            BadgeDAO::addToUsuario($badge, $usuario_logado['id']);
             $_SESSION['warning'] = "Parabens, voce aprendeu ".$usuario_logado['pontuacao']." diferentes e ganhou um novo selo.";
         }
             

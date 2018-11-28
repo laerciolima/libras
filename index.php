@@ -10,6 +10,7 @@
 <script src="webroot/js/jquery.dataTables.min.js" ></script>
 <script src="webroot/js/jquery.maskedinput.js" ></script>
 <script src="webroot/js/select2.min.js" ></script>
+<script src="webroot/js/bootstrap-select.js" ></script>
 
 
 <script src="webroot/js/scripts.js" ></script>

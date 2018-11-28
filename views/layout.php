@@ -82,7 +82,7 @@
 
 
 
-                        <ul class="nav navbar-nav">
+                        <ul class="nav navbar-nav" style="padding-left: 5px">
 
 
                             <div >
@@ -92,13 +92,18 @@
                                 <span>&nbsp<?php echo $usuario_logado['nome']?>  </span>
 
                             </div>
+                            <?php $user = $_SESSION['login_object']; 
+
+                            if($user['perfil'] == "comum"){ ?>
                             <div class="progress">
                                 <div id="progress-bar_pontuacao" class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50"
                                 aria-valuemin="0" aria-valuemax="100" style="width:<?php echo ($usuario_logado['pontuacao']*100) / $_SESSION['total_sinais_cadastrados'] ?>%">
                                 <?php echo $usuario_logado['pontuacao']."/".$_SESSION['total_sinais_cadastrados']; ?>
                             </div>
-
                         </div>
+                            <?php } ?>
+
+                        
 
 
 

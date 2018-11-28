@@ -312,6 +312,10 @@ table.view tr td img { margin: 0px; padding: 0px; }
   }
   /* Slide side menu*/
   /* Add .absolute-wrapper.slide-in for scrollable menu -> see top comment */
+  .nav .navbar-nav{
+    padding-left: 5px !important;
+  }
+
   .side-menu-container > .navbar-nav.slide-in {
     -moz-animation: slidein 300ms forwards;
     -o-animation: slidein 300ms forwards;

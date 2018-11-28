@@ -11,7 +11,7 @@
             <input type="text" class="form-control" name="titulo" id="titulo" placeholder="Digite o titulo">
         </div>
     </div><div class="form-group">
-        <label class="control-label col-sm-2" for="descricao">Descricao:</label>
+        <label class="control-label col-sm-2" for="descricao">Descrição:</label>
         <div class="col-sm-4">
             <input type="text" class="form-control" name="descricao" id="descricao" placeholder="Digite o descricao">
         </div>
@@ -21,7 +21,7 @@
             <input type="text" class="form-control" name="ordem" id="ordem" placeholder="Digite o ordem">
         </div>
     </div><div class="form-group">
-        <label class="control-label col-sm-2" for="fk_id_modulo">Modulo:</label>
+        <label class="control-label col-sm-2" for="fk_id_modulo">Módulo:</label>
         <div class="col-sm-4">
             <select class="form-control" name="fk_id_modulo">
                 <?php foreach ($modulos as $modulo) { ?>

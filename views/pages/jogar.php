@@ -65,17 +65,19 @@ if(isset($fk_id_atividade)){
 
     </div>
     <div class="player_video_avaliacao col-sm-6 ">
+    <div style="margin-top: 50px;">
         <h4 class="text-center">Escolha a opção correta:</h4>
         <button type="button" id="opt0" class="btn btn-default btn-block opt_sinal" onclick="validar(0)">Tarde</button>
         <button type="button" id="opt1" class="btn btn-default btn-block opt_sinal" onclick="validar(1)">Manhã</button>
         <button type="button" id="opt2" class="btn btn-default btn-block opt_sinal" onclick="validar(2)">Madrugada</button>
         <button type="button" id="opt3" class="btn btn-default btn-block opt_sinal" onclick="validar(3)">Noite</button>
 
+</div>
     </div>
 </div>
 
 
-<div id="avaliacao_sinal_div" >
+<div id="avaliacao_sinal_div" style="display: none">
 
 
 

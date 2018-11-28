@@ -130,7 +130,7 @@ class GravacaoController {
         for($i= 0; $i < count($gravacoes); $i++){
             $sinal = SinalDAO::find($gravacoes[$i]->getFk_id_sinal());
             $opcoes = [];
-            echo $sinal->getNome()."-";
+            //echo $sinal->getNome()."-";
             $opcoes[] = $sinal->getNome();
             $opcoes = array_merge($opcoes, CategoriaDAO::getOpcoes($sinal->getId(), $sinal->getCategoria_id()));
             sort($opcoes, SORT_STRING);

@@ -58,13 +58,13 @@
                     </select>
                 </div>
             </div>
-
+            
             <div class="form-group">
                 <label class="control-label col-sm-2" for="configuracao1">Configuração de mão:</label>
                 <div class="col-sm-4">
-                    <select class="form-control" name="configuracao1" id="configuracao1">
+                    <select class="form-control" name="configuracao1" id="configuracao1" class="selectpicker">
                         <?php foreach ($configuracoes as $conf ){ ?>
-                        <option value="<?php echo $conf->getId();?>">
+                        <option data-thumbnail="storage/imagens/configuracao_de_mao/<?php echo $conf->getImagem();?>" value="<?php echo $conf->getId();?>">
                             <?php echo $conf->getNome();?>
                         </option>
                         <?php } ?>

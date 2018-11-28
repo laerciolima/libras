@@ -67,6 +67,8 @@ class CategoriaController
                 $_SESSION['error'] = "Ocorreu um erro no cadastro!";
             }
 
+        }else{
+            $modulos = ModuloDAO::listAll();
         }
         require_once 'views/categoria/add.php';
     }
