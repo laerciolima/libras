@@ -148,7 +148,7 @@ function solicitarAmizade(id){
 
 $(document).ready(function () {
 
-    $('#configuracao1').selectpicker();
+    //$('#configuracao1').selectpicker();
 
     //stick in the fixed 100% height behind the navbar but don't wrap it
     $('#slide-nav.navbar .container').append($('<div id="navbar-height-col"></div>'));

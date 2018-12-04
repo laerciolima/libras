@@ -9,6 +9,8 @@
 
 
 
+            <h1 class="text-center">Gravar</h1>
+
 <div class="row">
 
   <div class="col-md-6">
@@ -22,9 +24,9 @@
 
             </video>
         </div>
-
-        <button class="btn-lg btn-danger">Start Recording</button>
-
+        <br/>
+        <button class="btn-lg btn-danger">Gravar</button>
+        <button class="btn-lg btn-primary">Enviar</button>
         <div style="text-align: center; display: none;">
             <button id="save-to-disk">Save To Disk</button>
             <button id="open-new-tab">Open New Tab</button>
@@ -38,13 +40,62 @@
       <div class="col-md-6">
         <div class="embed-responsive embed-responsive-4by3">
           <video controls class="embed-responsive-item">
-              <source id="mp4Source" src="storage/videos/users/1/madrugada.mp4" type="video/mp4">
+              <source id="mp4Source" src="storage/videos/sinais/Telefone.mp4" type="video/mp4">
               Your browser does not support the video tag.
           </video>
         <div>
 
 
       </div>
+</div>
+</div>
+
+
+
+<div class="row">
+
+        <div class="col-md-6">
+        </div>
+
+    <div class="col-md-6">
+
+<table class="view" style="width: 100%">
+    <tr>
+        <th colspan="2">Configuração do sinal: Telefone</th>    
+    </tr>
+    <tr>
+        <td colspan="2">Utiliza somente uma mao</td>    
+    </tr>
+    <tr>
+        <td>CF</td>
+        <td>Mão em Y</td>
+    </tr>
+    <tr>
+        <td>PA</td>
+        <td>Diante da orelha</td>
+    </tr>
+    <tr>
+        <td>MV</td>
+        <td>Baixo pra cima</td>
+    </tr>
+    <tr>
+        <td>OR</td>
+        <td>Pra dentro</td>
+    </tr>
+    <tr>
+        <td>EF</td>
+        <td>Neutra</td>
+    </tr>
+</table>
+</div>
+
+  </div>
+
+
+
+
+
+      
 
         <script>
             (function () {

@@ -23,6 +23,9 @@ $(document).ready(function () {
     nextVideo(); 
     
 
+    $(".player_video_avaliacao").hide();
+    
+
     $("#addAvaliacao").click(function (e) {
 
         adicionarAvaliacao();
@@ -61,6 +64,7 @@ function cronometro() {
 }
 
 function nextVideo() {
+    return;
     console.log('TAM GRAV', gravacoes.length)
     if (gravacao_atual_index == (gravacoes.length-1)) {
         alert("acabou");

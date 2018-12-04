@@ -16,11 +16,18 @@
             <input type="text" class="form-control" name="descricao" id="descricao" placeholder="Digite o descricao">
         </div>
     </div><div class="form-group">
-        <label class="control-label col-sm-2" for="nivel">Nivel:</label>
+        <label class="control-label col-sm-2" for="nivel">Ordem:</label>
         <div class="col-sm-4">
             <input type="text" class="form-control" name="nivel" id="nivel" placeholder="Digite o nivel">
         </div>
-    </div>  <div class="form-group"> 
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="nivel">Tempo:</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" name="tempo" id="tempo_sinal" placeholder="Digite o tempo">
+        </div>
+    </div>
+      <div class="form-group"> 
     <div class="col-sm-offset-2 col-sm-10">
       <button type="submit" class="btn btn-default">Enviar</button>
     </div>

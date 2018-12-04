@@ -1,7 +1,41 @@
 <h2>
     Adicionar Sinal</h2>
 
+        <style>
+            #my-icon-select-box-scroll{
+                z-index: 1;
+            }
+            </style>
+        <script>
+            
+        var iconSelect;
+        var selectedText;
 
+        window.onload = function(){
+            
+            selectedText = document.getElementById('selected-text');
+            
+            document.getElementById('my-icon-select').addEventListener('changed', function(e){
+               selectedText.value = iconSelect.getSelectedValue();
+            });
+            
+            iconSelect = new IconSelect("my-icon-select");
+
+            var icons = [];
+
+            <?php foreach ($configuracoes as $conf ){ ?>
+                icons.push({'iconFilePath':'storage/imagens/configuracao_de_mao/<?php echo $conf->getImagem();?>', 'iconValue':'<?php echo $conf->getId();?>'});
+                        <?php } ?>
+
+            
+            
+            iconSelect.refresh(icons);
+            
+
+
+        };
+            
+        </script>
 
 
 <form method="post" action="?controller=sinal&action=add" class="form-horizontal" role="form">
@@ -12,13 +46,20 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-sm-6">
-            primaria
+<div class="form-group">
+            <input type="radio" class="" name="maos" value=1>Utiliza somente uma mão
+            <input type="radio" class="" name="maos" value=1>Utiliza duas mãos com parâmetros iguais
+            <input type="radio" class="" name="maos" value=1>Utiliza duas mãos com parâmetros diferentes
+</div>
+
+
+    <div class="row" >
+        <div class="col-xs-6" style="border: 1px solid black;">
+            <h3>Mão primária</h3>
 
             <div class="form-group">
-                <label class="control-label col-sm-2" for="pontodearticulacao_idpontodearticulacao">Ponto de articulação:</label>
-                <div class="col-sm-4">
+                <label class="control-label col-sm-4" for="pontodearticulacao_idpontodearticulacao">Ponto de articulação:</label>
+                <div class="col-sm-8">
                     <select class="form-control" name="pontodearticulacao_idpontodearticulacao" id="pontodearticulacao_idpontodearticulacao">
                         <?php foreach ($articulacoes as $articulacao ){ ?>
                         <option value="<?php echo $articulacao->getId();?>">
@@ -32,8 +73,8 @@
 
 
             <div class="form-group">
-                <label class="control-label col-sm-2" for="orientacao">Orientacao:</label>
-                <div class="col-sm-4">
+                <label class="control-label col-sm-4" for="orientacao">Orientacao:</label>
+                <div class="col-sm-8">
                     <select name="orientacao" id="orientacao" class="form-control">
                         <option>pra cima</option>
                         <option>pra baixo</option>
@@ -47,8 +88,8 @@
 
 
             <div class="form-group">
-                <label class="control-label col-sm-2" for="movimento1">Movimento:</label>
-                <div class="col-sm-4">
+                <label class="control-label col-sm-4" for="movimento1">Movimento:</label>
+                <div class="col-sm-8">
                     <select class="form-control" name="movimento1" id="movimento1">
                         <?php foreach ($movimentos as $movimento ){ ?>
                         <option value="<?php echo $movimento->getId();?>">
@@ -60,24 +101,22 @@
             </div>
             
             <div class="form-group">
-                <label class="control-label col-sm-2" for="configuracao1">Configuração de mão:</label>
-                <div class="col-sm-4">
-                    <select class="form-control" name="configuracao1" id="configuracao1" class="selectpicker">
-                        <?php foreach ($configuracoes as $conf ){ ?>
-                        <option data-thumbnail="storage/imagens/configuracao_de_mao/<?php echo $conf->getImagem();?>" value="<?php echo $conf->getId();?>">
-                            <?php echo $conf->getNome();?>
-                        </option>
-                        <?php } ?>
-                    </select>
+                <label class="control-label col-sm-4" for="configuracao1">Configuração de mão:</label>
+                <div class="col-sm-8">
+                    
+         
+         <div id="my-icon-select"></div>
+        
+        <input type="hidden" id="selected-text" name="selected-text" style="width:65px;">
                 </div>
             </div>
         </div>
-
-        <div class="col-sm-6">
-            secundaria
-        </div>
+    
+        
 
     </div>
+
+    <br/>
     <div class="form-group">
         <label class="control-label col-sm-2" for="expressaofacial_idexpressaofacial">Expressão Facial:</label>
         <div class="col-sm-4">
@@ -116,24 +155,6 @@
                 </option>
                 <?php } ?>
             </select>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label col-sm-2" for="utilizacaodasmaos">UtilizacaoDasMaos:</label>
-        <div class="col-sm-4">
-            <input type="text" class="form-control" name="utilizacaodasmaos" id="utilizacaodasmaos" placeholder="Digite o utilizacaodasmaos">
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label col-sm-2" for="maoprincipal_id">MaoPrincipal_id:</label>
-        <div class="col-sm-4">
-            <input type="text" class="form-control" name="maoprincipal_id" id="maoprincipal_id" placeholder="Digite o maoprincipal_id">
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label col-sm-2" for="maosecundaria_id">MaoSecundaria_id:</label>
-        <div class="col-sm-4">
-            <input type="text" class="form-control" name="maosecundaria_id" id="maosecundaria_id" placeholder="Digite o maosecundaria_id">
         </div>
     </div>
     <div class="form-group">

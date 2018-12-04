@@ -5,12 +5,15 @@
 <link rel="stylesheet" type="text/css" href="webroot/css/menu.css">
 <link rel="stylesheet" type="text/css" href="webroot/css/estilo.css">
 <link rel="stylesheet" type="text/css" href="webroot/css/select2.min.css">
+<link rel="stylesheet" type="text/css" href="webroot/css/iconselect.css">
 <script src="webroot/js/jquery.min.js" ></script>
 <script src="webroot/js/bootstrap.min.js" ></script>
 <script src="webroot/js/jquery.dataTables.min.js" ></script>
 <script src="webroot/js/jquery.maskedinput.js" ></script>
 <script src="webroot/js/select2.min.js" ></script>
 <script src="webroot/js/bootstrap-select.js" ></script>
+<script src="webroot/js/iconselect.js" ></script>
+<script src="webroot/js/iscroll.js" ></script>
 
 
 <script src="webroot/js/scripts.js" ></script>

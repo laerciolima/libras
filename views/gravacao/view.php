@@ -4,7 +4,9 @@
                 </button><h2>Gravacao: <?php echo $gravacao->getId();?></h2>
 <div class="row">
 
+<style>
 
+    </style>
 
 <table class="view col-md-12" >
     <tbody>
@@ -49,27 +51,58 @@
                 <tbody>
                   <tr align="left">
                     <th>Nota configuração mao</th>
-                    <td><?php echo $avaliacao->getNota_configuracao_mao()?></td>
+                    <td style="min-width: 150px"><div class="progress">
+  <div class="progress-bar <?php echo ($avaliacao->getNota_configuracao_mao() <3) ? "progress-bar-danger" : "progress-bar-info"?>" role="progressbar" aria-valuenow="70"
+  aria-valuemin="1" aria-valuemax="100" style="width:<?php echo $avaliacao->getNota_configuracao_mao() * 20?>%">
+  <?php echo $avaliacao->getNota_configuracao_mao() * 20?>
+  </div>
+</div></td>
                 </tr>
                 <tr align="left">
                     <th>Nota expressão facial</th>
-                    <td><?php echo $avaliacao->getNota_expressao_facial()?></td>
+                    <td><div class="progress">
+  <div class="progress-bar <?php echo ($avaliacao->getNota_expressao_facial() <3) ? "progress-bar-danger" : "progress-bar-info"?>" role="progressbar" aria-valuenow="70"
+  aria-valuemin="1" aria-valuemax="100" style="width:<?php echo $avaliacao->getNota_expressao_facial() * 20?>%">
+  <?php echo $avaliacao->getNota_expressao_facial() * 20?>
+  </div>
+</div></td>
                 </tr>
                 <tr align="left">
                     <th>Nota movimento</th>
-                    <td><?php echo $avaliacao->getNota_movimento()?></td>
+                    <td><div class="progress">
+  <div class="progress-bar <?php echo ($avaliacao->getNota_movimento() <3) ? "progress-bar-danger" : "progress-bar-info"?>" role="progressbar" aria-valuenow="70"
+  aria-valuemin="1" aria-valuemax="100" style="width:<?php echo $avaliacao->getNota_movimento() * 20?>%">
+  <?php echo $avaliacao->getNota_movimento() * 20?>
+  </div>
+</div></td>
                 </tr>
                 <tr align="left">
                     <th> Nota orientção</th>
-                    <td><?php echo $avaliacao->getNota_orientacao()?></td>
+                    <td><div class="progress">
+  <div class="progress-bar <?php echo ($avaliacao->getNota_orientacao() <3) ? "progress-bar-danger" : "progress-bar-info"?>" role="progressbar" aria-valuenow="70"
+  aria-valuemin="1" aria-valuemax="100" style="width:<?php echo $avaliacao->getNota_orientacao() * 20?>%">
+  <?php echo $avaliacao->getNota_orientacao() * 20?>
+  </div>
+</div></td>
                 </tr>
                 <tr align="left">
                     <th>Nota ponto articulação</th>
-                    <td><?php echo $avaliacao->getNota_ponto_articulacao()?></td>
+                    <td><div class="progress">
+  <div class="progress-bar <?php echo ($avaliacao->getNota_ponto_articulacao() <3) ? "progress-bar-danger" : "progress-bar-info"?>" role="progressbar" aria-valuenow="70"
+  aria-valuemin="1" aria-valuemax="100" style="width:<?php echo $avaliacao->getNota_ponto_articulacao() * 20?>%">
+  <?php echo $avaliacao->getNota_ponto_articulacao() * 20?>
+  </div>
+</div>
+                    
+                    </td>
                 </tr>
                 <tr align="left">
                     <th>Nota media</th>
-                    <td><?php echo $avaliacao->getNota_media()?></td>
+                    <td><div class="progress">
+  <div class="progress-bar <?php echo ($avaliacao->getNota_media() <3) ? "progress-bar-danger" : "progress-bar-info"?>" role="progressbar" aria-valuenow="70"
+  aria-valuemin="1" aria-valuemax="5" style="width:<?php echo $avaliacao->getNota_media() * 20?>%">
+  </div>
+</div></td>
                 </tr>
                 <tr align="left">
                     <th>Observações</th>

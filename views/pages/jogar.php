@@ -39,7 +39,7 @@ if(isset($fk_id_atividade)){
 </script>
 
 
-<h1 class="text-center">Jogar</h1>
+<h1 class="text-center">Avaliar</h1>
 <div class="row">
 
 
@@ -77,7 +77,7 @@ if(isset($fk_id_atividade)){
 </div>
 
 
-<div id="avaliacao_sinal_div" style="display: none">
+<div id="avaliacao_sinal_div" style="display:">
 
 
 
@@ -94,18 +94,21 @@ if(isset($fk_id_atividade)){
 <div class="row">
 <div class="col-sm-6">
         
+    <div class="embed-responsive embed-responsive-4by3">
         <video controls autoplay="true" class="video_player"  id="video_player_avaliacao" class="embed-responsive-item">
-            <source id="source_avaliacao" src="" type="video/mp4">
+            <source id="source_avaliacao" src="storage/videos/sinais/Telefone.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        </div>
+    </div>
+
+<div class="col-sm-6 ">
+    <div class="embed-responsive embed-responsive-4by3">
+        <video controls autoplay="true" id="video_sinal_original" class="video_player" class="embed-responsive-item">
+            <source id="source_avaliacao_original" src="storage/videos/sinais/Brinquedo.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
     </div>
-
-<div class="col-sm-6">
-    
-        <video controls autoplay="true" id="video_sinal_original" class="video_player" class="embed-responsive-item">
-            <source id="source_avaliacao_original" src="" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
     </div>
 
 
@@ -114,30 +117,62 @@ if(isset($fk_id_atividade)){
 
         <input id="sinal_avaliacao" name="sinal_avaliacao" type="hidden" value=""/> 
 
+<div class="row" style="margin-top: 25px">
+    <div class="col-sm-12 col-md-6">
+        <table class="view" style="width: 100%">
+            <tr>
+                <th colspan="2">Configuração do sinal: Telefone</th>    
+            </tr>
+            <tr>
+                <td colspan="2">Utiliza somente uma mao</td>    
+            </tr>
+            <tr>
+                <td>CF</td>
+                <td>Mão em Y</td>
+            </tr>
+            <tr>
+                <td>PA</td>
+                <td>Diante da orelha</td>
+            </tr>
+            <tr>
+                <td>MV</td>
+                <td>Baixo pra cima</td>
+            </tr>
+            <tr>
+                <td>OR</td>
+                <td>Pra dentro</td>
+            </tr>
+            <tr>
+                <td>EF</td>
+                <td>Neutra</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-sm-12 col-md-6">
         <div class="row">
             <div class="form-group col-xs-6">
                 <label for="email">Configuração de Mão:</label>
-                <input type="range" list="tickmarks" class="form-control" min="1" max="5" name="nota_configuracao_mao">                    
+                <input type="range" list="tickmarks" class="form-control" min="0" max="5" name="nota_configuracao_mao">                    
             </div>
             <div class="form-group col-xs-6">
                 <label for="email">Ponto de articulação:</label>
-                <input type="range" class="form-control" min="1" max="5" name="nota_ponto_articulacao">
+                <input type="range" class="form-control" min="0" max="5" name="nota_ponto_articulacao">
             </div>
         </div>
         <div class="row">
             <div class="form-group col-xs-6">
                 <label for="email">Movimento:</label>
-                <input type="range" class="form-control" min="1" max="5" name="nota_movimento">
+                <input type="range" class="form-control" min="0" max="5" name="nota_movimento">
             </div>
             <div class="form-group col-xs-6">
                 <label for="email">Orientação:</label>
-                <input type="range" class="form-control" min="1" max="5" name="nota_orientacao">
+                <input type="range" class="form-control" min="0" max="5" name="nota_orientacao">
             </div>
         </div>
         <div class="row">
             <div class="form-group col-xs-6">
                 <label for="email">Expressão facial:</label>
-                <input type="range" class="form-control" min="1" max="5" name="nota_expressao_facial">
+                <input type="range" class="form-control" min="0" max="5" name="nota_expressao_facial">
             </div>
             <div class="form-group col-xs-6">
                 <label for="email">Observações:</label>
@@ -147,6 +182,9 @@ if(isset($fk_id_atividade)){
         <div class="form-group">
             <a class="btn btn-block btn-info" id="addAvaliacao">Enviar</a>
         </div>
+    </div>    
+</div>
+        
 
     </form>
 </div>
