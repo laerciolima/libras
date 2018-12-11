@@ -11,14 +11,14 @@
             <input type="text" class="form-control" name="nome" id="nome" placeholder="Digite o nome">
         </div>
     </div><div class="form-group">
-        <label class="control-label col-sm-2" for="descricao">Descricao:</label>
+        <label class="control-label col-sm-2" for="descricao">Descrição:</label>
         <div class="col-sm-4">
-            <input type="text" class="form-control" name="descricao" id="descricao" placeholder="Digite o descricao">
+            <input type="text" class="form-control" name="descricao" id="descricao" placeholder="Digite o descrição">
         </div>
     </div><div class="form-group">
         <label class="control-label col-sm-2" for="nivel">Ordem:</label>
         <div class="col-sm-4">
-            <input type="text" class="form-control" name="nivel" id="nivel" placeholder="Digite o nivel">
+            <input type="text" class="form-control" name="nivel" id="nivel" placeholder="Digite a ordem">
         </div>
     </div>
     <div class="form-group">
