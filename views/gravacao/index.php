@@ -1,6 +1,6 @@
 <button  onclick="location.href='?controller=gravacao&action=add'" type="button" class="btn btn-default btn-sm" style="margin-top: 5px">
                     Novo
-                </button><h2>Lista de Gravacoes</h2>
+                </button><h2>Lista de Gravações</h2>
 
 
 <table id="example" class="display compact" cellspacing="0" width="100%">

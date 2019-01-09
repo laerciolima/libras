@@ -33,7 +33,9 @@ class SinalController {
 
     public function add() {
         if (isset($_POST['video'])) {
-
+            $_SESSION['success'] = "Sinal cadastrado com sucesso!";
+                echo "<meta http-equiv=\"Refresh\" content=\"0; url=?controller=sinal&action=index\">";
+                die();
 
             $sinal = new Sinal();
             $sinal->setNome($_POST["nome"]);

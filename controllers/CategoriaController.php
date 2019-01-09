@@ -34,7 +34,7 @@ class CategoriaController
         if (!CategoriaDAO::delete(base64_decode($_GET['id']))) {
             $_SESSION['error'] = "Ocorreu um erro ao deletar o categoria!";
         } else {
-            $_SESSION['success'] = "Categoria removido com sucesso!";
+            $_SESSION['success'] = "Categoria removida com sucesso!";
         }
 
         return call('categoria', 'index');
@@ -61,8 +61,9 @@ class CategoriaController
             $categoria->setDescricao($_POST["descricao"]);
             $categoria->setFk_id_modulo($_POST["fk_id_modulo"]);
             if (CategoriaDAO::add($categoria)) {
-                $_SESSION['success'] = "Categoria cadastrado com sucesso!";
-                header("Location: ?controller=categoria&action=index");
+                $_SESSION['success'] = "Categoria cadastrada com sucesso!";
+                echo "<meta http-equiv=\"Refresh\" content=\"0; url=?controller=categoria&action=index&modulo=" . $_POST["fk_id_modulo"] . "\">";
+
                 die();} else {
                 $_SESSION['error'] = "Ocorreu um erro no cadastro!";
             }
@@ -86,7 +87,7 @@ class CategoriaController
             if (!CategoriaDAO::edit($categoria)) {
                 $_SESSION['error'] = "Ocorreu um erro ao editar!";
             } else {
-                $_SESSION['success'] = "Categoria alterado com sucesso!";
+                $_SESSION['success'] = "Categoria alterada com sucesso!";
                 echo "<meta http-equiv=\"Refresh\" content=\"0; url=?controller=categoria&action=index&modulo=" . $_POST["fk_id_modulo"] . "\">";
 
                 die();}

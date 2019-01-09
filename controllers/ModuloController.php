@@ -6,7 +6,7 @@ class ModuloController {
         // we store all the posts in a variable
 
         $usuario_logado =  $_SESSION['login_object'];
-        $modulos = ModuloDAO::all($usuario_logado['id']);
+        $modulos = ModuloDAO::listAll();
 
 
         require_once('views/modulo/index.php');
@@ -42,7 +42,6 @@ class ModuloController {
             $modulo->setDescricao($_POST["descricao"]);
             $modulo->setNivel($_POST["nivel"]);
             $modulo->setTempo($_POST["tempo"]);
-
 
             if (ModuloDAO::add($modulo)) {
                 $_SESSION['success'] = "Modulo cadastrado com sucesso!";

@@ -56,7 +56,7 @@ class ConfiguracaoDeMaoController {
             $configuracaodemao = new ConfiguracaoDeMao();
             $configuracaodemao->setId(base64_decode($_GET['id']));
         $configuracaodemao->setNome($_POST["nome"]);
-        $configuracaodemao->setImagem($_POST["imagem"]);
+        //$configuracaodemao->setImagem($_POST["imagem"]);
             
             if (!ConfiguracaoDeMaoDAO::edit($configuracaodemao)) {
                 $_SESSION['error'] = "Ocorreu um erro ao editar!";

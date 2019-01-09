@@ -98,12 +98,12 @@ where av.acertado = 1 and m.id = :id_modulo and av.fk_id_usuario = :id_usuario')
     }
 
     public static function add(Modulo $modulo) {
-        // we make sure $id is an integer
 
-        $req = Db::getInstance()->prepare("INSERT INTO modulo (nome,descricao,nivel) VALUES (:nome,:descricao,:nivel)");
+        $req = Db::getInstance()->prepare("INSERT INTO modulo (nome,descricao,nivel, tempo) VALUES (:nome,:descricao,:nivel,:tempo)");
         $req->bindValue(":nome", $modulo->getNome());
         $req->bindValue(":descricao", $modulo->getDescricao());
         $req->bindValue(":nivel", $modulo->getNivel());
+        $req->bindValue(":tempo", $modulo->getTempo());
         return $req->execute();
     }
 
